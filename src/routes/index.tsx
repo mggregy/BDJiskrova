@@ -46,7 +46,7 @@ function Dashboard() {
     Zostatok: r.fondZostatok,
   }));
 
-  const teploTrend = ROKY.filter((r) => r.teploCelkomKwh).map((r) => ({
+  const teploTrend = ROKY.filter((r): r is typeof r & { teploCelkomKwh: number } => !!r.teploCelkomKwh).map((r) => ({
     rok: r.rok,
     kWh: r.teploCelkomKwh,
   }));
