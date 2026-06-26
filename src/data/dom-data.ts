@@ -309,21 +309,162 @@ export const ROKY: RocnyZaznam[] = [
 // === REVÍZIE — aktuálny stav (z poslednej správy 2024) ===
 
 export type Revizia = {
+  id: string;
   nazov: string;
+  kategoria: "Elektro" | "Plyn" | "Požiarna ochrana" | "Výťahy" | "Hygiena" | "Stavebné";
   poslednaRevizia: string; // YYYY-MM-DD
   platnaDo: string;        // YYYY-MM-DD
+  frekvencia: string;
+  zakon: string;
+  vykonavatel?: string;
+  rozsah: string;
+  popis: string;
   poznamka?: string;
+  historia?: Array<{ datum: string; popis: string }>;
 };
 
 export const REVIZIE: Revizia[] = [
-  { nazov: "Revízia bleskozvodov", poslednaRevizia: "2022-11-23", platnaDo: "2026-11-23" },
-  { nazov: "Revízia elektroinštalácie", poslednaRevizia: "2021-03-30", platnaDo: "2026-03-30" },
-  { nazov: "Revízia plynu", poslednaRevizia: "2025-05-07", platnaDo: "2028-05-07" },
-  { nazov: "Revízia požiarnych hydrantov", poslednaRevizia: "2024-07-01", platnaDo: "2025-07-01", poznamka: "Ročná kontrola" },
-  { nazov: "Revízia výťahov — kompletná 6-ročná", poslednaRevizia: "2025-03-15", platnaDo: "2031-03-15" },
-  { nazov: "Revízia výťahov 3-ročná", poslednaRevizia: "2022-01-31", platnaDo: "2028-03-15" },
-  { nazov: "Deratizácia", poslednaRevizia: "2024-10-01", platnaDo: "2025-10-01", poznamka: "Vykonávaná každoročne" },
-  { nazov: "Preventívna protipožiarna prehliadka", poslednaRevizia: "2024-06-01", platnaDo: "2025-06-01" },
+  {
+    id: "bleskozvod",
+    nazov: "Revízia bleskozvodov",
+    kategoria: "Elektro",
+    poslednaRevizia: "2022-11-23",
+    platnaDo: "2026-11-23",
+    frekvencia: "každé 4 roky",
+    zakon: "Vyhláška MPSVR SR č. 508/2009 Z. z., STN EN 62305",
+    vykonavatel: "Revízny technik s osvedčením podľa § 24 vyhl. 508/2009",
+    rozsah:
+      "Vizuálna a meracia kontrola zvodov, uzemnení, prepojení a aktívnej hlavice (ak je inštalovaná). Meranie odporu uzemňovacej sústavy.",
+    popis:
+      "Pravidelná odborná prehliadka a skúška systému ochrany pred bleskom (LPS). Cieľom je zabezpečiť funkčnú ochranu domu pred priamym úderom blesku a prepätím.",
+    historia: [
+      { datum: "2023", popis: "Opravy bleskozvodov v rámci čerpania fondu opráv (565,35 €)" },
+      { datum: "2022-11-23", popis: "Posledná odborná prehliadka — bez závažných závad" },
+    ],
+  },
+  {
+    id: "elektro",
+    nazov: "Revízia elektroinštalácie",
+    kategoria: "Elektro",
+    poslednaRevizia: "2021-03-30",
+    platnaDo: "2026-03-30",
+    frekvencia: "každých 5 rokov (spoločné priestory bytového domu)",
+    zakon: "Vyhláška č. 508/2009 Z. z., STN 33 1500, STN 33 2000-6",
+    vykonavatel: "Revízny technik elektro s osvedčením podľa § 24",
+    rozsah:
+      "Kontrola hlavných rozvádzačov, spoločných rozvodov vo vchodoch a pivniciach, osvetlenia spoločných priestorov, núdzového osvetlenia, ističov a uzemnenia.",
+    popis:
+      "Odborná prehliadka a odborná skúška elektrickej inštalácie spoločných priestorov bytového domu. Týka sa rozvodov v pivnici, na schodisku a v technických miestnostiach — nie elektriny v bytoch.",
+    poznamka: "V roku 2021 boli po revízii odstránené zistené závady (cca 738 €).",
+    historia: [
+      { datum: "2021", popis: "OP a OS elektroinštalácie + odstránenie závad (737,82 €)" },
+      { datum: "2016", popis: "Výmena rozvodov elektroinštalácie" },
+    ],
+  },
+  {
+    id: "plyn",
+    nazov: "Revízia plynového rozvodu",
+    kategoria: "Plyn",
+    poslednaRevizia: "2025-05-07",
+    platnaDo: "2028-05-07",
+    frekvencia: "každé 3 roky (OP), 6 rokov (OS)",
+    zakon: "Vyhláška č. 508/2009 Z. z., STN 38 6405, STN EN 1775",
+    vykonavatel: "Revízny technik plynových zariadení",
+    rozsah:
+      "Skúška tesnosti plynovodu vo vchodoch a pivnici, kontrola uzáverov, regulátora a tlakových skúšok stúpačiek.",
+    popis:
+      "Odborná prehliadka spoločného rozvodu plynu v bytovom dome. Týka sa stúpačiek a hlavného uzáveru, nie spotrebičov v bytoch.",
+    historia: [
+      { datum: "2020", popis: "Odstránenie závad po OP a OS plynoinštalácie (1 034,76 €)" },
+    ],
+  },
+  {
+    id: "hydranty",
+    nazov: "Kontrola požiarnych hydrantov",
+    kategoria: "Požiarna ochrana",
+    poslednaRevizia: "2024-07-01",
+    platnaDo: "2025-07-01",
+    frekvencia: "každoročne",
+    zakon: "Vyhláška MV SR č. 169/2006 Z. z., STN 92 0202-1",
+    vykonavatel: "Špecialista požiarnej ochrany / odborná firma",
+    rozsah:
+      "Vizuálna kontrola hadicových zariadení, kontrola tlaku, prietoku vody, kompletnosti vybavenia a štítkov.",
+    popis:
+      "Pravidelná ročná kontrola funkčnosti nástenných požiarnych hydrantov rozmiestnených v spoločných priestoroch domu.",
+    poznamka: "Ročná kontrola — povinná každý kalendárny rok.",
+  },
+  {
+    id: "vytahy-6r",
+    nazov: "Úradná skúška výťahov (6-ročná)",
+    kategoria: "Výťahy",
+    poslednaRevizia: "2025-03-15",
+    platnaDo: "2031-03-15",
+    frekvencia: "každých 6 rokov",
+    zakon: "Vyhláška č. 508/2009 Z. z., STN 27 4002, STN 27 4007",
+    vykonavatel: "Technická inšpekcia, a. s. (TI SR)",
+    rozsah:
+      "Komplexná úradná skúška oboch výťahov v J6 a J8 — mechanická, elektrická a bezpečnostná časť vrátane statického a dynamického zaťaženia.",
+    popis:
+      "Najdôležitejšia periodická skúška výťahov, ktorá overuje bezpečnosť prevádzky. Bez platnej úradnej skúšky nesmú byť výťahy prevádzkované.",
+    historia: [
+      { datum: "2019", popis: "Úradná skúška výťahov s technickou inšpekciou (811,92 €)" },
+    ],
+  },
+  {
+    id: "vytahy-3r",
+    nazov: "Odborná skúška výťahov (3-ročná)",
+    kategoria: "Výťahy",
+    poslednaRevizia: "2022-01-31",
+    platnaDo: "2028-03-15",
+    frekvencia: "každé 3 roky",
+    zakon: "Vyhláška č. 508/2009 Z. z., STN 27 4002",
+    vykonavatel: "Odborný pracovník výťahovej firmy",
+    rozsah:
+      "Funkčná skúška bezpečnostných prvkov výťahov — zachytávač, obmedzovač rýchlosti, brzdy, dvere, signalizácia.",
+    popis:
+      "Pravidelná odborná skúška oboch výťahov medzi úradnými skúškami. Doplnená odbornými prehliadkami v kratších intervaloch (každé 3 mesiace) a mesačnou údržbou.",
+    historia: [
+      { datum: "2024", popis: "Vystredenie motora, vyčistenie a namazanie bŕzd, oprava výťahu J8" },
+      { datum: "2022", popis: "Odborná skúška (326,40 €)" },
+    ],
+  },
+  {
+    id: "deratizacia",
+    nazov: "Deratizácia spoločných priestorov",
+    kategoria: "Hygiena",
+    poslednaRevizia: "2024-10-01",
+    platnaDo: "2025-10-01",
+    frekvencia: "2× ročne (jar / jeseň)",
+    zakon: "Zákon č. 355/2007 Z. z. o ochrane verejného zdravia, VZN hl. m. Bratislavy",
+    vykonavatel: "Odborná firma s oprávnením na DDD činnosť",
+    rozsah:
+      "Položenie nástrah v pivničných priestoroch, kontrola po 2–3 týždňoch, evidencia stavu.",
+    popis:
+      "Pravidelná deratizácia spoločných priestorov bytového domu — povinnosť správcu, hradená z prevádzkových nákladov.",
+    poznamka: "Vykonávaná každoročne.",
+    historia: [
+      { datum: "2024", popis: "Vyúčtované 158,40 € v ročnom vyúčtovaní" },
+      { datum: "2023", popis: "Vyúčtované 158,40 €" },
+    ],
+  },
+  {
+    id: "pp-prehliadka",
+    nazov: "Preventívna protipožiarna prehliadka",
+    kategoria: "Požiarna ochrana",
+    poslednaRevizia: "2024-06-01",
+    platnaDo: "2025-06-01",
+    frekvencia: "každoročne",
+    zakon: "Zákon č. 314/2001 Z. z. o ochrane pred požiarmi, vyhl. č. 121/2002 Z. z.",
+    vykonavatel: "Technik požiarnej ochrany",
+    rozsah:
+      "Kontrola únikových ciest, požiarnych dverí, hasiacich prístrojov, voľnosti pivničných chodieb a označení.",
+    popis:
+      "Ročná preventívna prehliadka bytového domu z hľadiska požiarnej bezpečnosti. Výstupom je zápisnica s prípadnými zistenými nedostatkami.",
+    historia: [
+      { datum: "2024", popis: "Preventívna protipožiarna prehliadka (75,80 €)" },
+      { datum: "2023", popis: "Preventívna protipožiarna prehliadka (75,80 €)" },
+    ],
+  },
 ];
 
 // === STAV KONŠTRUKČNÝCH PRVKOV (z poslednej správy 2024) ===

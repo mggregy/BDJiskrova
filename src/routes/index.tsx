@@ -190,15 +190,25 @@ function Dashboard() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {najblizsie.map((r) => (
-              <div key={r.nazov} className="stat-card flex items-center justify-between gap-3">
+              <Link
+                key={r.id}
+                to="/kontroly"
+                search={{ id: r.id }}
+                className="stat-card flex items-center justify-between gap-3 hover:border-teal transition-colors group"
+              >
                 <div className="min-w-0">
-                  <div className="text-sm font-medium text-foreground truncate">{r.nazov}</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">platná do {fmtDate(r.platnaDo)}</div>
+                  <div className="text-sm font-medium text-foreground truncate group-hover:text-teal transition-colors">
+                    {r.nazov}
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-0.5">
+                    platná do {fmtDate(r.platnaDo)} · klikni pre detail
+                  </div>
                 </div>
                 <StatusBadge status={r.status} dni={r.dniDoExpiracie} />
-              </div>
+              </Link>
             ))}
           </div>
+
         )}
       </section>
 
