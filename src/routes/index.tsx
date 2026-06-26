@@ -15,6 +15,8 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  ComposedChart,
+  Line,
   ResponsiveContainer,
   Tooltip,
   XAxis,
