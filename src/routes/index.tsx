@@ -165,15 +165,85 @@ function Dashboard() {
           formatY={(v) => `${(v / 1000).toFixed(0)} k€`}
           formatTooltip={(v) => fmtEur(v)}
         />
-        <ChartCard
-          title="Spotreba tepla — celý dom"
-          subtitle="kWh / rok podľa Techem rozpočítania"
-          data={teploTrend}
-          dataKey="kWh"
-          color="var(--color-chart-2)"
-          formatY={(v) => `${(v / 1000).toFixed(0)} k`}
-          formatTooltip={(v) => `${fmtNum(v)} kWh`}
-        />
+        <div className="stat-card">
+          <div className="mb-4 flex items-start justify-between gap-4">
+            <div>
+              <h3 className="font-semibold text-foreground">Spotreba a cena tepla — celý dom</h3>
+              <p className="text-xs text-muted-foreground">kWh / rok (Techem) a zaplatená cena za ÚK + TÚV</p>
+            </div>
+            <div className="flex items-center gap-3 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="size-2.5 rounded-sm" style={{ background: "var(--color-chart-2)" }} />
+                kWh
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="size-2.5 rounded-full" style={{ background: "var(--color-chart-3)" }} />
+                € / rok
+              </span>
+            </div>
+          </div>
+          <div className="h-56">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={teploTrend} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="grad-kwh" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="var(--color-chart-2)" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="var(--color-chart-2)" stopOpacity={0.02} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
+                <XAxis dataKey="rok" stroke="var(--color-muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
+                <YAxis
+                  yAxisId="kwh"
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                  tickFormatter={(v) => `${(v / 1000).toFixed(0)} k`}
+                  width={50}
+                />
+                <YAxis
+                  yAxisId="cena"
+                  orientation="right"
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                  tickFormatter={(v) => `${(v / 1000).toFixed(0)} k€`}
+                  width={50}
+                />
+                <Tooltip
+                  contentStyle={{
+                    background: "var(--color-surface)",
+                    border: "1px solid var(--color-border)",
+                    borderRadius: "0.5rem",
+                    fontSize: "0.85rem",
+                  }}
+                  formatter={(v: number, name) =>
+                    name === "kWh" ? [`${fmtNum(v)} kWh`, "Spotreba"] : [fmtEur(v), "Cena (ÚK + TÚV)"]
+                  }
+                />
+                <Area
+                  yAxisId="kwh"
+                  type="monotone"
+                  dataKey="kWh"
+                  stroke="var(--color-chart-2)"
+                  strokeWidth={2}
+                  fill="url(#grad-kwh)"
+                />
+                <Line
+                  yAxisId="cena"
+                  type="monotone"
+                  dataKey="cena"
+                  stroke="var(--color-chart-3)"
+                  strokeWidth={2}
+                  dot={{ r: 3, fill: "var(--color-chart-3)" }}
+                  activeDot={{ r: 5 }}
+                />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </section>
 
       {/* Najbližšie revízie */}
