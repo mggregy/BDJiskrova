@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Building2, LayoutDashboard, Receipt, ShieldCheck, Wrench } from "lucide-react";
+import { Building2, Flame, LayoutDashboard, Receipt, ShieldCheck, Wrench } from "lucide-react";
 import type { ReactNode } from "react";
 import { DOM_INFO } from "@/data/dom-data";
 
 const navItems = [
   { to: "/", label: "Prehľad", icon: LayoutDashboard },
   { to: "/financie", label: "Financie & Spotreby", icon: Receipt },
+  { to: "/teplo", label: "Teplo (ÚK + TÚV)", icon: Flame },
   { to: "/kontroly", label: "Zákonné kontroly", icon: ShieldCheck },
   { to: "/vydavky", label: "Výdavky z fondu", icon: Wrench },
 ] as const;
