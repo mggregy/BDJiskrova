@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VydavkyRouteImport } from './routes/vydavky'
+import { Route as TeploRouteImport } from './routes/teplo'
 import { Route as KontrolyRouteImport } from './routes/kontroly'
 import { Route as FinancieRouteImport } from './routes/financie'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const VydavkyRoute = VydavkyRouteImport.update({
   id: '/vydavky',
   path: '/vydavky',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeploRoute = TeploRouteImport.update({
+  id: '/teplo',
+  path: '/teplo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KontrolyRoute = KontrolyRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/financie': typeof FinancieRoute
   '/kontroly': typeof KontrolyRoute
+  '/teplo': typeof TeploRoute
   '/vydavky': typeof VydavkyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/financie': typeof FinancieRoute
   '/kontroly': typeof KontrolyRoute
+  '/teplo': typeof TeploRoute
   '/vydavky': typeof VydavkyRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/financie': typeof FinancieRoute
   '/kontroly': typeof KontrolyRoute
+  '/teplo': typeof TeploRoute
   '/vydavky': typeof VydavkyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/financie' | '/kontroly' | '/vydavky'
+  fullPaths: '/' | '/financie' | '/kontroly' | '/teplo' | '/vydavky'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/financie' | '/kontroly' | '/vydavky'
-  id: '__root__' | '/' | '/financie' | '/kontroly' | '/vydavky'
+  to: '/' | '/financie' | '/kontroly' | '/teplo' | '/vydavky'
+  id: '__root__' | '/' | '/financie' | '/kontroly' | '/teplo' | '/vydavky'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FinancieRoute: typeof FinancieRoute
   KontrolyRoute: typeof KontrolyRoute
+  TeploRoute: typeof TeploRoute
   VydavkyRoute: typeof VydavkyRoute
 }
 
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/vydavky'
       fullPath: '/vydavky'
       preLoaderRoute: typeof VydavkyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teplo': {
+      id: '/teplo'
+      path: '/teplo'
+      fullPath: '/teplo'
+      preLoaderRoute: typeof TeploRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kontroly': {
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FinancieRoute: FinancieRoute,
   KontrolyRoute: KontrolyRoute,
+  TeploRoute: TeploRoute,
   VydavkyRoute: VydavkyRoute,
 }
 export const routeTree = rootRouteImport
