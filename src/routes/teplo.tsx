@@ -22,7 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { DOM_INFO, ROKY } from "@/data/dom-data";
+import { DOM_INFO, ROKY, TEPLO_UK_HISTORIA } from "@/data/dom-data";
 
 export const Route = createFileRoute("/teplo")({
   head: () => ({
