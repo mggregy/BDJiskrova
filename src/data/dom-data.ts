@@ -569,3 +569,36 @@ export const statusRevizie = (platnaDo: string, today = new Date()): { status: R
 };
 
 export const poslednyRok = ROKY[ROKY.length - 1];
+
+// === HISTÓRIA NÁKLADOV NA ÚK (Ústredné kúrenie) ===
+// Zdroj: 2025_Jiskrova_naklady_teplo_Zhrnutie.pdf (sumár od dodávateľa tepla)
+// Rozpad len pre ÚK objektu (bez ohrevu TÚV). Hodnoty v EUR a kWh.
+
+export type TeploUkRok = {
+  rok: number;
+  spotrebaKwh: number;          // variabilné kWh za objekt
+  cenaVariabilna: number;       // €/kWh
+  variabilneEur: number;        // €
+  regulacnyPrikonKw: number;    // kW
+  fixnaSadzba: number;          // €/kW/rok
+  fixneEur: number;             // €
+  spoluEur: number;             // €
+};
+
+export const TEPLO_UK_HISTORIA: TeploUkRok[] = [
+  { rok: 2012, spotrebaKwh: 166600, cenaVariabilna: 0.052788, variabilneEur: 8794, regulacnyPrikonKw: 35.134, fixnaSadzba: 228.2, fixneEur: 8019, spoluEur: 16814 },
+  { rok: 2013, spotrebaKwh: 162300, cenaVariabilna: 0.051108, variabilneEur: 8295, regulacnyPrikonKw: 32.281, fixnaSadzba: 255.5, fixneEur: 8247, spoluEur: 16542 },
+  { rok: 2014, spotrebaKwh: 131260, cenaVariabilna: 0.061800, variabilneEur: 8112, regulacnyPrikonKw: 29.603, fixnaSadzba: 208.5, fixneEur: 6172, spoluEur: 14284 },
+  { rok: 2015, spotrebaKwh: 143860, cenaVariabilna: 0.061320, variabilneEur: 8821, regulacnyPrikonKw: 30.684, fixnaSadzba: 211.9, fixneEur: 6501, spoluEur: 15323 },
+  { rok: 2016, spotrebaKwh: 156070, cenaVariabilna: 0.054708, variabilneEur: 8538, regulacnyPrikonKw: 32.439, fixnaSadzba: 223.5, fixneEur: 7249, spoluEur: 15787 },
+  { rok: 2017, spotrebaKwh: 164410, cenaVariabilna: 0.042564, variabilneEur: 6998, regulacnyPrikonKw: 32.736, fixnaSadzba: 277.4, fixneEur: 9082, spoluEur: 16080 },
+  { rok: 2018, spotrebaKwh: 151480, cenaVariabilna: 0.046380, variabilneEur: 7026, regulacnyPrikonKw: 33.111, fixnaSadzba: 277.9, fixneEur: 9202, spoluEur: 16228 },
+  { rok: 2019, spotrebaKwh: 144930, cenaVariabilna: 0.052977, variabilneEur: 7678, regulacnyPrikonKw: 30.150, fixnaSadzba: 290.8, fixneEur: 8766, spoluEur: 16444 },
+  { rok: 2020, spotrebaKwh: 148930, cenaVariabilna: 0.053640, variabilneEur: 7989, regulacnyPrikonKw: 31.395, fixnaSadzba: 276.5, fixneEur: 8680, spoluEur: 16668 },
+  { rok: 2021, spotrebaKwh: 167830, cenaVariabilna: 0.046080, variabilneEur: 7734, regulacnyPrikonKw: 29.276, fixnaSadzba: 275.1, fixneEur: 8054, spoluEur: 15788 },
+  { rok: 2022, spotrebaKwh: 154230, cenaVariabilna: 0.058920, variabilneEur: 9087, regulacnyPrikonKw: 29.577, fixnaSadzba: 284.5, fixneEur: 8416, spoluEur: 17503 },
+  { rok: 2023, spotrebaKwh: 142350, cenaVariabilna: 0.078582, variabilneEur: 11186, regulacnyPrikonKw: 32.499, fixnaSadzba: 319.6, fixneEur: 10386, spoluEur: 21572 },
+  { rok: 2024, spotrebaKwh: 137182, cenaVariabilna: 0.078582, variabilneEur: 10780, regulacnyPrikonKw: 32.182, fixnaSadzba: 335.2, fixneEur: 10786, spoluEur: 21566 },
+  { rok: 2025, spotrebaKwh: 153470, cenaVariabilna: 0.055354, variabilneEur: 8495, regulacnyPrikonKw: 32.897, fixnaSadzba: 367.1, fixneEur: 12075, spoluEur: 20570 },
+];
+
