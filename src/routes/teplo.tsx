@@ -549,14 +549,14 @@ function UkBreakdownSection() {
                   dataKey="variabilneEur"
                   name="Variabilná (€)"
                   stackId="uk"
-                  fill="hsl(var(--primary))"
+                  fill="var(--color-chart-1)"
                 />
                 <Bar
                   yAxisId="left"
                   dataKey="fixneEur"
                   name="Fixná (€)"
                   stackId="uk"
-                  fill="hsl(var(--warning))"
+                  fill="var(--color-chart-4)"
                   radius={[6, 6, 0, 0]}
                 />
                 <Line
