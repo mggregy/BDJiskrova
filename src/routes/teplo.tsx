@@ -96,6 +96,7 @@ function TeploPage() {
   const diffPct = prev.spolu > 0 ? (diffSpolu / prev.spolu) * 100 : 0;
 
   return (
+    <AppShell>
     <div className="space-y-8">
       <header className="space-y-2">
         <div className="flex items-center gap-2 text-primary">
