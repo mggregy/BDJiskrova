@@ -23,6 +23,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { DOM_INFO, ROKY, TEPLO_UK_HISTORIA } from "@/data/dom-data";
+import { AppShell } from "@/components/AppShell";
+
+// Chart palette — distinct, readable. Mirrors tokens used in /financie.
+const C_UK = "var(--color-chart-1)";        // steel navy
+const C_TUV = "var(--color-chart-2)";       // teal
+const C_SPOTREBA = "var(--color-chart-4)";  // amber
+const C_VAR = "var(--color-chart-1)";       // steel navy
+const C_FIX = "var(--color-chart-4)";       // amber
+const C_LINE_ALT = "var(--color-chart-5)";  // green
+const C_AREA = "var(--color-chart-2)";      // teal
+const C_PRICE = "var(--color-chart-3)";     // light teal
 
 export const Route = createFileRoute("/teplo")({
   head: () => ({
@@ -85,6 +96,7 @@ function TeploPage() {
   const diffPct = prev.spolu > 0 ? (diffSpolu / prev.spolu) * 100 : 0;
 
   return (
+    <AppShell>
     <div className="space-y-8">
       <header className="space-y-2">
         <div className="flex items-center gap-2 text-primary">
@@ -194,29 +206,29 @@ function TeploPage() {
           <div className="w-full h-[360px]">
             <ResponsiveContainer>
               <ComposedChart data={data} margin={{ top: 10, right: 16, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border) / 0.5)" />
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
                 <XAxis
                   dataKey="rok"
-                  stroke="hsl(var(--muted-foreground))"
+                  stroke="var(--color-muted-foreground)"
                   tick={{ fontSize: 12 }}
                 />
                 <YAxis
                   yAxisId="left"
-                  stroke="hsl(var(--muted-foreground))"
+                  stroke="var(--color-muted-foreground)"
                   tick={{ fontSize: 12 }}
                   tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}k €`}
                 />
                 <YAxis
                   yAxisId="right"
                   orientation="right"
-                  stroke="hsl(var(--muted-foreground))"
+                  stroke="var(--color-muted-foreground)"
                   tick={{ fontSize: 12 }}
                   tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}k`}
                 />
                 <Tooltip
                   contentStyle={{
-                    background: "hsl(var(--popover))",
-                    border: "1px solid hsl(var(--border))",
+                    background: "var(--color-popover)",
+                    border: "1px solid var(--color-border)",
                     borderRadius: 8,
                     fontSize: 12,
                   }}
@@ -231,7 +243,7 @@ function TeploPage() {
                   dataKey="uk"
                   name="ÚK (€)"
                   stackId="naklady"
-                  fill="hsl(var(--primary))"
+                  fill={C_UK}
                   radius={[0, 0, 0, 0]}
                 />
                 <Bar
@@ -239,7 +251,7 @@ function TeploPage() {
                   dataKey="tuv"
                   name="Ohrev TÚV (€)"
                   stackId="naklady"
-                  fill="hsl(var(--chart-2, var(--accent-foreground)))"
+                  fill={C_TUV}
                   radius={[6, 6, 0, 0]}
                 />
                 <Line
@@ -247,7 +259,7 @@ function TeploPage() {
                   type="monotone"
                   dataKey="spotrebaKwh"
                   name="Spotreba (kWh)"
-                  stroke="hsl(var(--warning))"
+                  stroke={C_SPOTREBA}
                   strokeWidth={2.5}
                   dot={{ r: 4 }}
                 />
@@ -270,13 +282,13 @@ function TeploPage() {
             <div className="w-full h-[240px]">
               <ResponsiveContainer>
                 <ComposedChart data={data} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border) / 0.5)" />
-                  <XAxis dataKey="rok" stroke="hsl(var(--muted-foreground))" tick={{ fontSize: 12 }} />
-                  <YAxis stroke="hsl(var(--muted-foreground))" tick={{ fontSize: 12 }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
+                  <XAxis dataKey="rok" stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
+                  <YAxis stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
                   <Tooltip
                     contentStyle={{
-                      background: "hsl(var(--popover))",
-                      border: "1px solid hsl(var(--border))",
+                      background: "var(--color-popover)",
+                      border: "1px solid var(--color-border)",
                       borderRadius: 8,
                       fontSize: 12,
                     }}
@@ -285,8 +297,8 @@ function TeploPage() {
                   <Area
                     type="monotone"
                     dataKey="kwhNaM2"
-                    stroke="hsl(var(--primary))"
-                    fill="hsl(var(--primary) / 0.18)"
+                    stroke="var(--color-chart-2)"
+                    fill="color-mix(in oklch, var(--color-chart-2) 22%, transparent)"
                     strokeWidth={2}
                   />
                 </ComposedChart>
@@ -306,17 +318,17 @@ function TeploPage() {
             <div className="w-full h-[240px]">
               <ResponsiveContainer>
                 <ComposedChart data={data} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border) / 0.5)" />
-                  <XAxis dataKey="rok" stroke="hsl(var(--muted-foreground))" tick={{ fontSize: 12 }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
+                  <XAxis dataKey="rok" stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
                   <YAxis
-                    stroke="hsl(var(--muted-foreground))"
+                    stroke="var(--color-muted-foreground)"
                     tick={{ fontSize: 12 }}
                     tickFormatter={(v: number) => v.toFixed(3)}
                   />
                   <Tooltip
                     contentStyle={{
-                      background: "hsl(var(--popover))",
-                      border: "1px solid hsl(var(--border))",
+                      background: "var(--color-popover)",
+                      border: "1px solid var(--color-border)",
                       borderRadius: 8,
                       fontSize: 12,
                     }}
@@ -325,7 +337,7 @@ function TeploPage() {
                   <Line
                     type="monotone"
                     dataKey="cenaZaKwh"
-                    stroke="hsl(var(--warning))"
+                    stroke="var(--color-chart-3)"
                     strokeWidth={2.5}
                     dot={{ r: 4 }}
                   />
@@ -389,6 +401,7 @@ function TeploPage() {
         na teplo od dodávateľa (2025_Jiskrova_naklady_teplo_Zhrnutie.pdf).
       </p>
     </div>
+    </AppShell>
   );
 }
 
@@ -505,25 +518,25 @@ function UkBreakdownSection() {
           <div className="w-full h-[360px]">
             <ResponsiveContainer>
               <ComposedChart data={data} margin={{ top: 10, right: 16, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border) / 0.5)" />
-                <XAxis dataKey="rok" stroke="hsl(var(--muted-foreground))" tick={{ fontSize: 12 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
+                <XAxis dataKey="rok" stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
                 <YAxis
                   yAxisId="left"
-                  stroke="hsl(var(--muted-foreground))"
+                  stroke="var(--color-muted-foreground)"
                   tick={{ fontSize: 12 }}
                   tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}k €`}
                 />
                 <YAxis
                   yAxisId="right"
                   orientation="right"
-                  stroke="hsl(var(--muted-foreground))"
+                  stroke="var(--color-muted-foreground)"
                   tick={{ fontSize: 12 }}
                   tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}k`}
                 />
                 <Tooltip
                   contentStyle={{
-                    background: "hsl(var(--popover))",
-                    border: "1px solid hsl(var(--border))",
+                    background: "var(--color-popover)",
+                    border: "1px solid var(--color-border)",
                     borderRadius: 8,
                     fontSize: 12,
                   }}
@@ -538,14 +551,14 @@ function UkBreakdownSection() {
                   dataKey="variabilneEur"
                   name="Variabilná (€)"
                   stackId="uk"
-                  fill="hsl(var(--primary))"
+                  fill="var(--color-chart-1)"
                 />
                 <Bar
                   yAxisId="left"
                   dataKey="fixneEur"
                   name="Fixná (€)"
                   stackId="uk"
-                  fill="hsl(var(--warning))"
+                  fill="var(--color-chart-4)"
                   radius={[6, 6, 0, 0]}
                 />
                 <Line
@@ -553,7 +566,7 @@ function UkBreakdownSection() {
                   type="monotone"
                   dataKey="spotrebaKwh"
                   name="Spotreba (kWh)"
-                  stroke="hsl(var(--accent-foreground))"
+                  stroke="var(--color-chart-5)"
                   strokeWidth={2}
                   dot={{ r: 3 }}
                 />
