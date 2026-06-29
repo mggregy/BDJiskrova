@@ -296,8 +296,8 @@ function TeploPage() {
                   <Area
                     type="monotone"
                     dataKey="kwhNaM2"
-                    stroke="hsl(var(--primary))"
-                    fill="hsl(var(--primary) / 0.18)"
+                    stroke="var(--color-chart-2)"
+                    fill="color-mix(in oklch, var(--color-chart-2) 22%, transparent)"
                     strokeWidth={2}
                   />
                 </ComposedChart>
@@ -336,7 +336,7 @@ function TeploPage() {
                   <Line
                     type="monotone"
                     dataKey="cenaZaKwh"
-                    stroke="hsl(var(--warning))"
+                    stroke="var(--color-chart-3)"
                     strokeWidth={2.5}
                     dot={{ r: 4 }}
                   />
@@ -564,7 +564,7 @@ function UkBreakdownSection() {
                   type="monotone"
                   dataKey="spotrebaKwh"
                   name="Spotreba (kWh)"
-                  stroke="hsl(var(--accent-foreground))"
+                  stroke="var(--color-chart-5)"
                   strokeWidth={2}
                   dot={{ r: 3 }}
                 />
