@@ -401,6 +401,7 @@ function TeploPage() {
         na teplo od dodávateľa (2025_Jiskrova_naklady_teplo_Zhrnutie.pdf).
       </p>
     </div>
+    </AppShell>
   );
 }
 
