@@ -23,6 +23,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { DOM_INFO, ROKY, TEPLO_UK_HISTORIA } from "@/data/dom-data";
+import { AppShell } from "@/components/AppShell";
+
+// Chart palette — distinct, readable. Mirrors tokens used in /financie.
+const C_UK = "var(--color-chart-1)";        // steel navy
+const C_TUV = "var(--color-chart-2)";       // teal
+const C_SPOTREBA = "var(--color-chart-4)";  // amber
+const C_VAR = "var(--color-chart-1)";       // steel navy
+const C_FIX = "var(--color-chart-4)";       // amber
+const C_LINE_ALT = "var(--color-chart-5)";  // green
+const C_AREA = "var(--color-chart-2)";      // teal
+const C_PRICE = "var(--color-chart-3)";     // light teal
 
 export const Route = createFileRoute("/teplo")({
   head: () => ({
