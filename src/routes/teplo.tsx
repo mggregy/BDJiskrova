@@ -242,7 +242,7 @@ function TeploPage() {
                   dataKey="uk"
                   name="ÚK (€)"
                   stackId="naklady"
-                  fill="hsl(var(--primary))"
+                  fill={C_UK}
                   radius={[0, 0, 0, 0]}
                 />
                 <Bar
@@ -250,7 +250,7 @@ function TeploPage() {
                   dataKey="tuv"
                   name="Ohrev TÚV (€)"
                   stackId="naklady"
-                  fill="hsl(var(--chart-2, var(--accent-foreground)))"
+                  fill={C_TUV}
                   radius={[6, 6, 0, 0]}
                 />
                 <Line
@@ -258,7 +258,7 @@ function TeploPage() {
                   type="monotone"
                   dataKey="spotrebaKwh"
                   name="Spotreba (kWh)"
-                  stroke="hsl(var(--warning))"
+                  stroke={C_SPOTREBA}
                   strokeWidth={2.5}
                   dot={{ r: 4 }}
                 />
