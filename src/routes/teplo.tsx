@@ -419,6 +419,34 @@ function UkBreakdownSection() {
   const fixYoY = ((last.fixneEur - prev.fixneEur) / prev.fixneEur) * 100;
   const varYoY = ((last.variabilneEur - prev.variabilneEur) / prev.variabilneEur) * 100;
 
+  const keys = [
+    "spotrebaKwh",
+    "cenaVariabilna",
+    "variabilneEur",
+    "regulacnyPrikonKw",
+    "fixnaSadzba",
+    "fixneEur",
+    "spoluEur",
+  ] as const;
+  const extrema = (() => {
+    const result: Record<string, { min: number; max: number }> = {};
+    for (const key of keys) {
+      const vals = data.map((d) => d[key]);
+      result[key] = { min: Math.min(...vals), max: Math.max(...vals) };
+    }
+    return result;
+  })();
+
+  function cellClass(value: number, key: string) {
+    const e = extrema[key];
+    if (!e) return "";
+    if (value === e.max) return "bg-destructive/20 text-destructive font-bold";
+    if (value === e.min) return "bg-success/20 text-success font-bold";
+    return "";
+  }
+
+
+
   return (
     <section className="space-y-4 pt-4 border-t border-border/60">
       <header className="space-y-2">
@@ -600,25 +628,25 @@ function UkBreakdownSection() {
               {[...data].reverse().map((r) => (
                 <TableRow key={r.rok}>
                   <TableCell className="font-medium">{r.rok}</TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.spotrebaKwh, "spotrebaKwh")}`}>
                     {r.spotrebaKwh.toLocaleString("sk-SK")}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.cenaVariabilna, "cenaVariabilna")}`}>
                     {r.cenaVariabilna.toFixed(4)}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.variabilneEur, "variabilneEur")}`}>
                     {eur(r.variabilneEur)}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.regulacnyPrikonKw, "regulacnyPrikonKw")}`}>
                     {r.regulacnyPrikonKw.toFixed(2)}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.fixnaSadzba, "fixnaSadzba")}`}>
                     {r.fixnaSadzba.toFixed(1)}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.fixneEur, "fixneEur")}`}>
                     {eur(r.fixneEur)}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums font-semibold">
+                  <TableCell className={`text-right font-mono tabular-nums font-semibold ${cellClass(r.spoluEur, "spoluEur")}`}>
                     {eur(r.spoluEur)}
                   </TableCell>
                 </TableRow>
