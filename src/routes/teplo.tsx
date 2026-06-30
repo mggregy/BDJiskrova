@@ -419,6 +419,34 @@ function UkBreakdownSection() {
   const fixYoY = ((last.fixneEur - prev.fixneEur) / prev.fixneEur) * 100;
   const varYoY = ((last.variabilneEur - prev.variabilneEur) / prev.variabilneEur) * 100;
 
+  const keys = [
+    "spotrebaKwh",
+    "cenaVariabilna",
+    "variabilneEur",
+    "regulacnyPrikonKw",
+    "fixnaSadzba",
+    "fixneEur",
+    "spoluEur",
+  ] as const;
+  const extrema = (() => {
+    const result: Record<string, { min: number; max: number }> = {};
+    for (const key of keys) {
+      const vals = data.map((d) => d[key]);
+      result[key] = { min: Math.min(...vals), max: Math.max(...vals) };
+    }
+    return result;
+  })();
+
+  function cellClass(value: number, key: string) {
+    const e = extrema[key];
+    if (!e) return "";
+    if (value === e.max) return "bg-destructive/20 text-destructive font-bold";
+    if (value === e.min) return "bg-success/20 text-success font-bold";
+    return "";
+  }
+
+
+
   return (
     <section className="space-y-4 pt-4 border-t border-border/60">
       <header className="space-y-2">
