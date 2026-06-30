@@ -526,7 +526,7 @@ export type StavPrvku = {
 export const KONSTRUKCNE_PRVKY: StavPrvku[] = [
   { prvok: "Balkóny, lodžie, terasy", stav: "opotrebované vekom", poznamka: "Odporúčaná oprava zábradlí a izolácie balkónov z ulice" },
   { prvok: "Domáce dorozumievacie zariadenie", stav: "nové", poznamka: "Výmena 2019 — firma Vacula (DDZ, vchodové brány)" },
-  { prvok: "Hydraulické vyregulovanie TV a ÚK", stav: "v norme", poznamka: "Vyregulovanie ÚK 2014" },
+  { prvok: "Hydraulické vyregulovanie TV a ÚK", stav: "nutná kontrola", poznamka: "Vyregulovanie ÚK 2014" },
   { prvok: "Okapový chodník", stav: "nové", poznamka: "Opravený prepadnutý okapový chodník" },
   { prvok: "Okná schodiskové", stav: "v norme", poznamka: "Výmena 2006 — firma Aniroll" },
   { prvok: "Oplotenie predzáhradky", stav: "v norme" },
