@@ -519,7 +519,7 @@ export const REVIZIE: Revizia[] = [
 
 export type StavPrvku = {
   prvok: string;
-  stav: "v norme" | "nové" | "rekonštruované" | "opotrebované vekom" | "nutná oprava-výmena" | "požadovaná montáž";
+  stav: "v norme" | "nové" | "rekonštruované" | "opotrebované vekom" | "nutná oprava-výmena" | "požadovaná montáž" | "nutná kontrola";
   poznamka?: string;
 };
 
