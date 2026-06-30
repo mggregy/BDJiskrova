@@ -160,7 +160,7 @@ function KontrolyPage() {
       <section>
         <h2 className="text-xl font-semibold mb-1">Stav konštrukčných prvkov</h2>
         <p className="text-sm text-muted-foreground mb-4">
-          Informatívne hodnotenie zo správy správcu — pre potreby plánovania budúcich opráv.
+          Strešná konštrukcia a krytina
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {KONSTRUKCNE_PRVKY.map((p) => (
