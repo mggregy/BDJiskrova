@@ -352,6 +352,7 @@ function StavBadge({ stav }: { stav: string }) {
     "opotrebované vekom": "bg-warning/15 text-warning",
     "nutná oprava-výmena": "bg-destructive/10 text-destructive",
     "požadovaná montáž": "bg-warning/15 text-warning",
+    "nutná kontrola": "bg-destructive/10 text-destructive",
   };
   return (
     <span
