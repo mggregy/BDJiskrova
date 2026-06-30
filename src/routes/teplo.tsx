@@ -628,25 +628,25 @@ function UkBreakdownSection() {
               {[...data].reverse().map((r) => (
                 <TableRow key={r.rok}>
                   <TableCell className="font-medium">{r.rok}</TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.spotrebaKwh, "spotrebaKwh")}`}>
                     {r.spotrebaKwh.toLocaleString("sk-SK")}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.cenaVariabilna, "cenaVariabilna")}`}>
                     {r.cenaVariabilna.toFixed(4)}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.variabilneEur, "variabilneEur")}`}>
                     {eur(r.variabilneEur)}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.regulacnyPrikonKw, "regulacnyPrikonKw")}`}>
                     {r.regulacnyPrikonKw.toFixed(2)}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.fixnaSadzba, "fixnaSadzba")}`}>
                     {r.fixnaSadzba.toFixed(1)}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums">
+                  <TableCell className={`text-right font-mono tabular-nums ${cellClass(r.fixneEur, "fixneEur")}`}>
                     {eur(r.fixneEur)}
                   </TableCell>
-                  <TableCell className="text-right font-mono tabular-nums font-semibold">
+                  <TableCell className={`text-right font-mono tabular-nums font-semibold ${cellClass(r.spoluEur, "spoluEur")}`}>
                     {eur(r.spoluEur)}
                   </TableCell>
                 </TableRow>
