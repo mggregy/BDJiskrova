@@ -1,8 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/AppShell";
 import { ROKY, fmtEur, fmtEurFull } from "@/data/dom-data";
+import { FOND_SUMMARY, FOND_BY_YEAR, FOND_ROKY } from "@/data/fond-oprav-historia";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { Wrench } from "lucide-react";
+import { Wrench, Repeat, Zap, ChevronDown } from "lucide-react";
+import { useState } from "react";
+
 
 export const Route = createFileRoute("/vydavky")({
   head: () => ({
