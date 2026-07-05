@@ -124,3 +124,159 @@ function Kpi({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
+
+function FondPolozkoveVydavky() {
+  const [rok, setRok] = useState<string>(FOND_ROKY[FOND_ROKY.length - 1]);
+  const [otvorene, setOtvorene] = useState<Record<string, boolean>>({});
+
+  const pravidelne = FOND_SUMMARY.filter((s) => s.typ === "pravidelne");
+  const jednorazove = FOND_SUMMARY.filter((s) => s.typ === "jednorazove");
+  const spoluPravidelne = pravidelne.reduce((a, s) => a + s.spolu, 0);
+  const spoluJednorazove = jednorazove.reduce((a, s) => a + s.spolu, 0);
+
+  const rokData = FOND_BY_YEAR[rok] ?? [];
+  const rokTotal = rokData.reduce((a, k) => a + k.suma, 0);
+
+  return (
+    <section className="mb-10 space-y-6">
+      <div>
+        <h2 className="text-xl font-semibold">Položkové čerpanie fondu (2022–2025)</h2>
+        <p className="text-sm text-muted-foreground mt-1">
+          Zdroj: účtovné výpisy z fondu opráv (Fond opráv domu_2022–2025.csv). Kategórie sú rozdelené podľa toho, či
+          ide o pravidelne sa opakujúce výdavky alebo o jednorazové opravy a investície.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <SumaryCard
+          icon={<Repeat className="size-5" />}
+          title="Pravidelné výdavky"
+          subtitle="Opakujú sa každý rok"
+          suma={spoluPravidelne}
+          zoznam={pravidelne}
+          accent="text-teal"
+        />
+        <SumaryCard
+          icon={<Zap className="size-5" />}
+          title="Jednorazové výdavky"
+          subtitle="Opravy a investície podľa potreby"
+          suma={spoluJednorazove}
+          zoznam={jednorazove}
+          accent="text-primary"
+        />
+      </div>
+
+      <div className="stat-card">
+        <div className="flex items-center justify-between gap-3 flex-wrap mb-4">
+          <div>
+            <h3 className="font-semibold">Rozpad po kategóriách — vybraný rok</h3>
+            <p className="text-xs text-muted-foreground">Klikni na kategóriu pre zobrazenie jednotlivých položiek.</p>
+          </div>
+          <div className="flex gap-1 rounded-lg bg-accent p-1">
+            {FOND_ROKY.map((y) => (
+              <button
+                key={y}
+                onClick={() => setRok(y)}
+                className={`px-3 py-1.5 text-xs font-medium rounded-md transition ${
+                  rok === y ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {y}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-xs text-muted-foreground mb-3">
+          Spolu čerpané v roku {rok}: <strong className="text-foreground">{fmtEurFull(Math.abs(rokTotal))}</strong>
+        </div>
+
+        <ul className="divide-y divide-border/60">
+          {rokData.map((k) => {
+            const key = `${rok}-${k.kategoria}`;
+            const open = otvorene[key];
+            return (
+              <li key={key} className="py-2">
+                <button
+                  onClick={() => setOtvorene((s) => ({ ...s, [key]: !s[key] }))}
+                  className="w-full flex items-center justify-between gap-3 text-left hover:bg-accent/40 rounded px-2 py-1.5 transition"
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <ChevronDown
+                      className={`size-4 text-muted-foreground shrink-0 transition-transform ${open ? "" : "-rotate-90"}`}
+                    />
+                    <span className="text-sm font-medium truncate">{k.kategoria}</span>
+                    <span
+                      className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded shrink-0 ${
+                        k.typ === "pravidelne" ? "bg-teal/10 text-teal" : "bg-primary/10 text-primary"
+                      }`}
+                    >
+                      {k.typ === "pravidelne" ? "pravidelné" : "jednorazové"}
+                    </span>
+                    <span className="text-xs text-muted-foreground shrink-0">· {k.polozky.length}×</span>
+                  </div>
+                  <span className="text-sm tabular-nums font-medium shrink-0">{fmtEurFull(Math.abs(k.suma))}</span>
+                </button>
+                {open && (
+                  <ul className="mt-1 ml-6 divide-y divide-border/40">
+                    {k.polozky.map((p, i) => (
+                      <li key={i} className="py-1.5 flex items-start justify-between gap-3 text-xs">
+                        <div className="min-w-0">
+                          <div className="text-foreground">{p.popis}</div>
+                          <div className="text-muted-foreground">{p.datum}</div>
+                        </div>
+                        <span className="tabular-nums text-muted-foreground shrink-0">{fmtEurFull(Math.abs(p.suma))}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function SumaryCard({
+  icon,
+  title,
+  subtitle,
+  suma,
+  zoznam,
+  accent,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  subtitle: string;
+  suma: number;
+  zoznam: typeof FOND_SUMMARY;
+  accent: string;
+}) {
+  const top = [...zoznam].sort((a, b) => a.spolu - b.spolu).slice(0, 5);
+  return (
+    <div className="stat-card">
+      <div className="flex items-center gap-3 mb-3">
+        <div className={`size-9 rounded-lg bg-accent grid place-items-center ${accent}`}>{icon}</div>
+        <div>
+          <div className="font-semibold leading-tight">{title}</div>
+          <div className="text-xs text-muted-foreground">{subtitle}</div>
+        </div>
+        <div className="ml-auto text-right">
+          <div className="text-lg font-bold font-display">{fmtEurFull(Math.abs(suma))}</div>
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">2022–2025 spolu</div>
+        </div>
+      </div>
+      <ul className="space-y-1 text-xs">
+        {top.map((s) => (
+          <li key={s.kategoria} className="flex items-center justify-between gap-3">
+            <span className="text-muted-foreground truncate">{s.kategoria}</span>
+            <span className="tabular-nums font-medium shrink-0">{fmtEurFull(Math.abs(s.spolu))}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
