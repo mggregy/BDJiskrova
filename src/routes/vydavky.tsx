@@ -74,6 +74,10 @@ function VydavkyPage() {
         </div>
       </section>
 
+
+      {/* Detailná kategorizácia z účtovníctva */}
+      <FondPolozkoveVydavky />
+
       {/* Čerpania po rokoch */}
       <section className="space-y-6">
         <h2 className="text-xl font-semibold">Čerpanie fondu po rokoch</h2>
