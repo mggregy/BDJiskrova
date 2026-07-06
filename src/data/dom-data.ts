@@ -445,8 +445,8 @@ export const REVIZIE: Revizia[] = [
     id: "vytahy-6r",
     nazov: "Úradná skúška výťahov (6-ročná)",
     kategoria: "Výťahy",
-    poslednaRevizia: "2025-03-15",
-    platnaDo: "2031-03-15",
+    poslednaRevizia: "2025-04-16",
+    platnaDo: "2031-04-16",
     frekvencia: "každých 6 rokov",
     zakon: "Vyhláška č. 508/2009 Z. z., STN 27 4002, STN 27 4007",
     vykonavatel: "Technická inšpekcia, a. s. (TI SR)",
@@ -455,9 +455,11 @@ export const REVIZIE: Revizia[] = [
     popis:
       "Najdôležitejšia periodická skúška výťahov, ktorá overuje bezpečnosť prevádzky. Bez platnej úradnej skúšky nesmú byť výťahy prevádzkované.",
     historia: [
+      { datum: "2025-04-16", popis: "Úradná 6-ročná skúška výťahu (uhradené z fondu opráv)" },
       { datum: "2019", popis: "Úradná skúška výťahov s technickou inšpekciou (811,92 €)" },
     ],
   },
+
   {
     id: "vytahy-3r",
     nazov: "Odborná skúška výťahov (3-ročná)",
@@ -499,8 +501,8 @@ export const REVIZIE: Revizia[] = [
     id: "pp-prehliadka",
     nazov: "Preventívna protipožiarna prehliadka",
     kategoria: "Požiarna ochrana",
-    poslednaRevizia: "2024-06-01",
-    platnaDo: "2025-06-01",
+    poslednaRevizia: "2025-07-16",
+    platnaDo: "2026-07-16",
     frekvencia: "každoročne",
     zakon: "Zákon č. 314/2001 Z. z. o ochrane pred požiarmi, vyhl. č. 121/2002 Z. z.",
     vykonavatel: "Technik požiarnej ochrany",
@@ -509,10 +511,12 @@ export const REVIZIE: Revizia[] = [
     popis:
       "Ročná preventívna prehliadka bytového domu z hľadiska požiarnej bezpečnosti. Výstupom je zápisnica s prípadnými zistenými nedostatkami.",
     historia: [
+      { datum: "2025-07-16", popis: "Preventívna protipožiarna prehliadka (75,80 €) — uhradené z fondu opráv" },
       { datum: "2024", popis: "Preventívna protipožiarna prehliadka (75,80 €)" },
       { datum: "2023", popis: "Preventívna protipožiarna prehliadka (75,80 €)" },
     ],
   },
+
 ];
 
 // === STAV KONŠTRUKČNÝCH PRVKOV (z poslednej správy 2024) ===
