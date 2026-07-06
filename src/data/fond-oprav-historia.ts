@@ -246,39 +246,9 @@ export const FOND_BY_YEAR: Record<string, FondKategoriaRok[]> = {
       "suma": -2633.26,
       "polozky": [
         {
-          "popis": "prvomontáž vodomeru",
-          "suma": -342.56,
-          "datum": "3/23/2022"
-        },
-        {
-          "popis": "prvomontáž vodomeru",
-          "suma": -529.34,
-          "datum": "3/23/2022"
-        },
-        {
-          "popis": "prvomontáž vodomeru",
-          "suma": -672.86,
-          "datum": "3/23/2022"
-        },
-        {
-          "popis": "Výmena vodomerov",
-          "suma": -62.24,
-          "datum": "3/3/2022"
-        },
-        {
-          "popis": "prvomontáž vodomeru",
-          "suma": -178.8,
-          "datum": "3/3/2022"
-        },
-        {
-          "popis": "prvomontáž vodomeru",
-          "suma": -263.36,
-          "datum": "3/3/2022"
-        },
-        {
-          "popis": "prvomontáž vodomeru",
-          "suma": -584.1,
-          "datum": "3/3/2022"
+          "popis": "Prvomontáž vodomeru / výmena — spolu 7 ks",
+          "suma": -2633.26,
+          "datum": "2022"
         }
       ]
     },
