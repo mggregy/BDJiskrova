@@ -160,8 +160,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
     "spolu": -235.9
   },
   {
-    "kategoria": "Odmena zástupcu domu",
-    "typ": "pravidelne",
+    "kategoria": "Zimná údržba",
+    "typ": "jednorazove",
     "roky": {
       "2022": -168.97,
       "2023": 0,
@@ -511,22 +511,22 @@ export const FOND_BY_YEAR: Record<string, FondKategoriaRok[]> = {
       ]
     },
     {
-      "kategoria": "Odmena zástupcu domu",
-      "typ": "pravidelne",
+      "kategoria": "Zimná údržba",
+      "typ": "jednorazove",
       "suma": -168.97,
       "polozky": [
         {
-          "popis": "odmena zástupcu domu",
+          "popis": "zimná údržba",
           "suma": -33.79,
           "datum": "3/31/2022"
         },
         {
-          "popis": "odmena zástupcu domu",
+          "popis": "zimná údržba",
           "suma": -67.59,
           "datum": "2/28/2022"
         },
         {
-          "popis": "odmena zástupcu domu",
+          "popis": "zimná údržba",
           "suma": -67.59,
           "datum": "1/31/2022"
         }
