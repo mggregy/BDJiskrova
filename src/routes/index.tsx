@@ -94,6 +94,7 @@ function Dashboard() {
       {/* KPI karty */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
         <StatCard
+          to="/financie"
           icon={Banknote}
           label="Zostatok na účte"
           value={fmtEur(poslednyRok.zostatokUctu)}
@@ -101,6 +102,7 @@ function Dashboard() {
           tone="primary"
         />
         <StatCard
+          to="/vydavky"
           icon={PiggyBank}
           label="Fond opráv"
           value={fmtEur(poslednyRok.fondZostatok)}
@@ -118,6 +120,7 @@ function Dashboard() {
           tone="success"
         />
         <StatCard
+          to="/teplo"
           icon={Flame}
           label="Spotreba tepla (dom)"
           value={`${fmtNum(poslednyRok.teploCelkomKwh ?? 0)} kWh`}
@@ -137,6 +140,7 @@ function Dashboard() {
           tone="warning"
         />
         <StatCard
+          to="/kontroly"
           icon={ShieldCheck}
           label="Revízie"
           value={
