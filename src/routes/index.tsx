@@ -389,12 +389,14 @@ function StatCard({
   value,
   hint,
   tone = "primary",
+  to,
 }: {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
   value: React.ReactNode;
   hint?: React.ReactNode;
   tone?: "primary" | "success" | "warning" | "destructive";
+  to?: "/financie" | "/vydavky" | "/teplo" | "/kontroly";
 }) {
   const toneClasses: Record<string, string> = {
     primary: "bg-primary/10 text-primary",
@@ -402,20 +404,26 @@ function StatCard({
     warning: "bg-warning/15 text-warning",
     destructive: "bg-destructive/10 text-destructive",
   };
-  return (
-    <div className="stat-card">
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <div className="text-xs uppercase tracking-wider text-muted-foreground font-medium">{label}</div>
-          <div className="text-2xl font-bold font-display text-foreground mt-2">{value}</div>
-          {hint && <div className="text-xs text-muted-foreground mt-2">{hint}</div>}
-        </div>
-        <div className={`size-9 shrink-0 rounded-lg grid place-items-center ${toneClasses[tone]}`}>
-          <Icon className="size-4" />
-        </div>
+  const inner = (
+    <div className="flex items-start justify-between gap-3">
+      <div className="min-w-0">
+        <div className="text-xs uppercase tracking-wider text-muted-foreground font-medium">{label}</div>
+        <div className="text-2xl font-bold font-display text-foreground mt-2">{value}</div>
+        {hint && <div className="text-xs text-muted-foreground mt-2">{hint}</div>}
+      </div>
+      <div className={`size-9 shrink-0 rounded-lg grid place-items-center ${toneClasses[tone]}`}>
+        <Icon className="size-4" />
       </div>
     </div>
   );
+  if (to) {
+    return (
+      <Link to={to} className="stat-card block hover:border-teal transition-colors">
+        {inner}
+      </Link>
+    );
+  }
+  return <div className="stat-card">{inner}</div>;
 }
 
 function ChartCard({
