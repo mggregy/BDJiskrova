@@ -14,6 +14,7 @@ import { ArrowUpRight, Banknote, Flame, PiggyBank, ShieldCheck, TrendingDown, Tr
 import {
   Area,
   AreaChart,
+  Bar,
   CartesianGrid,
   ComposedChart,
   Line,
