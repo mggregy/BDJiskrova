@@ -46,6 +46,7 @@ function Dashboard() {
   const fondTrend = ROKY.map((r) => ({
     rok: r.rok,
     Zostatok: r.fondZostatok,
+    Čerpanie: Math.round(r.fondCerpanie),
   }));
 
   const teploTrend = ROKY.filter((r): r is typeof r & { teploCelkomKwh: number } => !!r.teploCelkomKwh).map((r) => {
