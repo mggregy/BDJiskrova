@@ -14,6 +14,7 @@ import { ArrowUpRight, Banknote, Flame, PiggyBank, ShieldCheck, TrendingDown, Tr
 import {
   Area,
   AreaChart,
+  Bar,
   CartesianGrid,
   ComposedChart,
   Line,
@@ -46,6 +47,7 @@ function Dashboard() {
   const fondTrend = ROKY.map((r) => ({
     rok: r.rok,
     Zostatok: r.fondZostatok,
+    Čerpanie: Math.round(r.fondCerpanie),
   }));
 
   const teploTrend = ROKY.filter((r): r is typeof r & { teploCelkomKwh: number } => !!r.teploCelkomKwh).map((r) => {
@@ -156,15 +158,81 @@ function Dashboard() {
 
       {/* Grafy */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-        <ChartCard
-          title="Fond opráv — vývoj zostatku"
-          subtitle="Postupne rastie aj po každoročnom čerpaní"
-          data={fondTrend}
-          dataKey="Zostatok"
-          color="var(--color-chart-1)"
-          formatY={(v) => `${(v / 1000).toFixed(0)} k€`}
-          formatTooltip={(v) => fmtEur(v)}
-        />
+        <div className="stat-card">
+          <div className="mb-4 flex items-start justify-between gap-4">
+            <div>
+              <h3 className="font-semibold text-foreground">Fond opráv — vývoj zostatku</h3>
+              <p className="text-xs text-muted-foreground">Postupne rastie aj po každoročnom čerpaní</p>
+            </div>
+            <div className="flex items-center gap-3 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="size-2.5 rounded-sm" style={{ background: "var(--color-chart-1)" }} />
+                Zostatok
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="size-2.5 rounded-sm" style={{ background: "var(--color-warning)" }} />
+                Čerpanie
+              </span>
+            </div>
+          </div>
+          <div className="h-56">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={fondTrend} margin={{ top: 5, right: 5, left: 0, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="grad-zostatok" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="var(--color-chart-1)" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="var(--color-chart-1)" stopOpacity={0.02} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
+                <XAxis dataKey="rok" stroke="var(--color-muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
+                <YAxis
+                  yAxisId="zostatok"
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                  tickFormatter={(v) => `${(v / 1000).toFixed(0)} k€`}
+                  width={50}
+                />
+                <YAxis
+                  yAxisId="cerpanie"
+                  orientation="right"
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                  tickFormatter={(v) => `${(v / 1000).toFixed(0)} k€`}
+                  width={50}
+                />
+                <Tooltip
+                  contentStyle={{
+                    background: "var(--color-surface)",
+                    border: "1px solid var(--color-border)",
+                    borderRadius: "0.5rem",
+                    fontSize: "0.85rem",
+                  }}
+                  formatter={(v: number) => fmtEur(v)}
+                />
+                <Bar
+                  yAxisId="cerpanie"
+                  dataKey="Čerpanie"
+                  fill="var(--color-warning)"
+                  barSize={18}
+                  radius={[4, 4, 0, 0]}
+                />
+                <Area
+                  yAxisId="zostatok"
+                  type="monotone"
+                  dataKey="Zostatok"
+                  stroke="var(--color-chart-1)"
+                  strokeWidth={2}
+                  fill="url(#grad-zostatok)"
+                />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
         <div className="stat-card">
           <div className="mb-4 flex items-start justify-between gap-4">
             <div>
