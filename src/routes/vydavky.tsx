@@ -147,10 +147,10 @@ function FondPolozkoveVydavky() {
   return (
     <section className="mb-10 space-y-6">
       <div>
-        <h2 className="text-xl font-semibold">Položkové čerpanie fondu (2022–2025)</h2>
+        <h2 className="text-xl font-semibold">Položkové čerpanie fondu ({FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]})</h2>
         <p className="text-sm text-muted-foreground mt-1">
-          Zdroj: účtovné výpisy z fondu opráv (Fond opráv domu_2022–2025.csv). Kategórie sú rozdelené podľa toho, či
-          ide o pravidelne sa opakujúce výdavky alebo o jednorazové opravy a investície.
+          Zdroj: účtovné výpisy z fondu opráv (Fond opráv domu {FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]}). Rok 2026 je uvedený k 30. 6. (YTD).
+          Kategórie sú rozdelené podľa toho, či ide o pravidelne sa opakujúce výdavky alebo o jednorazové opravy a investície.
         </p>
       </div>
 
