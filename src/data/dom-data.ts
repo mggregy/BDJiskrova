@@ -350,6 +350,28 @@ export const ROKY: RocnyZaznam[] = [
       { popis: "Ostatné", suma: 803.24 },
     ],
   },
+  {
+    rok: 2026,
+    partialny: true,
+    ytdDoDna: "2026-06-30",
+    zostatokUctu: 102115.16, // odhad na základe FO YTD (98 292,92 + 5 820,00 − 1 997,76)
+    spoluPredpis: 0,
+    spoluVyuctovanie: 0,
+    fondStavZaciatok: 98292.92,
+    fondTvorba: 5820.0, // 6 mesiacov × 970,00 €
+    fondCerpanie: 1997.76,
+    fondZostatok: 102115.16,
+    vyhotovil: "prebieha (YTD k 30. 6. 2026)",
+    polozky: [],
+    cerpaniaFondu: [
+      { popis: "Vyčistenie a dezinfekcia výťahovej šachty, J.8", suma: 1475.0 },
+      { popis: "OP a OS elektroinštalácie", suma: 300.0 },
+      { popis: "Bankové poplatky (Jan–Jún)", suma: 109.4 },
+      { popis: "Oprava vchodových brán, J.6-8", suma: 90.0 },
+      { popis: "Inkasné poplatky (Jan–Jún)", suma: 18.36 },
+      { popis: "Vystavenie faktúry (administratíva)", suma: 5.0 },
+    ],
+  },
 ];
 
 // === REVÍZIE — aktuálny stav (z poslednej správy 2024) ===
