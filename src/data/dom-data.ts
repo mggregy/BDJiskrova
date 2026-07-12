@@ -34,6 +34,9 @@ export type RocnyZaznam = {
   teploCelkomKwh?: number;
   teploNaM2?: number;
   vyhotovil?: string;
+  // Ak je rok ešte neuzavretý (napr. prebiehajúci kalendárny rok)
+  partialny?: boolean;
+  ytdDoDna?: string; // YYYY-MM-DD do ktorého dňa sú údaje aktuálne
 };
 
 export const ROKY: RocnyZaznam[] = [
