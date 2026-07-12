@@ -89,10 +89,17 @@ function VydavkyPage() {
                   <Wrench className="size-5" />
                 </div>
                 <div>
-                  <div className="font-display font-semibold text-lg leading-tight">Rok {r.rok}</div>
+                  <div className="font-display font-semibold text-lg leading-tight flex items-center gap-2">
+                    Rok {r.rok}
+                    {r.partialny && (
+                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-warning/15 text-warning font-medium">
+                        YTD · prebieha
+                      </span>
+                    )}
+                  </div>
                   <div className="text-xs text-muted-foreground">
                     Spolu čerpané: <strong className="text-foreground">{fmtEurFull(r.fondCerpanie)}</strong> · zostatok
-                    fondu k 31. 12.: {fmtEurFull(r.fondZostatok)}
+                    fondu {r.partialny && r.ytdDoDna ? `k ${r.ytdDoDna}` : "k 31. 12."}: {fmtEurFull(r.fondZostatok)}
                   </div>
                 </div>
               </div>
@@ -140,10 +147,10 @@ function FondPolozkoveVydavky() {
   return (
     <section className="mb-10 space-y-6">
       <div>
-        <h2 className="text-xl font-semibold">Položkové čerpanie fondu (2022–2025)</h2>
+        <h2 className="text-xl font-semibold">Položkové čerpanie fondu ({FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]})</h2>
         <p className="text-sm text-muted-foreground mt-1">
-          Zdroj: účtovné výpisy z fondu opráv (Fond opráv domu_2022–2025.csv). Kategórie sú rozdelené podľa toho, či
-          ide o pravidelne sa opakujúce výdavky alebo o jednorazové opravy a investície.
+          Zdroj: účtovné výpisy z fondu opráv (Fond opráv domu {FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]}). Rok 2026 je uvedený k 30. 6. (YTD).
+          Kategórie sú rozdelené podľa toho, či ide o pravidelne sa opakujúce výdavky alebo o jednorazové opravy a investície.
         </p>
       </div>
 
@@ -265,7 +272,7 @@ function SumaryCard({
         </div>
         <div className="ml-auto text-right">
           <div className="text-lg font-bold font-display">{fmtEurFull(Math.abs(suma))}</div>
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">2022–2025 spolu</div>
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]} spolu</div>
         </div>
       </div>
       <ul className="space-y-1 text-xs">

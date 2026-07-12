@@ -34,6 +34,9 @@ export type RocnyZaznam = {
   teploCelkomKwh?: number;
   teploNaM2?: number;
   vyhotovil?: string;
+  // Ak je rok ešte neuzavretý (napr. prebiehajúci kalendárny rok)
+  partialny?: boolean;
+  ytdDoDna?: string; // YYYY-MM-DD do ktorého dňa sú údaje aktuálne
 };
 
 export const ROKY: RocnyZaznam[] = [
@@ -347,6 +350,28 @@ export const ROKY: RocnyZaznam[] = [
       { popis: "Ostatné", suma: 803.24 },
     ],
   },
+  {
+    rok: 2026,
+    partialny: true,
+    ytdDoDna: "2026-06-30",
+    zostatokUctu: 102115.16, // odhad na základe FO YTD (98 292,92 + 5 820,00 − 1 997,76)
+    spoluPredpis: 0,
+    spoluVyuctovanie: 0,
+    fondStavZaciatok: 98292.92,
+    fondTvorba: 5820.0, // 6 mesiacov × 970,00 €
+    fondCerpanie: 1997.76,
+    fondZostatok: 102115.16,
+    vyhotovil: "prebieha (YTD k 30. 6. 2026)",
+    polozky: [],
+    cerpaniaFondu: [
+      { popis: "Vyčistenie a dezinfekcia výťahovej šachty, J.8", suma: 1475.0 },
+      { popis: "OP a OS elektroinštalácie", suma: 300.0 },
+      { popis: "Bankové poplatky (Jan–Jún)", suma: 109.4 },
+      { popis: "Oprava vchodových brán, J.6-8", suma: 90.0 },
+      { popis: "Inkasné poplatky (Jan–Jún)", suma: 18.36 },
+      { popis: "Vystavenie faktúry (administratíva)", suma: 5.0 },
+    ],
+  },
 ];
 
 // === REVÍZIE — aktuálny stav (z poslednej správy 2024) ===
@@ -389,8 +414,8 @@ export const REVIZIE: Revizia[] = [
     id: "elektro",
     nazov: "Revízia elektroinštalácie",
     kategoria: "Elektro",
-    poslednaRevizia: "2021-03-30",
-    platnaDo: "2026-03-30",
+    poslednaRevizia: "2026-06-19",
+    platnaDo: "2031-06-19",
     frekvencia: "každých 5 rokov (spoločné priestory bytového domu)",
     zakon: "Vyhláška č. 508/2009 Z. z., STN 33 1500, STN 33 2000-6",
     vykonavatel: "Revízny technik elektro s osvedčením podľa § 24",
@@ -398,8 +423,9 @@ export const REVIZIE: Revizia[] = [
       "Kontrola hlavných rozvádzačov, spoločných rozvodov vo vchodoch a pivniciach, osvetlenia spoločných priestorov, núdzového osvetlenia, ističov a uzemnenia.",
     popis:
       "Odborná prehliadka a odborná skúška elektrickej inštalácie spoločných priestorov bytového domu. Týka sa rozvodov v pivnici, na schodisku a v technických miestnostiach — nie elektriny v bytoch.",
-    poznamka: "V roku 2021 boli po revízii odstránené zistené závady (cca 738 €).",
+    poznamka: "Uhradené z fondu opráv v júni 2026 (300,00 €).",
     historia: [
+      { datum: "2026-06-19", popis: "OP a OS elektroinštalácie (300,00 €) — uhradené z fondu opráv" },
       { datum: "2021", popis: "OP a OS elektroinštalácie + odstránenie závad (737,82 €)" },
       { datum: "2016", popis: "Výmena rozvodov elektroinštalácie" },
     ],
@@ -477,8 +503,8 @@ export const REVIZIE: Revizia[] = [
     id: "deratizacia",
     nazov: "Deratizácia spoločných priestorov",
     kategoria: "Hygiena",
-    poslednaRevizia: "2024-10-01",
-    platnaDo: "2025-10-01",
+    poslednaRevizia: "2025-10-01",
+    platnaDo: "2026-10-01",
     frekvencia: "2× ročne (jar / jeseň)",
     zakon: "Zákon č. 355/2007 Z. z. o ochrane verejného zdravia, VZN hl. m. Bratislavy",
     vykonavatel: "Odborná firma s oprávnením na DDD činnosť",
@@ -486,8 +512,9 @@ export const REVIZIE: Revizia[] = [
       "Položenie nástrah v pivničných priestoroch, kontrola po 2–3 týždňoch, evidencia stavu.",
     popis:
       "Pravidelná deratizácia spoločných priestorov bytového domu — povinnosť správcu, hradená z prevádzkových nákladov.",
-    poznamka: "Vykonávaná každoročne.",
+    poznamka: "Vykonávaná každoročne, hradená z prevádzkových nákladov (nie z fondu opráv).",
     historia: [
+      { datum: "2025", popis: "Vyúčtované 162,36 € v ročnom vyúčtovaní" },
       { datum: "2024", popis: "Vyúčtované 158,40 € v ročnom vyúčtovaní" },
       { datum: "2023", popis: "Vyúčtované 158,40 €" },
     ],
