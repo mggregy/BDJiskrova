@@ -111,7 +111,7 @@ function FinanciePage() {
             <p className="text-xs text-muted-foreground">Vyberte rok pre detailný rozpis</p>
           </div>
           <div className="flex gap-1 flex-wrap">
-            {ROKY.map((r, idx) => (
+            {ROKY_UZAVRETE.map((r, idx) => (
               <button
                 key={r.rok}
                 onClick={() => setRokIdx(idx)}
