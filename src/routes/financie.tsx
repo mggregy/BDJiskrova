@@ -15,10 +15,12 @@ export const Route = createFileRoute("/financie")({
 });
 
 function FinanciePage() {
-  const [rokIdx, setRokIdx] = useState(ROKY.length - 1);
-  const rok = ROKY[rokIdx];
+  // Vyúčtovanie sa robí len za uzavreté roky
+  const ROKY_UZAVRETE = ROKY.filter((r) => !r.partialny);
+  const [rokIdx, setRokIdx] = useState(ROKY_UZAVRETE.length - 1);
+  const rok = ROKY_UZAVRETE[rokIdx];
 
-  const rocnyPrehlad = ROKY.map((r) => ({
+  const rocnyPrehlad = ROKY_UZAVRETE.map((r) => ({
     rok: r.rok,
     Predpis: Math.round(r.spoluPredpis),
     Vyuctovanie: Math.round(r.spoluVyuctovanie),
