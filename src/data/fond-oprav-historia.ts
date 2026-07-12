@@ -12,7 +12,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -2633.26,
       "2023": 0,
       "2024": 0,
-      "2025": -2891.15
+      "2025": -2891.15,
+      "2026": 0
     },
     "spolu": -5524.41
   },
@@ -23,9 +24,10 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -96.64,
       "2023": 0,
       "2024": -296.8,
-      "2025": -1578.03
+      "2025": -1578.03,
+      "2026": -1475.0
     },
-    "spolu": -1971.47
+    "spolu": -3446.47
   },
   {
     "kategoria": "Vchod / DDZ / kľúče",
@@ -34,9 +36,10 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -30.0,
       "2023": 0,
       "2024": -295.0,
-      "2025": -799.6
+      "2025": -799.6,
+      "2026": -90.0
     },
-    "spolu": -1124.6
+    "spolu": -1214.6
   },
   {
     "kategoria": "Bankové poplatky",
@@ -45,9 +48,22 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -186.32,
       "2023": -191.7,
       "2024": -208.37,
-      "2025": -213.8
+      "2025": -213.8,
+      "2026": -109.4
     },
-    "spolu": -800.19
+    "spolu": -909.59
+  },
+  {
+    "kategoria": "Elektro / osvetlenie",
+    "typ": "jednorazove",
+    "roky": {
+      "2022": -78.0,
+      "2023": 0,
+      "2024": -365.88,
+      "2025": -84.87,
+      "2026": -300.0
+    },
+    "spolu": -828.75
   },
   {
     "kategoria": "Bleskozvody",
@@ -56,7 +72,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -90.0,
       "2023": -565.35,
       "2024": 0,
-      "2025": 0
+      "2025": 0,
+      "2026": 0
     },
     "spolu": -655.35
   },
@@ -67,20 +84,10 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -599.26,
       "2023": 0,
       "2024": 0,
-      "2025": 0
+      "2025": 0,
+      "2026": 0
     },
     "spolu": -599.26
-  },
-  {
-    "kategoria": "Elektro / osvetlenie",
-    "typ": "jednorazove",
-    "roky": {
-      "2022": -78.0,
-      "2023": 0,
-      "2024": -365.88,
-      "2025": -84.87
-    },
-    "spolu": -528.75
   },
   {
     "kategoria": "Strecha / žľaby",
@@ -89,7 +96,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -429.6,
       "2023": 0,
       "2024": 0,
-      "2025": 0
+      "2025": 0,
+      "2026": 0
     },
     "spolu": -429.6
   },
@@ -100,7 +108,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": 0,
       "2023": -420.0,
       "2024": 0,
-      "2025": 0
+      "2025": 0,
+      "2026": 0
     },
     "spolu": -420.0
   },
@@ -111,7 +120,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": 0,
       "2023": 0,
       "2024": 0,
-      "2025": -344.4
+      "2025": -344.4,
+      "2026": 0
     },
     "spolu": -344.4
   },
@@ -122,7 +132,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -326.4,
       "2023": 0,
       "2024": 0,
-      "2025": 0
+      "2025": 0,
+      "2026": 0
     },
     "spolu": -326.4
   },
@@ -133,7 +144,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -60.8,
       "2023": -75.8,
       "2024": -75.8,
-      "2025": -75.8
+      "2025": -75.8,
+      "2026": 0
     },
     "spolu": -288.2
   },
@@ -144,7 +156,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": 0,
       "2023": 0,
       "2024": 0,
-      "2025": -263.22
+      "2025": -263.22,
+      "2026": 0
     },
     "spolu": -263.22
   },
@@ -155,7 +168,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": 0,
       "2023": 0,
       "2024": 0,
-      "2025": -235.9
+      "2025": -235.9,
+      "2026": 0
     },
     "spolu": -235.9
   },
@@ -166,7 +180,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -168.97,
       "2023": 0,
       "2024": 0,
-      "2025": 0
+      "2025": 0,
+      "2026": 0
     },
     "spolu": -168.97
   },
@@ -177,9 +192,10 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -27.44,
       "2023": -27.64,
       "2024": -28.44,
-      "2025": -28.05
+      "2025": -28.05,
+      "2026": -18.36
     },
-    "spolu": -111.57
+    "spolu": -129.93
   },
   {
     "kategoria": "Madlá / zábradlia",
@@ -188,7 +204,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": 0,
       "2023": 0,
       "2024": 0,
-      "2025": -80.0
+      "2025": -80.0,
+      "2026": 0
     },
     "spolu": -80.0
   },
@@ -199,7 +216,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -53.58,
       "2023": 0,
       "2024": 0,
-      "2025": 0
+      "2025": 0,
+      "2026": 0
     },
     "spolu": -53.58
   },
@@ -210,9 +228,10 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -23.0,
       "2023": -3.85,
       "2024": -2.0,
-      "2025": -2.0
+      "2025": -2.0,
+      "2026": -5.0
     },
-    "spolu": -30.85
+    "spolu": -35.85
   },
   {
     "kategoria": "Revízie a doklady",
@@ -221,7 +240,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": 0,
       "2023": 0,
       "2024": 0,
-      "2025": -18.45
+      "2025": -18.45,
+      "2026": 0
     },
     "spolu": -18.45
   },
@@ -232,7 +252,8 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2022": -0.69,
       "2023": -0.83,
       "2024": -0.43,
-      "2025": 0
+      "2025": 0,
+      "2026": 0
     },
     "spolu": -1.95
   }
@@ -1797,6 +1818,136 @@ export const FOND_BY_YEAR: Record<string, FondKategoriaRok[]> = {
         }
       ]
     }
+  ]
+  ,
+  "2026": [
+      {
+          "kategoria": "Výťahy — opravy",
+          "typ": "jednorazove",
+          "suma": -1475.0,
+          "polozky": [
+              {
+                  "popis": "vyčistenie a dezinfekcia výťahovej šachty, J.8",
+                  "suma": -1475.0,
+                  "datum": "6/11/2026"
+              }
+          ]
+      },
+      {
+          "kategoria": "Elektro / osvetlenie",
+          "typ": "jednorazove",
+          "suma": -300.0,
+          "polozky": [
+              {
+                  "popis": "OP a OS elektroinštalácie",
+                  "suma": -300.0,
+                  "datum": "6/19/2026"
+              }
+          ]
+      },
+      {
+          "kategoria": "Bankové poplatky",
+          "typ": "pravidelne",
+          "suma": -109.4,
+          "polozky": [
+              {
+                  "popis": "Servisné poplatky /bankové poplatky/",
+                  "suma": -17.9,
+                  "datum": "1/30/2026"
+              },
+              {
+                  "popis": "Servisné poplatky /bankové poplatky/",
+                  "suma": -17.65,
+                  "datum": "2/27/2026"
+              },
+              {
+                  "popis": "Servisné poplatky /bankové poplatky/",
+                  "suma": -16.9,
+                  "datum": "3/31/2026"
+              },
+              {
+                  "popis": "Servisné poplatky /bankové poplatky/",
+                  "suma": -17.65,
+                  "datum": "4/30/2026"
+              },
+              {
+                  "popis": "Servisné poplatky /bankové poplatky/",
+                  "suma": -17.15,
+                  "datum": "5/29/2026"
+              },
+              {
+                  "popis": "Servisné poplatky /bankové poplatky/",
+                  "suma": -22.15,
+                  "datum": "6/30/2026"
+              }
+          ]
+      },
+      {
+          "kategoria": "Vchod / DDZ / kľúče",
+          "typ": "jednorazove",
+          "suma": -90.0,
+          "polozky": [
+              {
+                  "popis": "oprava vchodových brán, J.6-8",
+                  "suma": -90.0,
+                  "datum": "4/1/2026"
+              }
+          ]
+      },
+      {
+          "kategoria": "Inkasné poplatky",
+          "typ": "pravidelne",
+          "suma": -18.36,
+          "polozky": [
+              {
+                  "popis": "Inkasné poplatky",
+                  "suma": -1.56,
+                  "datum": "1/15/2026"
+              },
+              {
+                  "popis": "Inkasné poplatky",
+                  "suma": -1.56,
+                  "datum": "2/16/2026"
+              },
+              {
+                  "popis": "Inkasné poplatky",
+                  "suma": -1.56,
+                  "datum": "3/16/2026"
+              },
+              {
+                  "popis": "Inkasné poplatky",
+                  "suma": -1.56,
+                  "datum": "4/15/2026"
+              },
+              {
+                  "popis": "Inkasné poplatky",
+                  "suma": -1.56,
+                  "datum": "5/15/2026"
+              },
+              {
+                  "popis": "Inkasné poplatky",
+                  "suma": -1.56,
+                  "datum": "6/15/2026"
+              },
+              {
+                  "popis": "Inkasné poplatky",
+                  "suma": -9.0,
+                  "datum": "6/19/2026"
+              }
+          ]
+      },
+      {
+          "kategoria": "Administratíva/mzdy",
+          "typ": "pravidelne",
+          "suma": -5.0,
+          "polozky": [
+              {
+                  "popis": "vystavenie faktúry",
+                  "suma": -5.0,
+                  "datum": "3/31/2026"
+              }
+          ]
+      }
   ]
 };
 
