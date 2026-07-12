@@ -272,9 +272,7 @@ function SumaryCard({
         </div>
         <div className="ml-auto text-right">
           <div className="text-lg font-bold font-display">{fmtEurFull(Math.abs(suma))}</div>
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">2022–2025 spolu</div>
-        </div>
-      </div>
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]} spolu</div>
       <ul className="space-y-1 text-xs">
         {top.map((s) => (
           <li key={s.kategoria} className="flex items-center justify-between gap-3">
