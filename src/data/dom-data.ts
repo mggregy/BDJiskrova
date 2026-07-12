@@ -414,8 +414,8 @@ export const REVIZIE: Revizia[] = [
     id: "elektro",
     nazov: "Revízia elektroinštalácie",
     kategoria: "Elektro",
-    poslednaRevizia: "2021-03-30",
-    platnaDo: "2026-03-30",
+    poslednaRevizia: "2026-06-19",
+    platnaDo: "2031-06-19",
     frekvencia: "každých 5 rokov (spoločné priestory bytového domu)",
     zakon: "Vyhláška č. 508/2009 Z. z., STN 33 1500, STN 33 2000-6",
     vykonavatel: "Revízny technik elektro s osvedčením podľa § 24",
@@ -423,8 +423,9 @@ export const REVIZIE: Revizia[] = [
       "Kontrola hlavných rozvádzačov, spoločných rozvodov vo vchodoch a pivniciach, osvetlenia spoločných priestorov, núdzového osvetlenia, ističov a uzemnenia.",
     popis:
       "Odborná prehliadka a odborná skúška elektrickej inštalácie spoločných priestorov bytového domu. Týka sa rozvodov v pivnici, na schodisku a v technických miestnostiach — nie elektriny v bytoch.",
-    poznamka: "V roku 2021 boli po revízii odstránené zistené závady (cca 738 €).",
+    poznamka: "Uhradené z fondu opráv v júni 2026 (300,00 €).",
     historia: [
+      { datum: "2026-06-19", popis: "OP a OS elektroinštalácie (300,00 €) — uhradené z fondu opráv" },
       { datum: "2021", popis: "OP a OS elektroinštalácie + odstránenie závad (737,82 €)" },
       { datum: "2016", popis: "Výmena rozvodov elektroinštalácie" },
     ],
