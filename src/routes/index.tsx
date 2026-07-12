@@ -202,10 +202,11 @@ function Dashboard() {
                 <YAxis
                   yAxisId="cerpanie"
                   orientation="right"
-                  stroke="var(--color-muted-foreground)"
+                  stroke="var(--color-warning)"
                   fontSize={12}
                   tickLine={false}
                   axisLine={false}
+                  tick={{ fill: "var(--color-warning)" }}
                   tickFormatter={(v) => `${(v / 1000).toFixed(0)} k€`}
                   width={50}
                 />
