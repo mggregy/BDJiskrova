@@ -503,8 +503,8 @@ export const REVIZIE: Revizia[] = [
     id: "deratizacia",
     nazov: "Deratizácia spoločných priestorov",
     kategoria: "Hygiena",
-    poslednaRevizia: "2024-10-01",
-    platnaDo: "2025-10-01",
+    poslednaRevizia: "2025-10-01",
+    platnaDo: "2026-10-01",
     frekvencia: "2× ročne (jar / jeseň)",
     zakon: "Zákon č. 355/2007 Z. z. o ochrane verejného zdravia, VZN hl. m. Bratislavy",
     vykonavatel: "Odborná firma s oprávnením na DDD činnosť",
@@ -512,8 +512,9 @@ export const REVIZIE: Revizia[] = [
       "Položenie nástrah v pivničných priestoroch, kontrola po 2–3 týždňoch, evidencia stavu.",
     popis:
       "Pravidelná deratizácia spoločných priestorov bytového domu — povinnosť správcu, hradená z prevádzkových nákladov.",
-    poznamka: "Vykonávaná každoročne.",
+    poznamka: "Vykonávaná každoročne, hradená z prevádzkových nákladov (nie z fondu opráv).",
     historia: [
+      { datum: "2025", popis: "Vyúčtované 162,36 € v ročnom vyúčtovaní" },
       { datum: "2024", popis: "Vyúčtované 158,40 € v ročnom vyúčtovaní" },
       { datum: "2023", popis: "Vyúčtované 158,40 €" },
     ],
