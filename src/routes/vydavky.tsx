@@ -89,10 +89,17 @@ function VydavkyPage() {
                   <Wrench className="size-5" />
                 </div>
                 <div>
-                  <div className="font-display font-semibold text-lg leading-tight">Rok {r.rok}</div>
+                  <div className="font-display font-semibold text-lg leading-tight flex items-center gap-2">
+                    Rok {r.rok}
+                    {r.partialny && (
+                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-warning/15 text-warning font-medium">
+                        YTD · prebieha
+                      </span>
+                    )}
+                  </div>
                   <div className="text-xs text-muted-foreground">
                     Spolu čerpané: <strong className="text-foreground">{fmtEurFull(r.fondCerpanie)}</strong> · zostatok
-                    fondu k 31. 12.: {fmtEurFull(r.fondZostatok)}
+                    fondu {r.partialny && r.ytdDoDna ? `k ${r.ytdDoDna}` : "k 31. 12."}: {fmtEurFull(r.fondZostatok)}
                   </div>
                 </div>
               </div>
