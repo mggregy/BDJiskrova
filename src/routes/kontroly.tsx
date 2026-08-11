@@ -208,7 +208,38 @@ function KontrolyPage() {
 
       <Dialog open={!!aktivna} onOpenChange={(o) => !o && closeDialog()}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          {aktivna && <ReviziaDetail revizia={aktivna} />}
+          {aktivna && (
+            <ReviziaDetail
+              revizia={aktivna}
+              onEdit={() => {
+                setEditId(aktivna.id);
+                closeDialog();
+              }}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!editovana} onOpenChange={(o) => !o && setEditId(null)}>
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+          {editovana && (
+            <EditReviziaForm
+              key={editovana.id}
+              revizia={editovana}
+              zmenene={!!overrides[editovana.id]}
+              onSave={(patch) => {
+                saveOverride(editovana.id, patch);
+                setEditId(null);
+                toast.success("Revízia aktualizovaná");
+              }}
+              onReset={() => {
+                resetOverride(editovana.id);
+                setEditId(null);
+                toast.success("Obnovené pôvodné údaje");
+              }}
+              onCancel={() => setEditId(null)}
+            />
+          )}
         </DialogContent>
       </Dialog>
     </AppShell>
