@@ -65,20 +65,23 @@ function KontrolyPage() {
   const { id } = Route.useSearch();
   const navigate = useNavigate({ from: "/kontroly" });
   const [openId, setOpenId] = useState<string | null>(null);
+  const [editId, setEditId] = useState<string | null>(null);
+  const { revizie, overrides, saveOverride, resetOverride } = useRevizieOverrides();
 
   useEffect(() => {
     if (id) setOpenId(id);
   }, [id]);
 
-  const enriched = REVIZIE.map((r) => ({ ...r, ...statusRevizie(r.platnaDo) })).sort(
-    (a, b) => a.dniDoExpiracie - b.dniDoExpiracie,
-  );
+  const enriched = revizie
+    .map((r) => ({ ...r, ...statusRevizie(r.platnaDo) }))
+    .sort((a, b) => a.dniDoExpiracie - b.dniDoExpiracie);
 
   const platne = enriched.filter((r) => r.status === "platna");
   const blizia = enriched.filter((r) => r.status === "blizi-sa");
   const expirovane = enriched.filter((r) => r.status === "po-termine");
 
-  const aktivna = openId ? REVIZIE.find((r) => r.id === openId) ?? null : null;
+  const aktivna = openId ? revizie.find((r) => r.id === openId) ?? null : null;
+  const editovana = editId ? revizie.find((r) => r.id === editId) ?? null : null;
 
   const closeDialog = () => {
     setOpenId(null);
