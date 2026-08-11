@@ -3,12 +3,17 @@ import { useState, useEffect } from "react";
 import { z } from "zod";
 import { AppShell } from "@/components/AppShell";
 import {
-  REVIZIE,
   KONSTRUKCNE_PRVKY,
   fmtDate,
   statusRevizie,
   type Revizia,
 } from "@/data/dom-data";
+import { useRevizieOverrides, type ReviziaOverride } from "@/hooks/use-revizie-overrides";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 import {
   AlertTriangle,
   CheckCircle2,
