@@ -134,6 +134,7 @@ function KontrolyPage() {
                 <TableHead>Platná do</TableHead>
                 <TableHead className="hidden lg:table-cell">Frekvencia</TableHead>
                 <TableHead className="text-right">Stav</TableHead>
+                <TableHead className="w-[1%]"></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
