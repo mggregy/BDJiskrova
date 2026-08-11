@@ -430,3 +430,135 @@ function StavBadge({ stav }: { stav: string }) {
     </span>
   );
 }
+
+function EditReviziaForm({
+  revizia,
+  zmenene,
+  onSave,
+  onReset,
+  onCancel,
+}: {
+  revizia: Revizia;
+  zmenene: boolean;
+  onSave: (patch: ReviziaOverride) => void;
+  onReset: () => void;
+  onCancel: () => void;
+}) {
+  const [form, setForm] = useState({
+    poslednaRevizia: revizia.poslednaRevizia,
+    platnaDo: revizia.platnaDo,
+    frekvencia: revizia.frekvencia,
+    vykonavatel: revizia.vykonavatel ?? "",
+    rozsah: revizia.rozsah,
+    poznamka: revizia.poznamka ?? "",
+  });
+
+  const set = (k: keyof typeof form, v: string) => setForm((f) => ({ ...f, [k]: v }));
+
+  return (
+    <>
+      <DialogHeader>
+        <DialogTitle className="text-xl font-display">Upraviť revíziu</DialogTitle>
+        <DialogDescription className="text-sm">{revizia.nazov}</DialogDescription>
+      </DialogHeader>
+
+      <form
+        className="mt-4 space-y-4"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSave({
+            poslednaRevizia: form.poslednaRevizia,
+            platnaDo: form.platnaDo,
+            frekvencia: form.frekvencia.trim().slice(0, 120),
+            vykonavatel: form.vykonavatel.trim().slice(0, 120),
+            rozsah: form.rozsah.trim().slice(0, 2000),
+            poznamka: form.poznamka.trim().slice(0, 500),
+          });
+        }}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="space-y-1.5">
+            <Label htmlFor="poslednaRevizia">Posledná revízia</Label>
+            <Input
+              id="poslednaRevizia"
+              type="date"
+              required
+              value={form.poslednaRevizia}
+              onChange={(e) => set("poslednaRevizia", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="platnaDo">Platná do</Label>
+            <Input
+              id="platnaDo"
+              type="date"
+              required
+              value={form.platnaDo}
+              onChange={(e) => set("platnaDo", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="frekvencia">Frekvencia</Label>
+            <Input
+              id="frekvencia"
+              maxLength={120}
+              value={form.frekvencia}
+              onChange={(e) => set("frekvencia", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="vykonavatel">Vykonáva</Label>
+            <Input
+              id="vykonavatel"
+              maxLength={120}
+              value={form.vykonavatel}
+              onChange={(e) => set("vykonavatel", e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor="rozsah">Rozsah kontroly</Label>
+          <Textarea
+            id="rozsah"
+            rows={4}
+            maxLength={2000}
+            value={form.rozsah}
+            onChange={(e) => set("rozsah", e.target.value)}
+          />
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor="poznamka">Poznámka</Label>
+          <Textarea
+            id="poznamka"
+            rows={2}
+            maxLength={500}
+            value={form.poznamka}
+            onChange={(e) => set("poznamka", e.target.value)}
+          />
+        </div>
+
+        <p className="text-xs text-muted-foreground">
+          Zmeny sa ukladajú lokálne v tomto prehliadači a prepíšu údaje zo správ správcu.
+        </p>
+
+        <div className="flex items-center justify-between gap-2 pt-2">
+          {zmenene ? (
+            <Button type="button" variant="ghost" onClick={onReset}>
+              <RotateCcw className="size-4" /> Obnoviť pôvodné
+            </Button>
+          ) : (
+            <span />
+          )}
+          <div className="flex gap-2">
+            <Button type="button" variant="outline" onClick={onCancel}>
+              Zrušiť
+            </Button>
+            <Button type="submit">Uložiť</Button>
+          </div>
+        </div>
+      </form>
+    </>
+  );
+}
