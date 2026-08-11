@@ -144,7 +144,14 @@ function KontrolyPage() {
                   className="cursor-pointer hover:bg-surface-muted/70"
                   onClick={() => setOpenId(r.id)}
                 >
-                  <TableCell className="font-medium text-foreground">{r.nazov}</TableCell>
+                  <TableCell className="font-medium text-foreground">
+                    {r.nazov}
+                    {overrides[r.id] && (
+                      <span className="ml-2 text-[10px] uppercase tracking-wider text-teal">
+                        upravené
+                      </span>
+                    )}
+                  </TableCell>
                   <TableCell className="hidden md:table-cell text-sm text-muted-foreground">
                     {r.kategoria}
                   </TableCell>
@@ -157,6 +164,19 @@ function KontrolyPage() {
                   </TableCell>
                   <TableCell className="text-right">
                     <StatusPill status={r.status} dni={r.dniDoExpiracie} />
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      aria-label={`Upraviť ${r.nazov}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setEditId(r.id);
+                      }}
+                    >
+                      <Pencil className="size-4" />
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
