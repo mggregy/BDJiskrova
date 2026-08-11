@@ -27,6 +27,8 @@ import {
   ListChecks,
   Info,
   History,
+  Pencil,
+  RotateCcw,
 } from "lucide-react";
 import {
   Dialog,
