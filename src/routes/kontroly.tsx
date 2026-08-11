@@ -246,7 +246,7 @@ function KontrolyPage() {
   );
 }
 
-function ReviziaDetail({ revizia }: { revizia: Revizia }) {
+function ReviziaDetail({ revizia, onEdit }: { revizia: Revizia; onEdit: () => void }) {
   const { status, dniDoExpiracie } = statusRevizie(revizia.platnaDo);
   return (
     <>
@@ -258,6 +258,12 @@ function ReviziaDetail({ revizia }: { revizia: Revizia }) {
         <DialogTitle className="text-2xl font-display">{revizia.nazov}</DialogTitle>
         <DialogDescription className="text-sm leading-relaxed">{revizia.popis}</DialogDescription>
       </DialogHeader>
+
+      <div className="mt-2">
+        <Button variant="outline" size="sm" onClick={onEdit}>
+          <Pencil className="size-3.5" /> Upraviť údaje
+        </Button>
+      </div>
 
       <div className="mt-4 flex items-center gap-3 flex-wrap">
         <StatusPill status={status} dni={dniDoExpiracie} />
