@@ -3,12 +3,17 @@ import { useState, useEffect } from "react";
 import { z } from "zod";
 import { AppShell } from "@/components/AppShell";
 import {
-  REVIZIE,
   KONSTRUKCNE_PRVKY,
   fmtDate,
   statusRevizie,
   type Revizia,
 } from "@/data/dom-data";
+import { useRevizieOverrides, type ReviziaOverride } from "@/hooks/use-revizie-overrides";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -22,6 +27,8 @@ import {
   ListChecks,
   Info,
   History,
+  Pencil,
+  RotateCcw,
 } from "lucide-react";
 import {
   Dialog,
@@ -60,20 +67,23 @@ function KontrolyPage() {
   const { id } = Route.useSearch();
   const navigate = useNavigate({ from: "/kontroly" });
   const [openId, setOpenId] = useState<string | null>(null);
+  const [editId, setEditId] = useState<string | null>(null);
+  const { revizie, overrides, saveOverride, resetOverride } = useRevizieOverrides();
 
   useEffect(() => {
     if (id) setOpenId(id);
   }, [id]);
 
-  const enriched = REVIZIE.map((r) => ({ ...r, ...statusRevizie(r.platnaDo) })).sort(
-    (a, b) => a.dniDoExpiracie - b.dniDoExpiracie,
-  );
+  const enriched = revizie
+    .map((r) => ({ ...r, ...statusRevizie(r.platnaDo) }))
+    .sort((a, b) => a.dniDoExpiracie - b.dniDoExpiracie);
 
   const platne = enriched.filter((r) => r.status === "platna");
   const blizia = enriched.filter((r) => r.status === "blizi-sa");
   const expirovane = enriched.filter((r) => r.status === "po-termine");
 
-  const aktivna = openId ? REVIZIE.find((r) => r.id === openId) ?? null : null;
+  const aktivna = openId ? revizie.find((r) => r.id === openId) ?? null : null;
+  const editovana = editId ? revizie.find((r) => r.id === editId) ?? null : null;
 
   const closeDialog = () => {
     setOpenId(null);
@@ -126,6 +136,7 @@ function KontrolyPage() {
                 <TableHead>Platná do</TableHead>
                 <TableHead className="hidden lg:table-cell">Frekvencia</TableHead>
                 <TableHead className="text-right">Stav</TableHead>
+                <TableHead className="w-[1%]"></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -135,7 +146,14 @@ function KontrolyPage() {
                   className="cursor-pointer hover:bg-surface-muted/70"
                   onClick={() => setOpenId(r.id)}
                 >
-                  <TableCell className="font-medium text-foreground">{r.nazov}</TableCell>
+                  <TableCell className="font-medium text-foreground">
+                    {r.nazov}
+                    {overrides[r.id] && (
+                      <span className="ml-2 text-[10px] uppercase tracking-wider text-teal">
+                        upravené
+                      </span>
+                    )}
+                  </TableCell>
                   <TableCell className="hidden md:table-cell text-sm text-muted-foreground">
                     {r.kategoria}
                   </TableCell>
@@ -148,6 +166,19 @@ function KontrolyPage() {
                   </TableCell>
                   <TableCell className="text-right">
                     <StatusPill status={r.status} dni={r.dniDoExpiracie} />
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      aria-label={`Upraviť ${r.nazov}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setEditId(r.id);
+                      }}
+                    >
+                      <Pencil className="size-4" />
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -179,14 +210,45 @@ function KontrolyPage() {
 
       <Dialog open={!!aktivna} onOpenChange={(o) => !o && closeDialog()}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          {aktivna && <ReviziaDetail revizia={aktivna} />}
+          {aktivna && (
+            <ReviziaDetail
+              revizia={aktivna}
+              onEdit={() => {
+                setEditId(aktivna.id);
+                closeDialog();
+              }}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={!!editovana} onOpenChange={(o) => !o && setEditId(null)}>
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+          {editovana && (
+            <EditReviziaForm
+              key={editovana.id}
+              revizia={editovana}
+              zmenene={!!overrides[editovana.id]}
+              onSave={(patch) => {
+                saveOverride(editovana.id, patch);
+                setEditId(null);
+                toast.success("Revízia aktualizovaná");
+              }}
+              onReset={() => {
+                resetOverride(editovana.id);
+                setEditId(null);
+                toast.success("Obnovené pôvodné údaje");
+              }}
+              onCancel={() => setEditId(null)}
+            />
+          )}
         </DialogContent>
       </Dialog>
     </AppShell>
   );
 }
 
-function ReviziaDetail({ revizia }: { revizia: Revizia }) {
+function ReviziaDetail({ revizia, onEdit }: { revizia: Revizia; onEdit: () => void }) {
   const { status, dniDoExpiracie } = statusRevizie(revizia.platnaDo);
   return (
     <>
@@ -198,6 +260,12 @@ function ReviziaDetail({ revizia }: { revizia: Revizia }) {
         <DialogTitle className="text-2xl font-display">{revizia.nazov}</DialogTitle>
         <DialogDescription className="text-sm leading-relaxed">{revizia.popis}</DialogDescription>
       </DialogHeader>
+
+      <div className="mt-2">
+        <Button variant="outline" size="sm" onClick={onEdit}>
+          <Pencil className="size-3.5" /> Upraviť údaje
+        </Button>
+      </div>
 
       <div className="mt-4 flex items-center gap-3 flex-wrap">
         <StatusPill status={status} dni={dniDoExpiracie} />
@@ -362,5 +430,137 @@ function StavBadge({ stav }: { stav: string }) {
     >
       {stav}
     </span>
+  );
+}
+
+function EditReviziaForm({
+  revizia,
+  zmenene,
+  onSave,
+  onReset,
+  onCancel,
+}: {
+  revizia: Revizia;
+  zmenene: boolean;
+  onSave: (patch: ReviziaOverride) => void;
+  onReset: () => void;
+  onCancel: () => void;
+}) {
+  const [form, setForm] = useState({
+    poslednaRevizia: revizia.poslednaRevizia,
+    platnaDo: revizia.platnaDo,
+    frekvencia: revizia.frekvencia,
+    vykonavatel: revizia.vykonavatel ?? "",
+    rozsah: revizia.rozsah,
+    poznamka: revizia.poznamka ?? "",
+  });
+
+  const set = (k: keyof typeof form, v: string) => setForm((f) => ({ ...f, [k]: v }));
+
+  return (
+    <>
+      <DialogHeader>
+        <DialogTitle className="text-xl font-display">Upraviť revíziu</DialogTitle>
+        <DialogDescription className="text-sm">{revizia.nazov}</DialogDescription>
+      </DialogHeader>
+
+      <form
+        className="mt-4 space-y-4"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSave({
+            poslednaRevizia: form.poslednaRevizia,
+            platnaDo: form.platnaDo,
+            frekvencia: form.frekvencia.trim().slice(0, 120),
+            vykonavatel: form.vykonavatel.trim().slice(0, 120),
+            rozsah: form.rozsah.trim().slice(0, 2000),
+            poznamka: form.poznamka.trim().slice(0, 500),
+          });
+        }}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="space-y-1.5">
+            <Label htmlFor="poslednaRevizia">Posledná revízia</Label>
+            <Input
+              id="poslednaRevizia"
+              type="date"
+              required
+              value={form.poslednaRevizia}
+              onChange={(e) => set("poslednaRevizia", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="platnaDo">Platná do</Label>
+            <Input
+              id="platnaDo"
+              type="date"
+              required
+              value={form.platnaDo}
+              onChange={(e) => set("platnaDo", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="frekvencia">Frekvencia</Label>
+            <Input
+              id="frekvencia"
+              maxLength={120}
+              value={form.frekvencia}
+              onChange={(e) => set("frekvencia", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="vykonavatel">Vykonáva</Label>
+            <Input
+              id="vykonavatel"
+              maxLength={120}
+              value={form.vykonavatel}
+              onChange={(e) => set("vykonavatel", e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor="rozsah">Rozsah kontroly</Label>
+          <Textarea
+            id="rozsah"
+            rows={4}
+            maxLength={2000}
+            value={form.rozsah}
+            onChange={(e) => set("rozsah", e.target.value)}
+          />
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor="poznamka">Poznámka</Label>
+          <Textarea
+            id="poznamka"
+            rows={2}
+            maxLength={500}
+            value={form.poznamka}
+            onChange={(e) => set("poznamka", e.target.value)}
+          />
+        </div>
+
+        <p className="text-xs text-muted-foreground">
+          Zmeny sa ukladajú lokálne v tomto prehliadači a prepíšu údaje zo správ správcu.
+        </p>
+
+        <div className="flex items-center justify-between gap-2 pt-2">
+          {zmenene ? (
+            <Button type="button" variant="ghost" onClick={onReset}>
+              <RotateCcw className="size-4" /> Obnoviť pôvodné
+            </Button>
+          ) : (
+            <span />
+          )}
+          <div className="flex gap-2">
+            <Button type="button" variant="outline" onClick={onCancel}>
+              Zrušiť
+            </Button>
+            <Button type="submit">Uložiť</Button>
+          </div>
+        </div>
+      </form>
+    </>
   );
 }
