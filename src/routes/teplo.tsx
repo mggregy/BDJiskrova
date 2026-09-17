@@ -228,7 +228,7 @@ function TeploPage() {
         <CardContent>
           <div className="w-full h-[360px]">
             <ResponsiveContainer>
-              <ComposedChart data={data} margin={{ top: 10, right: 16, left: 0, bottom: 0 }}>
+              <ComposedChart data={dataS} margin={{ top: 10, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
                 <XAxis
                   dataKey="rok"
@@ -304,7 +304,7 @@ function TeploPage() {
           <CardContent>
             <div className="w-full h-[240px]">
               <ResponsiveContainer>
-                <ComposedChart data={data} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
+                <ComposedChart data={dataS} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
                   <XAxis dataKey="rok" stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
                   <YAxis stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
@@ -340,7 +340,7 @@ function TeploPage() {
           <CardContent>
             <div className="w-full h-[240px]">
               <ResponsiveContainer>
-                <ComposedChart data={data} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
+                <ComposedChart data={dataS} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
                   <XAxis dataKey="rok" stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
                   <YAxis
@@ -375,7 +375,7 @@ function TeploPage() {
         <CardHeader>
           <CardTitle className="text-base font-display">Ročný prehľad</CardTitle>
           <p className="text-xs text-muted-foreground">
-            Sumár za {data.length} rokov: {eur(sumSpolu)} · {kwh(sumKwh)}
+            Sumár za {dataS.length} rokov: {eur(sumSpolu)} · {kwh(sumKwh)}
           </p>
         </CardHeader>
         <CardContent>
