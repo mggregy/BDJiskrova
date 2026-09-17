@@ -551,13 +551,10 @@ export type StavPrvku = {
 
 export const KONSTRUKCNE_PRVKY: StavPrvku[] = [
   { prvok: "Balkóny, lodžie, terasy", stav: "opotrebované vekom", poznamka: "Odporúčaná oprava zábradlí a izolácie balkónov z ulice" },
-  { prvok: "Domáce dorozumievacie zariadenie", stav: "nové", poznamka: "Výmena 2019 — firma Vacula (DDZ, vchodové brány)" },
   { prvok: "Hydraulické vyregulovanie TV a ÚK", stav: "nutná kontrola", poznamka: "Vyregulovanie ÚK 2014" },
-  { prvok: "Okapový chodník", stav: "nové", poznamka: "Opravený prepadnutý okapový chodník" },
   { prvok: "Okná schodiskové", stav: "v norme", poznamka: "Výmena 2006 — firma Aniroll" },
   { prvok: "Oplotenie predzáhradky", stav: "v norme" },
   { prvok: "Pomerový rozdeľovač vykurovacích nákladov", stav: "v norme", poznamka: "Výmena 2019 — firma Techem" },
-  { prvok: "Pozemok", stav: "v norme", poznamka: "2019 zabetónovanie výťahovej šachty v predzáhradke" },
   { prvok: "Rozvody elektroinštalácie", stav: "v norme", poznamka: "Výmena 2016" },
   { prvok: "Rozvody zvislé TV, SV, kanalizácia, plyn", stav: "opotrebované vekom", poznamka: "Odporúčaná výmena zvislých rozvodov (neznámy stav, väčšina bytov po rekonštrukcií)" },
   { prvok: "Schodiská", stav: "opotrebované vekom", poznamka: "Vymaľované 2009 — firma Czanner" },
@@ -565,7 +562,6 @@ export const KONSTRUKCNE_PRVKY: StavPrvku[] = [
   { prvok: "Tepelná izolácia rozvodov", stav: "opotrebované vekom" },
   { prvok: "Vchodová brána", stav: "v norme", poznamka: "Bezkontaktný prístup DEK SIET 2019" },
   { prvok: "Výťahy", stav: "opotrebované vekom", poznamka: "Odporúčaná výmena" },
-  { prvok: "Základy", stav: "v norme" },
 ];
 
 // === HELPERY ===
