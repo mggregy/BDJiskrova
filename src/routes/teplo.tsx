@@ -67,10 +67,7 @@ const perM2 = (n: number) => (PLOCHA > 0 ? n / PLOCHA : 0);
 function AvgM2({ hodnota, jednotka }: { hodnota: number; jednotka: string }) {
   return (
     <div className="shrink-0 rounded-lg border border-border/60 bg-muted/40 px-2 py-1.5 text-right">
-      <div className="text-[10px] uppercase tracking-wider text-muted-foreground leading-none">
-        avg / m²
-      </div>
-      <div className="text-sm font-display font-semibold text-foreground leading-tight mt-0.5">
+      <div className="text-sm font-display font-semibold text-foreground leading-tight">
         {hodnota > 0 ? hodnota.toFixed(1) : "—"}
       </div>
       <div className="text-[10px] text-muted-foreground leading-none mt-0.5">{jednotka}</div>
