@@ -90,10 +90,12 @@ function TeploPage() {
   const selIdx = Math.max(0, data.findIndex((d) => d.rok === vybranyRok));
   const last = data[selIdx];
   const prev = data[selIdx - 1] ?? last;
-  const minRok = [...data].sort((a, b) => a.spotrebaKwh - b.spotrebaKwh)[0];
-  const maxRok = [...data].sort((a, b) => b.spotrebaKwh - a.spotrebaKwh)[0];
-  const sumSpolu = data.reduce((a, b) => a + b.spolu, 0);
-  const sumKwh = data.reduce((a, b) => a + b.spotrebaKwh, 0);
+  // Roky bez údajov (napr. rozbehnutý 2026) nevstupujú do grafov, min/max ani priemerov.
+  const dataS = data.filter((d) => d.spotrebaKwh > 0);
+  const minRok = [...dataS].sort((a, b) => a.spotrebaKwh - b.spotrebaKwh)[0];
+  const maxRok = [...dataS].sort((a, b) => b.spotrebaKwh - a.spotrebaKwh)[0];
+  const sumSpolu = dataS.reduce((a, b) => a + b.spolu, 0);
+  const sumKwh = dataS.reduce((a, b) => a + b.spotrebaKwh, 0);
   const priemernaCenaKwh = sumKwh > 0 ? sumSpolu / sumKwh : 0;
 
   const diffSpolu = last.spolu - prev.spolu;
