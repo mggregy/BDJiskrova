@@ -86,40 +86,6 @@ function FinanciePage() {
         </div>
       </section>
 
-      {/* Spotreba tepla */}
-      <section className="stat-card mb-8">
-        <div className="mb-4">
-          <h2 className="font-semibold">Spotreba tepla — celý objekt</h2>
-          <p className="text-xs text-muted-foreground">
-            Podľa ročného rozpočítania od spoločnosti Techem · podlahová plocha 1 224,09 m²
-          </p>
-        </div>
-        <div className="h-64">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={teploPrehlad}>
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
-              <XAxis dataKey="rok" stroke="var(--color-muted-foreground)" fontSize={12} />
-              <YAxis yAxisId="left" stroke="var(--color-muted-foreground)" fontSize={12} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
-              <YAxis yAxisId="right" orientation="right" stroke="var(--color-muted-foreground)" fontSize={12} />
-              <Tooltip
-                contentStyle={{ background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: "0.5rem", fontSize: "0.85rem" }}
-              />
-              <Legend wrapperStyle={{ fontSize: "0.85rem" }} />
-              <Line yAxisId="left" type="monotone" dataKey="kWh" stroke="var(--color-chart-2)" strokeWidth={2.5} dot={{ r: 4 }} />
-              <Line yAxisId="right" type="monotone" dataKey="kWh/m²" stroke="var(--color-chart-4)" strokeWidth={2} dot={{ r: 3 }} />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5">
-          {teploPrehlad.map((t) => (
-            <div key={t.rok} className="rounded-lg border border-border/70 bg-surface-muted px-3 py-2">
-              <div className="text-xs text-muted-foreground">{t.rok}</div>
-              <div className="text-sm font-semibold font-display">{fmtNum(t.kWh ?? 0)} kWh</div>
-              <div className="text-[11px] text-muted-foreground">{t["kWh/m²"]?.toFixed(1)} kWh/m²</div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* Detailný výpis položiek za vybraný rok */}
       <section className="stat-card">
