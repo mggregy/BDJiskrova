@@ -35,7 +35,7 @@ function FinanciePage() {
         <p className="text-xs uppercase tracking-widest text-teal font-medium">Hospodárenie</p>
         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mt-1">Financie & Spotreby</h1>
         <p className="text-muted-foreground mt-2 max-w-2xl">
-          Ročné predpisy a vyúčtovania jednotlivých služieb spolu so spotrebou tepla pre celý dom.
+          Ročné predpisy a vyúčtovania jednotlivých služieb.
         </p>
       </header>
 
