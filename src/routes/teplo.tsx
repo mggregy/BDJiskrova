@@ -90,10 +90,12 @@ function TeploPage() {
   const selIdx = Math.max(0, data.findIndex((d) => d.rok === vybranyRok));
   const last = data[selIdx];
   const prev = data[selIdx - 1] ?? last;
-  const minRok = [...data].sort((a, b) => a.spotrebaKwh - b.spotrebaKwh)[0];
-  const maxRok = [...data].sort((a, b) => b.spotrebaKwh - a.spotrebaKwh)[0];
-  const sumSpolu = data.reduce((a, b) => a + b.spolu, 0);
-  const sumKwh = data.reduce((a, b) => a + b.spotrebaKwh, 0);
+  // Roky bez údajov (napr. rozbehnutý 2026) nevstupujú do grafov, min/max ani priemerov.
+  const dataS = data.filter((d) => d.spotrebaKwh > 0);
+  const minRok = [...dataS].sort((a, b) => a.spotrebaKwh - b.spotrebaKwh)[0];
+  const maxRok = [...dataS].sort((a, b) => b.spotrebaKwh - a.spotrebaKwh)[0];
+  const sumSpolu = dataS.reduce((a, b) => a + b.spolu, 0);
+  const sumKwh = dataS.reduce((a, b) => a + b.spotrebaKwh, 0);
   const priemernaCenaKwh = sumKwh > 0 ? sumSpolu / sumKwh : 0;
 
   const diffSpolu = last.spolu - prev.spolu;
@@ -226,7 +228,7 @@ function TeploPage() {
         <CardContent>
           <div className="w-full h-[360px]">
             <ResponsiveContainer>
-              <ComposedChart data={data} margin={{ top: 10, right: 16, left: 0, bottom: 0 }}>
+              <ComposedChart data={dataS} margin={{ top: 10, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
                 <XAxis
                   dataKey="rok"
@@ -302,7 +304,7 @@ function TeploPage() {
           <CardContent>
             <div className="w-full h-[240px]">
               <ResponsiveContainer>
-                <ComposedChart data={data} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
+                <ComposedChart data={dataS} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
                   <XAxis dataKey="rok" stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
                   <YAxis stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
@@ -338,7 +340,7 @@ function TeploPage() {
           <CardContent>
             <div className="w-full h-[240px]">
               <ResponsiveContainer>
-                <ComposedChart data={data} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
+                <ComposedChart data={dataS} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
                   <XAxis dataKey="rok" stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
                   <YAxis
@@ -373,7 +375,7 @@ function TeploPage() {
         <CardHeader>
           <CardTitle className="text-base font-display">Ročný prehľad</CardTitle>
           <p className="text-xs text-muted-foreground">
-            Sumár za {data.length} rokov: {eur(sumSpolu)} · {kwh(sumKwh)}
+            Sumár za {dataS.length} rokov: {eur(sumSpolu)} · {kwh(sumKwh)}
           </p>
         </CardHeader>
         <CardContent>
@@ -390,7 +392,7 @@ function TeploPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {[...data].reverse().map((r) => (
+              {[...dataS].reverse().map((r) => (
                 <TableRow key={r.rok}>
                   <TableCell className="font-medium">{r.rok}</TableCell>
                   <TableCell className="text-right font-mono tabular-nums">{eur(r.uk)}</TableCell>
