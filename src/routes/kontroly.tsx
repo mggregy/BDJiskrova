@@ -190,7 +190,7 @@ function KontrolyPage() {
       <section>
         <h2 className="text-xl font-semibold mb-1">Stav konštrukčných prvkov</h2>
         <p className="text-sm text-muted-foreground mb-4">
-          Strešná konštrukcia a krytina
+          {"\n"}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {KONSTRUKCNE_PRVKY.map((p) => (
