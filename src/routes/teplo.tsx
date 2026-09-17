@@ -121,6 +121,23 @@ function TeploPage() {
         </p>
       </header>
 
+      <div className="inline-flex flex-wrap items-center gap-1 rounded-full bg-muted/60 p-1">
+        {data.map((d) => (
+          <button
+            key={d.rok}
+            type="button"
+            onClick={() => setVybranyRok(d.rok)}
+            className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
+              d.rok === vybranyRok
+                ? "bg-card text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {d.rok}
+          </button>
+        ))}
+      </div>
+
       <section className="grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader className="pb-2">
