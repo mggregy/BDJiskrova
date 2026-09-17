@@ -98,8 +98,7 @@ function KontrolyPage() {
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mt-1">Zákonné kontroly</h1>
         <p className="text-muted-foreground mt-2 max-w-2xl">
-          Prehľad povinných revízií a kontrol bytového domu — kedy boli vykonané a do kedy sú
-          platné. Kliknutím na riadok zobrazíte detail kontroly.
+          Prehľad povinných revízií a kontrol bytového domu. Kliknutím na riadok zobrazíte detail.
         </p>
       </header>
 
