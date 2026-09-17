@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Flame, Droplets, TrendingDown, TrendingUp, Euro, Gauge } from "lucide-react";
 import {
@@ -84,8 +85,11 @@ function TeploPage() {
     };
   });
 
-  const last = data[data.length - 1];
-  const prev = data[data.length - 2];
+  const defaultRok = [...data].reverse().find((d) => d.spolu > 0)?.rok ?? data[data.length - 1].rok;
+  const [vybranyRok, setVybranyRok] = useState<number>(defaultRok);
+  const selIdx = Math.max(0, data.findIndex((d) => d.rok === vybranyRok));
+  const last = data[selIdx];
+  const prev = data[selIdx - 1] ?? last;
   const minRok = [...data].sort((a, b) => a.spotrebaKwh - b.spotrebaKwh)[0];
   const maxRok = [...data].sort((a, b) => b.spotrebaKwh - a.spotrebaKwh)[0];
   const sumSpolu = data.reduce((a, b) => a + b.spolu, 0);
@@ -116,6 +120,23 @@ function TeploPage() {
           .
         </p>
       </header>
+
+      <div className="inline-flex flex-wrap items-center gap-1 rounded-full bg-muted/60 p-1">
+        {data.map((d) => (
+          <button
+            key={d.rok}
+            type="button"
+            onClick={() => setVybranyRok(d.rok)}
+            className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
+              d.rok === vybranyRok
+                ? "bg-card text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {d.rok}
+          </button>
+        ))}
+      </div>
 
       <section className="grid gap-4 md:grid-cols-4">
         <Card>
