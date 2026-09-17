@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Flame, Droplets, TrendingDown, TrendingUp, Euro, Gauge } from "lucide-react";
 import {
