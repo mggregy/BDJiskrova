@@ -392,7 +392,7 @@ function TeploPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {[...data].reverse().map((r) => (
+              {[...dataS].reverse().map((r) => (
                 <TableRow key={r.rok}>
                   <TableCell className="font-medium">{r.rok}</TableCell>
                   <TableCell className="text-right font-mono tabular-nums">{eur(r.uk)}</TableCell>
