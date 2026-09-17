@@ -234,13 +234,16 @@ function TeploPage() {
               <Gauge className="size-3.5" /> Spotreba {last.rok}
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-display font-semibold text-foreground">
-              {kwh(last.spotrebaKwh)}
+          <CardContent className="flex items-start justify-between gap-3">
+            <div>
+              <div className="text-2xl font-display font-semibold text-foreground">
+                {kwh(last.spotrebaKwh)}
+              </div>
+              <div className="text-xs mt-1 text-muted-foreground">
+                {last.spotrebaKwh > 0 ? `${last.cenaZaKwh.toFixed(4)} €/kWh` : "bez údajov"}
+              </div>
             </div>
-            <div className="text-xs mt-1 text-muted-foreground">
-              {last.kwhNaM2.toFixed(1)} kWh/m² · {last.cenaZaKwh.toFixed(4)} €/kWh
-            </div>
+            <AvgM2 hodnota={perM2(last.spotrebaKwh)} jednotka="kWh / m²" />
           </CardContent>
         </Card>
       </section>
