@@ -194,13 +194,17 @@ function TeploPage() {
               <Flame className="size-3.5" /> ÚK {last.rok}
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-display font-semibold text-foreground">
-              {eur(last.uk)}
+          <CardContent className="flex items-start justify-between gap-3">
+            <div>
+              <div className="text-2xl font-display font-semibold text-foreground">
+                {eur(last.uk)}
+              </div>
+              <div className="text-xs mt-1 text-muted-foreground">
+                {last.spolu > 0 ? ((last.uk / last.spolu) * 100).toFixed(0) : "—"}% z nákladov na
+                teplo
+              </div>
             </div>
-            <div className="text-xs mt-1 text-muted-foreground">
-              {((last.uk / last.spolu) * 100).toFixed(0)}% z nákladov na teplo
-            </div>
+            <AvgM2 hodnota={perM2(last.uk)} jednotka="€ / m²" />
           </CardContent>
         </Card>
 
@@ -210,13 +214,17 @@ function TeploPage() {
               <Droplets className="size-3.5" /> Ohrev TÚV {last.rok}
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-display font-semibold text-foreground">
-              {eur(last.tuv)}
+          <CardContent className="flex items-start justify-between gap-3">
+            <div>
+              <div className="text-2xl font-display font-semibold text-foreground">
+                {eur(last.tuv)}
+              </div>
+              <div className="text-xs mt-1 text-muted-foreground">
+                {last.spolu > 0 ? ((last.tuv / last.spolu) * 100).toFixed(0) : "—"}% z nákladov na
+                teplo
+              </div>
             </div>
-            <div className="text-xs mt-1 text-muted-foreground">
-              {((last.tuv / last.spolu) * 100).toFixed(0)}% z nákladov na teplo
-            </div>
+            <AvgM2 hodnota={perM2(last.tuv)} jednotka="€ / m²" />
           </CardContent>
         </Card>
 
