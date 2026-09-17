@@ -28,11 +28,6 @@ function FinanciePage() {
     labelY: Math.max(Math.round(r.spoluPredpis), Math.round(r.spoluVyuctovanie)) + 2500,
   }));
 
-  const teploPrehlad = ROKY.filter((r) => r.teploCelkomKwh).map((r) => ({
-    rok: r.rok,
-    kWh: r.teploCelkomKwh,
-    "kWh/m²": r.teploNaM2,
-  }));
 
   return (
     <AppShell>
