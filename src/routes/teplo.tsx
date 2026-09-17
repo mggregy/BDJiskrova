@@ -84,8 +84,11 @@ function TeploPage() {
     };
   });
 
-  const last = data[data.length - 1];
-  const prev = data[data.length - 2];
+  const defaultRok = [...data].reverse().find((d) => d.spolu > 0)?.rok ?? data[data.length - 1].rok;
+  const [vybranyRok, setVybranyRok] = useState<number>(defaultRok);
+  const selIdx = Math.max(0, data.findIndex((d) => d.rok === vybranyRok));
+  const last = data[selIdx];
+  const prev = data[selIdx - 1] ?? last;
   const minRok = [...data].sort((a, b) => a.spotrebaKwh - b.spotrebaKwh)[0];
   const maxRok = [...data].sort((a, b) => b.spotrebaKwh - a.spotrebaKwh)[0];
   const sumSpolu = data.reduce((a, b) => a + b.spolu, 0);
