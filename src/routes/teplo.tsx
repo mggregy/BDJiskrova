@@ -60,6 +60,24 @@ const eur = (n: number) =>
 const kwh = (n: number) =>
   `${new Intl.NumberFormat("sk-SK", { maximumFractionDigits: 0 }).format(n)} kWh`;
 
+// Priemer na m² podlahovej plochy objektu
+const PLOCHA = DOM_INFO.podlahovaPlocha;
+const perM2 = (n: number) => (PLOCHA > 0 ? n / PLOCHA : 0);
+
+function AvgM2({ hodnota, jednotka }: { hodnota: number; jednotka: string }) {
+  return (
+    <div className="shrink-0 rounded-lg border border-border/60 bg-muted/40 px-2 py-1.5 text-right">
+      <div className="text-[10px] uppercase tracking-wider text-muted-foreground leading-none">
+        avg / m²
+      </div>
+      <div className="text-sm font-display font-semibold text-foreground leading-tight mt-0.5">
+        {hodnota > 0 ? hodnota.toFixed(1) : "—"}
+      </div>
+      <div className="text-[10px] text-muted-foreground leading-none mt-0.5">{jednotka}</div>
+    </div>
+  );
+}
+
 function findPolozka(rok: (typeof ROKY)[number], nazov: string) {
   return rok.polozky.find((p) => p.nazov === nazov);
 }
@@ -147,23 +165,26 @@ function TeploPage() {
               <Euro className="size-3.5" /> Náklady za {last.rok}
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-display font-semibold text-foreground">
-              {eur(last.spolu)}
+          <CardContent className="flex items-start justify-between gap-3">
+            <div>
+              <div className="text-2xl font-display font-semibold text-foreground">
+                {eur(last.spolu)}
+              </div>
+              <div
+                className={`text-xs mt-1 flex items-center gap-1 ${
+                  diffSpolu >= 0 ? "text-warning" : "text-success"
+                }`}
+              >
+                {diffSpolu >= 0 ? (
+                  <TrendingUp className="size-3" />
+                ) : (
+                  <TrendingDown className="size-3" />
+                )}
+                {diffSpolu >= 0 ? "+" : ""}
+                {eur(diffSpolu)} ({diffPct.toFixed(1)}%) vs {prev.rok}
+              </div>
             </div>
-            <div
-              className={`text-xs mt-1 flex items-center gap-1 ${
-                diffSpolu >= 0 ? "text-warning" : "text-success"
-              }`}
-            >
-              {diffSpolu >= 0 ? (
-                <TrendingUp className="size-3" />
-              ) : (
-                <TrendingDown className="size-3" />
-              )}
-              {diffSpolu >= 0 ? "+" : ""}
-              {eur(diffSpolu)} ({diffPct.toFixed(1)}%) vs {prev.rok}
-            </div>
+            <AvgM2 hodnota={perM2(last.spolu)} jednotka="€ / m²" />
           </CardContent>
         </Card>
 
