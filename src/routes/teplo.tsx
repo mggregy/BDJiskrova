@@ -498,6 +498,10 @@ function TeploPage() {
         správcu NOVBYT, s.r.o. (položky „Ústredné kúrenie" a „Ohrev teplej vody"); súhrn nákladov
         na teplo od dodávateľa (2025_Jiskrova_naklady_teplo_Zhrnutie.pdf).
       </p>
+      <p className="text-xs text-muted-foreground">
+        Od júla 2019 prevádzkuje tepelné hospodárstvo prostredníctvom spoločnosti TERMMING, skupina
+        Engie.
+      </p>
     </div>
     </AppShell>
   );
