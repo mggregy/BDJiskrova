@@ -560,7 +560,7 @@ export const KONSTRUKCNE_PRVKY: StavPrvku[] = [
   { prvok: "Schodiská", stav: "opotrebované vekom", poznamka: "Vymaľované 2009 — firma Czanner" },
   { prvok: "Strešná konštrukcia", stav: "nutná oprava-výmena", poznamka: "Odporúčaná výmena strešnej krytiny" },
   { prvok: "Tepelná izolácia rozvodov", stav: "opotrebované vekom" },
-  { prvok: "Vchodová brána", stav: "v norme", poznamka: "Bezkontaktný prístup DEK SIET 2019" },
+  { prvok: "Vchodové brány", stav: "opotrebované vekom", poznamka: "Bezkontaktný prístup DEK SIET 2019; zadné vchody nutná výmena" },
   { prvok: "Výťahy", stav: "opotrebované vekom", poznamka: "Odporúčaná výmena" },
 ];
 
