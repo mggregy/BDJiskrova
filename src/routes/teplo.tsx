@@ -813,10 +813,10 @@ function UkBreakdownSection() {
               kotolní presiahnu 4,5 milióna eur a musí ich zrealizovať
               najbližších päť rokov. Zaviazal sa tiež, že oproti súčasnosti
               zníži takzvanú fixnú zložku ceny tepla a zvýši výšku nájmu
-              v&amp;nbsp;prospech mestskej&amp;nbsp;časti. Oproti súčasnému
-              dodávateľovi by v&amp;nbsp;rámci roka mala podľa Kusého cena za
-              fixnú zložku poklesnúť zhruba o&amp;nbsp;päť až&amp;nbsp;šesť eur
-              za priemerný byt, ktorý má 65&amp;nbsp;štvorcových metrov. (Jún
+              v prospech mestskej časti. Oproti súčasnému
+              dodávateľovi by v rámci roka mala podľa Kusého cena za
+              fixnú zložku poklesnúť zhruba o päť až šesť eur
+              za priemerný byt, ktorý má 65 štvorcových metrov. (Jún
               2019, Bratislava Dnes24)
             </p>
           </div>
