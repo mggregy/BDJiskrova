@@ -768,15 +768,15 @@ function UkBreakdownSection() {
           {ANALYZY.map((a) => (
             <div
               key={a.id}
-              className="rounded-lg border bg-muted/30 p-4"
+              className="relative rounded-lg border bg-muted/30 p-4"
             >
+              <span
+                className={`absolute right-3 top-3 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${ANALYZA_STAV_TRIEDA[a.stav]}`}
+              >
+                {a.stav}
+              </span>
               <div className="mb-1.5 flex flex-wrap items-center gap-2">
-                <span
-                  className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${ANALYZA_STAV_TRIEDA[a.stav]}`}
-                >
-                  {a.stav}
-                </span>
-                <h4 className="font-display text-sm font-semibold">
+                <h4 className="max-w-[80%] font-display text-sm font-semibold">
                   {a.titulok}
                 </h4>
               </div>
