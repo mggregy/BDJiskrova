@@ -46,7 +46,7 @@ type Analyza = {
   text: string;
 };
 
-const ANALYZA_STAV Trieda: Record<AnalyzaStav, string> = {
+const ANALYZA_STAV_TRIEDA: Record<AnalyzaStav, string> = {
   "v norme": "bg-success/10 text-success",
   "otvorené": "bg-warning/15 text-warning",
 };
