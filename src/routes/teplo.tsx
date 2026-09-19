@@ -499,8 +499,8 @@ function TeploPage() {
         na teplo od dodávateľa (2025_Jiskrova_naklady_teplo_Zhrnutie.pdf).
       </p>
       <p className="text-xs text-muted-foreground">
-        Od júla 2019 prevádzkuje tepelné hospodárstvo prostredníctvom spoločnosti TERMMING, skupina
-        Engie.
+        OST-888: Od júla 2019 prevádzkuje tepelné hospodárstvo prostredníctvom spoločnosti
+        TERMMING, skupina Engie.
       </p>
     </div>
     </AppShell>
