@@ -753,6 +753,57 @@ function UkBreakdownSection() {
           </Table>
         </CardContent>
       </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base font-display">
+            Analýzy a poznámky
+          </CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Kontext k tomu, prečo účty za ÚK vyzerajú tak, ako vyzerajú — ceny
+            voči stropom ÚRSO, efektívna cena tepla a otvorené body.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {ANALYZY.map((a) => (
+            <div
+              key={a.id}
+              className="rounded-lg border bg-muted/30 p-4"
+            >
+              <div className="mb-1.5 flex flex-wrap items-center gap-2">
+                <span
+                  className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${ANALYZA_STAV_TRIEDA[a.stav]}`}
+                >
+                  {a.stav}
+                </span>
+                <h4 className="font-display text-sm font-semibold">
+                  {a.titulok}
+                </h4>
+              </div>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {a.text}
+              </p>
+            </div>
+          ))}
+
+          <div className="rounded-lg border p-4">
+            <h4 className="mb-2 font-display text-sm font-semibold">
+              Kľúčové výpočty
+            </h4>
+            <ul className="space-y-1.5">
+              {VYPOCTY.map((v) => (
+                <li
+                  key={v}
+                  className="flex gap-2 text-sm leading-relaxed text-muted-foreground"
+                >
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                  <span>{v}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
     </section>
   );
 }
