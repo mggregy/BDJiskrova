@@ -36,6 +36,52 @@ const C_LINE_ALT = "var(--color-chart-5)";  // green
 const C_AREA = "var(--color-chart-2)";      // teal
 const C_PRICE = "var(--color-chart-3)";     // light teal
 
+// ============= Analýzy a poznámky (textový komentár k ÚK) =============
+type AnalyzaStav = "v norme" | "otvorené";
+
+type Analyza = {
+  id: string;
+  titulok: string;
+  stav: AnalyzaStav;
+  text: string;
+};
+
+const ANALYZA_STAV_TRIEDA: Record<AnalyzaStav, string> = {
+  "v norme": "bg-success/10 text-success",
+  "otvorené": "bg-warning/15 text-warning",
+};
+
+const ANALYZY: Analyza[] = [
+  {
+    id: "urso",
+    titulok: "Maximálna cena ÚRSO",
+    stav: "v norme",
+    text:
+      "K prekročeniu maximálnej ceny ÚRSO nedošlo. Fixná zložka 367,06 €/kW je cena s DPH (Techem) — bez DPH je to 298,42 €/kW, čo je pod platným stropom (304,84 €/kW do 7. 3. 2025, potom 309,53 €/kW).",
+  },
+  {
+    id: "efektivna-cena",
+    titulok: "Efektívna cena tepla",
+    stav: "v norme",
+    text:
+      "Efektívna cena 134,04 €/MWh s DPH — hlboko pod stropom 199 €/MWh, ktorý na rok 2025 platil podľa nariadenia vlády 382/2024 (plošné zastropovanie). Preto bola variabilná zložka umelo nízka a fixná sedela blízko maxima — to bola zákonná povinnosť, nie chyba.",
+  },
+  {
+    id: "regulacny-prikon",
+    titulok: "Regulačný príkon",
+    stav: "otvorené",
+    text:
+      "Pôvod čísel 32,8974 kW a 9,598 kW (regulačný príkon) sa z Techem/Novbyt dokumentov nedá overiť — či ide o skutočný príkon fakturovaný Termmingom za OST 888, alebo o dopočet.",
+  },
+];
+
+const VYPOCTY: string[] = [
+  "367,056760 ÷ 1,23 = 298,42 €/kW bez DPH, pod maximom ÚRSO (304,8364 / 309,5332).",
+  "Celý dom: 198 245,59 kWh, 26 571,83 € → 134,04 €/MWh s DPH.",
+  "Pomer 4 665,1 h je fakt z ich čísel; čo z neho vyplýva, je otvorené.",
+  "Fixná zložka je 58,7 % účtu.",
+];
+
 export const Route = createFileRoute("/teplo")({
   head: () => ({
     meta: [
@@ -705,6 +751,57 @@ function UkBreakdownSection() {
               ))}
             </TableBody>
           </Table>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base font-display">
+            Analýzy a poznámky
+          </CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Kontext k tomu, prečo účty za ÚK vyzerajú tak, ako vyzerajú — ceny
+            voči stropom ÚRSO, efektívna cena tepla a otvorené body.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {ANALYZY.map((a) => (
+            <div
+              key={a.id}
+              className="rounded-lg border bg-muted/30 p-4"
+            >
+              <div className="mb-1.5 flex flex-wrap items-center gap-2">
+                <span
+                  className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${ANALYZA_STAV_TRIEDA[a.stav]}`}
+                >
+                  {a.stav}
+                </span>
+                <h4 className="font-display text-sm font-semibold">
+                  {a.titulok}
+                </h4>
+              </div>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {a.text}
+              </p>
+            </div>
+          ))}
+
+          <div className="rounded-lg border p-4">
+            <h4 className="mb-2 font-display text-sm font-semibold">
+              Kľúčové výpočty
+            </h4>
+            <ul className="space-y-1.5">
+              {VYPOCTY.map((v) => (
+                <li
+                  key={v}
+                  className="flex gap-2 text-sm leading-relaxed text-muted-foreground"
+                >
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                  <span>{v}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </CardContent>
       </Card>
     </section>
