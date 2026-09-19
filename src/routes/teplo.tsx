@@ -806,7 +806,22 @@ function UkBreakdownSection() {
               ))}
             </ul>
           </div>
+
+          <div className="rounded-lg border-l-4 border-primary/40 bg-muted/20 p-4">
+            <p className="text-sm italic leading-relaxed text-muted-foreground">
+              Nový dodávateľ tepla sa zaviazal, že jeho investície do rozvodov a
+              kotolní presiahnu 4,5 milióna eur a musí ich zrealizovať
+              najbližších päť rokov. Zaviazal sa tiež, že oproti súčasnosti
+              zníži takzvanú fixnú zložku ceny tepla a zvýši výšku nájmu
+              v&amp;nbsp;prospech mestskej&amp;nbsp;časti. Oproti súčasnému
+              dodávateľovi by v&amp;nbsp;rámci roka mala podľa Kusého cena za
+              fixnú zložku poklesnúť zhruba o&amp;nbsp;päť až&amp;nbsp;šesť eur
+              za priemerný byt, ktorý má 65&amp;nbsp;štvorcových metrov. (Jún
+              2019, Bratislava Dnes24)
+            </p>
+          </div>
         </CardContent>
+
       </Card>
     </section>
   );
