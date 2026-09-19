@@ -145,7 +145,7 @@ function FinanciePage() {
         </div>
 
         <div className="mt-4 text-xs text-muted-foreground">
-          Vyúčtovanie vyhotovil: <strong className="text-foreground">{rok.vyhotovil}</strong> · Zostatok účtu k 31. 12.{" "}
+          Zostatok účtu k 31. 12.{" "}
           {rok.rok}: <strong className="text-foreground">{fmtEurFull(rok.zostatokUctu)}</strong>
         </div>
       </section>
