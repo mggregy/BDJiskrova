@@ -471,7 +471,7 @@ function TeploPage() {
                 <TableHead className="text-right">Spolu</TableHead>
                 <TableHead className="text-right">ÚK Spotreba (kWh)</TableHead>
                 <TableHead className="text-right">TÚV (kWh)</TableHead>
-                <TableHead className="text-right">kWh/m²</TableHead>
+                <TableHead className="text-right">ÚK kWh/m²</TableHead>
                 <TableHead className="text-right">€/kWh</TableHead>
               </TableRow>
             </TableHeader>
