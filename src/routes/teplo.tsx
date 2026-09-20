@@ -125,7 +125,14 @@ function findPolozka(rok: (typeof ROKY)[number], nazov: string) {
   return rok.polozky.find((p) => p.nazov === nazov);
 }
 
+// Fakturované množstvo TepTV (variabilná zložka) z faktúr dodávateľa tepla.
+// Zatiaľ máme k dispozícii len rok 2025; ostatné roky doplníme po dodaní faktúr.
+const TUV_KWH: Record<number, number> = {
+  2025: 44776,
+};
+
 function TeploPage() {
+
   const data = ROKY.map((r) => {
     const uk = findPolozka(r, "Ústredné kúrenie");
     const tuv = findPolozka(r, "Ohrev teplej vody");
