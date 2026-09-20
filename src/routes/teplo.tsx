@@ -125,9 +125,15 @@ function findPolozka(rok: (typeof ROKY)[number], nazov: string) {
   return rok.polozky.find((p) => p.nazov === nazov);
 }
 
-// Fakturované množstvo TepTV (variabilná zložka) z faktúr dodávateľa tepla.
-// Zatiaľ máme k dispozícii len rok 2025; ostatné roky doplníme po dodaní faktúr.
+// Fakturované množstvo TepTV (variabilná zložka) z detailných vyúčtovaní NOVBYT.
+// 2024 nie je vo vyúčtovaní uvedené priamo – dopočítané (43 289,982 kWh).
 const TUV_KWH: Record<number, number> = {
+  2019: 52362,
+  2020: 50811,
+  2021: 41224,
+  2022: 44650,
+  2023: 42212,
+  2024: 43290,
   2025: 44776,
 };
 
