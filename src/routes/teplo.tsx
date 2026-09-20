@@ -148,6 +148,7 @@ function TeploPage() {
       ukPredpis: uk?.predpis ?? 0,
       tuvPredpis: tuv?.predpis ?? 0,
       spotrebaKwh: kwhTotal,
+      tuvKwh: TUV_KWH[r.rok] ?? 0,
       kwhNaM2: r.teploNaM2 ?? 0,
       cenaZaKwh: kwhTotal > 0 ? spolu / kwhTotal : 0,
     };
@@ -469,6 +470,7 @@ function TeploPage() {
                 <TableHead className="text-right">Ohrev TÚV — vyúčt.</TableHead>
                 <TableHead className="text-right">Spolu</TableHead>
                 <TableHead className="text-right">ÚK Spotreba (kWh)</TableHead>
+                <TableHead className="text-right">TÚV (kWh)</TableHead>
                 <TableHead className="text-right">kWh/m²</TableHead>
                 <TableHead className="text-right">€/kWh</TableHead>
               </TableRow>
@@ -484,6 +486,9 @@ function TeploPage() {
                   </TableCell>
                   <TableCell className="text-right font-mono tabular-nums">
                     {r.spotrebaKwh.toLocaleString("sk-SK")}
+                  </TableCell>
+                  <TableCell className="text-right font-mono tabular-nums">
+                    {r.tuvKwh > 0 ? r.tuvKwh.toLocaleString("sk-SK") : "—"}
                   </TableCell>
                   <TableCell className="text-right font-mono tabular-nums">
                     {r.kwhNaM2.toFixed(1)}
