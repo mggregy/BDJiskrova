@@ -207,7 +207,7 @@ function Dashboard() {
                   tickLine={false}
                   axisLine={false}
                   tick={{ fill: "var(--color-warning)" }}
-                  tickFormatter={(v) => `${(v / 1000).toFixed(0)} k€`}
+                  tickFormatter={(v) => `${(v / 1000).toFixed(0)}k €`}
                   width={50}
                 />
                 <Tooltip
