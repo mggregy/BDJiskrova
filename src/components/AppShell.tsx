@@ -16,6 +16,11 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen flex flex-col">
       <header className="border-b border-border/70 bg-surface/80 backdrop-blur sticky top-0 z-30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-end pt-2">
+            <span className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()} Vytvoril MG (Lovable)
+            </span>
+          </div>
           <div className="flex items-center justify-between py-4 gap-4">
             <Link to="/" className="flex items-center gap-3 group">
               <div className="size-10 rounded-xl bg-primary text-primary-foreground grid place-items-center shadow-sm">
