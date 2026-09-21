@@ -30,6 +30,7 @@ import { AppShell } from "@/components/AppShell";
 const C_UK = "var(--color-chart-1)";        // steel navy
 const C_TUV = "var(--color-chart-2)";       // teal
 const C_SPOTREBA = "var(--color-chart-4)";  // amber
+const C_TUV_SPOTREBA = "var(--color-destructive)"; // red
 const C_VAR = "var(--color-chart-1)";       // steel navy
 const C_FIX = "var(--color-chart-4)";       // amber
 const C_LINE_ALT = "var(--color-chart-5)";  // green
@@ -311,7 +312,7 @@ function TeploPage() {
             Náklady na teplo — ÚK vs. ohrev TÚV
           </CardTitle>
           <p className="text-xs text-muted-foreground">
-            Stĺpce = vyúčtované náklady (€), čiara = spotreba tepla pre celý objekt (kWh)
+            Stĺpce = vyúčtované náklady (€), čiary = celková spotreba tepla a spotreba TÚV pre celý objekt (kWh)
           </p>
         </CardHeader>
         <CardContent>
@@ -345,7 +346,9 @@ function TeploPage() {
                     fontSize: 12,
                   }}
                   formatter={(value: number, name: string) => {
-                    if (name === "Spotreba (kWh)") return [kwh(value), name];
+                    if (name === "Spotreba spolu (kWh)" || name === "Spotreba TÚV (kWh)") {
+                      return [kwh(value), name];
+                    }
                     return [eur(value), name];
                   }}
                 />
@@ -370,8 +373,17 @@ function TeploPage() {
                   yAxisId="right"
                   type="monotone"
                   dataKey="spotrebaKwh"
-                  name="Spotreba (kWh)"
+                  name="Spotreba spolu (kWh)"
                   stroke={C_SPOTREBA}
+                  strokeWidth={2.5}
+                  dot={{ r: 4 }}
+                />
+                <Line
+                  yAxisId="right"
+                  type="monotone"
+                  dataKey="tuvKwh"
+                  name="Spotreba TÚV (kWh)"
+                  stroke={C_TUV_SPOTREBA}
                   strokeWidth={2.5}
                   dot={{ r: 4 }}
                 />
