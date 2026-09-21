@@ -197,7 +197,7 @@ function Dashboard() {
                   tickLine={false}
                   axisLine={false}
                   tickFormatter={(v) => `${(v / 1000).toFixed(0)}k €`}
-                  width={50}
+                  width={62}
                 />
                 <YAxis
                   yAxisId="cerpanie"
