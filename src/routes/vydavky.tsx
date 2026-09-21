@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/AppShell";
 import { ROKY, fmtEur, fmtEurFull } from "@/data/dom-data";
 import { FOND_SUMMARY, FOND_BY_YEAR, FOND_ROKY } from "@/data/fond-oprav-historia";
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Legend, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Wrench, Repeat, Zap, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
@@ -23,6 +23,8 @@ function VydavkyPage() {
     Tvorba: Math.round(r.fondTvorba),
     Čerpanie: Math.round(r.fondCerpanie),
     Zostatok: Math.round(r.fondZostatok),
+    rozdiel: Math.round(r.fondTvorba - r.fondCerpanie),
+    labelY: Math.max(Math.round(r.fondTvorba), Math.round(r.fondCerpanie)) + 1200,
   }));
 
   const total = ROKY.reduce(
@@ -58,7 +60,7 @@ function VydavkyPage() {
         </div>
         <div className="h-72">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={fondData}>
+            <BarChart data={fondData} margin={{ top: 28, right: 8, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
               <XAxis dataKey="rok" stroke="var(--color-muted-foreground)" fontSize={12} />
               <YAxis stroke="var(--color-muted-foreground)" fontSize={12} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
@@ -69,6 +71,22 @@ function VydavkyPage() {
               <Legend wrapperStyle={{ fontSize: "0.85rem" }} />
               <Bar dataKey="Tvorba" fill="var(--color-chart-5)" radius={[6, 6, 0, 0]} />
               <Bar dataKey="Čerpanie" fill="var(--color-chart-4)" radius={[6, 6, 0, 0]} />
+              {fondData.map((item) => (
+                <ReferenceDot
+                  key={item.rok}
+                  x={item.rok}
+                  y={item.labelY}
+                  r={0}
+                  ifOverflow="extendDomain"
+                  label={{
+                    value: `${item.rozdiel >= 0 ? "+" : ""}${fmtEurFull(item.rozdiel)}`,
+                    position: "top",
+                    fill: "var(--color-foreground)",
+                    fontSize: 11,
+                    fontWeight: 600,
+                  }}
+                />
+              ))}
             </BarChart>
           </ResponsiveContainer>
         </div>
