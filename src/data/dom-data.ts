@@ -570,7 +570,7 @@ export const fmtEur = (n: number) =>
   new Intl.NumberFormat("sk-SK", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 
 export const fmtEurFull = (n: number) =>
-  new Intl.NumberFormat("sk-SK", { style: "currency", currency: "EUR" }).format(n);
+  new Intl.NumberFormat("sk-SK", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 
 export const fmtNum = (n: number) =>
   new Intl.NumberFormat("sk-SK", { maximumFractionDigits: 0 }).format(n);
