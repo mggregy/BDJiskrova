@@ -65,14 +65,14 @@ const ANALYZY: Analyza[] = [
     titulok: "Efektívna cena tepla",
     stav: "v norme",
     text:
-      "Efektívna cena 134,04 €/MWh s DPH — hlboko pod stropom 199 €/MWh, ktorý na rok 2025 platil podľa nariadenia vlády 382/2024 (plošné zastropovanie). Preto bola variabilná zložka umelo nízka a fixná sedela blízko maxima — to bola zákonná povinnosť, nie chyba.",
+      "Efektívna cena 134,04 €/MWh s DPH — hlboko pod stropom 199 €/MWh, ktorý na rok 2025 platil podľa nariadenia vlády 382/2024 (plošné zastropovanie). Preto bola variabilná zložka umelo nízka a fixná sedela blízko maxima",
   },
   {
     id: "regulacny-prikon",
     titulok: "Regulačný príkon",
     stav: "otvorené",
     text:
-      "Pôvod čísel 32,8974 kW a 9,598 kW (regulačný príkon) sa z Techem/Novbyt dokumentov nedá overiť — či ide o skutočný príkon fakturovaný Termmingom za OST 888, alebo o dopočet.",
+      "Pôvod čísel 32,8974 kW a 9,598 kW (regulačný príkon) sa z Techem/Novbyt dokumentov nedá overiť — či ide o skutočný príkon fakturovaný Engie a.s. za OST 888, alebo o dopočet.",
   },
 ];
 
@@ -80,7 +80,7 @@ const VYPOCTY: string[] = [
   "367,056760 ÷ 1,23 = 298,42 €/kW bez DPH, pod maximom ÚRSO (304,8364 / 309,5332).",
   "Celý dom: 198 245,59 kWh, 26 571,83 € → 134,04 €/kWh s DPH.",
   "Pomer 4 665,1 h ktorým sa delí regulačný príkon (153 470 ÷ 32.8974 = 4665,1 h / 44 775.59 ÷ 9.598 = 4665,1 h)",
-  "Fixná zložka je 58,7 % účtu.",
+  "Fixná zložka je 58,7 % účtu, čo nie je bežný stav.",
 ];
 
 export const Route = createFileRoute("/teplo")({
@@ -312,7 +312,7 @@ function TeploPage() {
             Náklady na teplo — ÚK vs. ohrev TÚV
           </CardTitle>
           <p className="text-xs text-muted-foreground">
-            Stĺpce = vyúčtované náklady (€), čiary = celková spotreba tepla a spotreba TÚV pre celý objekt (kWh)
+            Stĺpce = vyúčtované náklady (€), čiary = celková spotreba tepla ÚK a TÚV pre celý objekt (kWh)
           </p>
         </CardHeader>
         <CardContent>
@@ -346,7 +346,7 @@ function TeploPage() {
                     fontSize: 12,
                   }}
                   formatter={(value: number, name: string) => {
-                    if (name === "Spotreba spolu (kWh)" || name === "Spotreba TÚV (kWh)") {
+                    if (name === "Spotreba ÚK (kWh)" || name === "Spotreba TÚV (kWh)") {
                       return [kwh(value), name];
                     }
                     return [eur(value), name];
@@ -373,7 +373,7 @@ function TeploPage() {
                   yAxisId="right"
                   type="monotone"
                   dataKey="spotrebaKwh"
-                  name="Spotreba spolu (kWh)"
+                  name="Spotreba ÚK (kWh)"
                   stroke={C_SPOTREBA}
                   strokeWidth={2.5}
                   dot={{ r: 4 }}
@@ -396,7 +396,7 @@ function TeploPage() {
       <section className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base font-display">Mernná spotreba (kWh/m²)</CardTitle>
+            <CardTitle className="text-base font-display">Merná spotreba ÚK (kWh/m²)</CardTitle>
             <p className="text-xs text-muted-foreground">
               Najnižšia: {minRok.rok} — {minRok.kwhNaM2.toFixed(1)} kWh/m² · Najvyššia:{" "}
               {maxRok.rok} — {maxRok.kwhNaM2.toFixed(1)} kWh/m²
@@ -433,7 +433,7 @@ function TeploPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base font-display">Jednotková cena tepla (€/kWh)</CardTitle>
+            <CardTitle className="text-base font-display">Jednotková cena tepla ÚK (€/kWh)</CardTitle>
             <p className="text-xs text-muted-foreground">
               Priemer za sledované obdobie: {priemernaCenaKwh.toFixed(4)} €/kWh
             </p>
@@ -484,9 +484,9 @@ function TeploPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>Rok</TableHead>
-                <TableHead className="text-right">ÚK — vyúčt.</TableHead>
-                <TableHead className="text-right">Ohrev TÚV — vyúčt.</TableHead>
-                <TableHead className="text-right">Spolu</TableHead>
+                <TableHead className="text-right">ÚK €</TableHead>
+                <TableHead className="text-right">Ohrev TÚV €</TableHead>
+                <TableHead className="text-right">Spolu €</TableHead>
                 <TableHead className="text-right">ÚK Spotreba (kWh)</TableHead>
                 <TableHead className="text-right">TÚV (kWh)</TableHead>
                 <TableHead className="text-right">ÚK kWh/m²</TableHead>
@@ -701,7 +701,7 @@ function UkBreakdownSection() {
                     fontSize: 12,
                   }}
                   formatter={(value: number, name: string) => {
-                    if (name === "Spotreba (kWh)") return [kwh(value), name];
+                    if (name === "Spotreba ÚK (kWh)") return [kwh(value), name];
                     return [eur(value), name];
                   }}
                 />
@@ -725,7 +725,7 @@ function UkBreakdownSection() {
                   yAxisId="right"
                   type="monotone"
                   dataKey="spotrebaKwh"
-                  name="Spotreba (kWh)"
+                  name="Spotreba ÚK (kWh)"
                   stroke="var(--color-chart-5)"
                   strokeWidth={2}
                   dot={{ r: 3 }}
@@ -747,7 +747,7 @@ function UkBreakdownSection() {
             <TableHeader>
               <TableRow>
                 <TableHead>Rok</TableHead>
-                <TableHead className="text-right">Spotreba (kWh)</TableHead>
+                <TableHead className="text-right">Spotreba ÚK (kWh)</TableHead>
                 <TableHead className="text-right">Cena var. (€/kWh)</TableHead>
                 <TableHead className="text-right">Variabilné (€)</TableHead>
                 <TableHead className="text-right">Reg. príkon (kW)</TableHead>
@@ -794,8 +794,7 @@ function UkBreakdownSection() {
             Analýzy a poznámky
           </CardTitle>
           <p className="text-sm text-muted-foreground">
-            Kontext k tomu, prečo účty za ÚK vyzerajú tak, ako vyzerajú — ceny
-            voči stropom ÚRSO, efektívna cena tepla a otvorené body.
+            Ceny voči stropom ÚRSO, efektívna cena tepla a otvorené body.
           </p>
         </CardHeader>
         <CardContent className="space-y-3">
