@@ -32,6 +32,8 @@ export type RocnyZaznam = {
   cerpaniaFondu: Array<{ popis: string; suma: number }>;
   // Spotreba tepla pre celý objekt (z Techem rozpočítania)
   teploCelkomKwh?: number;
+  // Fakturované množstvo na ohrev TÚV (TepTV variabilná zložka)
+  teploTuvKwh?: number;
   teploNaM2?: number;
   vyhotovil?: string;
   // Ak je rok ešte neuzavretý (napr. prebiehajúci kalendárny rok)
@@ -50,6 +52,7 @@ export const ROKY: RocnyZaznam[] = [
     fondCerpanie: 14371.38,
     fondZostatok: 53665.19,
     teploCelkomKwh: 144930,
+    teploTuvKwh: 52362,
     teploNaM2: 118.4,
     vyhotovil: "Richard Lehotai",
     polozky: [
@@ -93,6 +96,7 @@ export const ROKY: RocnyZaznam[] = [
     fondCerpanie: 7815.33,
     fondZostatok: 57523.21,
     teploCelkomKwh: 148930,
+    teploTuvKwh: 50811,
     teploNaM2: 121.67,
     vyhotovil: "Adriana Končická",
     polozky: [
@@ -139,6 +143,7 @@ export const ROKY: RocnyZaznam[] = [
     fondCerpanie: 3462.76,
     fondZostatok: 65703.83,
     teploCelkomKwh: 167830,
+    teploTuvKwh: 41224,
     teploNaM2: 137.11,
     vyhotovil: "Adriana Končická",
     polozky: [
@@ -182,6 +187,7 @@ export const ROKY: RocnyZaznam[] = [
     fondCerpanie: 4803.96,
     fondZostatok: 72543.96,
     teploCelkomKwh: 154230,
+    teploTuvKwh: 44650,
     teploNaM2: 126.0,
     vyhotovil: "Adriana Končická",
     polozky: [
@@ -223,6 +229,7 @@ export const ROKY: RocnyZaznam[] = [
     fondCerpanie: 1285.17,
     fondZostatok: 82900.91,
     teploCelkomKwh: 142350,
+    teploTuvKwh: 42212,
     teploNaM2: 116.29,
     vyhotovil: "Marek Baláž",
     polozky: [
@@ -264,6 +271,7 @@ export const ROKY: RocnyZaznam[] = [
     fondCerpanie: 1272.72,
     fondZostatok: 93268.19,
     teploCelkomKwh: 137170,
+    teploTuvKwh: 43290,
     teploNaM2: 112.06,
     vyhotovil: "Marek Baláž",
     polozky: [
@@ -312,6 +320,7 @@ export const ROKY: RocnyZaznam[] = [
     fondCerpanie: 6615.27,
     fondZostatok: 98292.92,
     teploCelkomKwh: 153470,
+    teploTuvKwh: 44776,
     teploNaM2: 125.37,
     vyhotovil: "Csomor Peter",
     polozky: [

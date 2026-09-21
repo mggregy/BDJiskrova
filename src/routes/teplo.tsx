@@ -126,18 +126,6 @@ function findPolozka(rok: (typeof ROKY)[number], nazov: string) {
   return rok.polozky.find((p) => p.nazov === nazov);
 }
 
-// Fakturované množstvo TepTV (variabilná zložka) z detailných vyúčtovaní NOVBYT.
-// 2024 nie je vo vyúčtovaní uvedené priamo – dopočítané (43 289,982 kWh).
-const TUV_KWH: Record<number, number> = {
-  2019: 52362,
-  2020: 50811,
-  2021: 41224,
-  2022: 44650,
-  2023: 42212,
-  2024: 43290,
-  2025: 44776,
-};
-
 function TeploPage() {
 
   const data = ROKY.map((r) => {
@@ -155,7 +143,7 @@ function TeploPage() {
       ukPredpis: uk?.predpis ?? 0,
       tuvPredpis: tuv?.predpis ?? 0,
       spotrebaKwh: kwhTotal,
-      tuvKwh: TUV_KWH[r.rok] ?? 0,
+      tuvKwh: r.teploTuvKwh ?? 0,
       kwhNaM2: r.teploNaM2 ?? 0,
       cenaZaKwh: kwhTotal > 0 ? spolu / kwhTotal : 0,
     };

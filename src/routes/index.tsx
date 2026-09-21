@@ -55,7 +55,7 @@ function Dashboard() {
     const tuv = r.polozky.find((p) => p.nazov === "Ohrev teplej vody")?.vyuctovanie ?? 0;
     return {
       rok: r.rok,
-      kWh: r.teploCelkomKwh,
+      kWh: r.teploCelkomKwh + (r.teploTuvKwh ?? 0),
       cena: Math.round((uk + tuv) * 100) / 100,
     };
   });
@@ -242,7 +242,7 @@ function Dashboard() {
           <div className="mb-4 flex items-start justify-between gap-4">
             <div>
               <h3 className="font-semibold text-foreground">Spotreba a cena tepla — celý dom</h3>
-              <p className="text-xs text-muted-foreground">kWh / rok (Techem) a zaplatená cena za ÚK + TÚV</p>
+              <p className="text-xs text-muted-foreground">Spotreba ÚK + TÚV (kWh) a zaplatená cena za ÚK + TÚV</p>
             </div>
             <div className="flex items-center gap-3 text-xs text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
@@ -293,7 +293,7 @@ function Dashboard() {
                     fontSize: "0.85rem",
                   }}
                   formatter={(v: number, name) =>
-                    name === "kWh" ? [`${fmtNum(v)} kWh`, "Spotreba"] : [fmtEur(v), "Cena (ÚK + TÚV)"]
+                    name === "kWh" ? [`${fmtNum(v)} kWh`, "Spotreba (ÚK + TÚV)"] : [fmtEur(v), "Cena (ÚK + TÚV)"]
                   }
                 />
                 <Area
