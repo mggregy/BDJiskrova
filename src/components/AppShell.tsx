@@ -18,7 +18,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex justify-end pt-2">
             <span className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} Vytvoril MG (Lovable)
+              © MG (Lovable)
             </span>
           </div>
           <div className="flex items-center justify-between py-4 gap-4">
