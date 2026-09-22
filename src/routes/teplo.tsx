@@ -202,7 +202,7 @@ function TeploPage() {
           Teplo — ÚK a ohrev TÚV
         </h1>
         <p className="text-muted-foreground max-w-5xl text-sm">
-          Ročný prehľad nákladov na ústredné kúrenie a ohrev teplej úžitkovej vody pre bytový dom{" "}
+          Ročný prehľad nákladov na ústredné kúrenie a ohrev teplej úžitkovej vody pre bytový dom{"\u00A0"}
           {DOM_INFO.nazov}. Spotreba je z ročných rozpočítaní Techem, ceny z vyúčtovaní správcu
           (NOVBYT, s.r.o.). Plocha objektu:{" "}
           <strong className="text-foreground">
