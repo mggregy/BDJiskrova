@@ -83,6 +83,31 @@ const VYPOCTY: string[] = [
   "Fixná zložka je 58,7 % účtu, čo nie je bežný stav.",
 ];
 
+const OPATRENIA = [
+  {
+    titulok: "Krátkodobo",
+    kratko:
+      "Overiť vykurovaciu krivku, kontrola rozvodov, TÚV, zavzdušnenia radiátorov a čerpadiel.",
+    detail:
+      "Prevádzkové opatrenia: doladiť ekvitermiku / vykurovaciu krivku, vyregulovať rozvody, skontrolovať čerpadlá, prietok a cirkuláciu TÚV.",
+  },
+  {
+    titulok: "Administratívne",
+    kratko: "Preveriť kapacitu (kW), vysoké fixné náklady.",
+    detail:
+      "Administratívne opatrenia: preveriť zmluvnú kapacitu (kW) oproti reálnej potrebe, lebo zbytočná rezerva znamená čistý fixný náklad.",
+  },
+  {
+    titulok: "Investične",
+    kratko:
+      "Termostatické hlavice, zaizolovaná povala, strop pivníc a obnažené rozvody.",
+    detail:
+      "Investičné opatrenia: TRV a ich vyregulovanie, zateplenie povaly a stropu pivníc, prípadne väčšia investícia do obnovy domu.",
+  },
+];
+
+
+
 export const Route = createFileRoute("/teplo")({
   head: () => ({
     meta: [
@@ -845,6 +870,39 @@ function UkBreakdownSection() {
               ))}
             </ul>
           </div>
+
+          <div className="rounded-lg border p-4">
+            <h4 className="mb-4 font-display text-base font-semibold text-primary">
+              Čo môžeme urobiť?
+            </h4>
+            <div className="grid gap-5 md:grid-cols-3">
+              {OPATRENIA.map((o, i) => (
+                <div key={o.titulok} className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
+                      {i + 1}
+                    </span>
+                    <h5 className="font-display text-sm font-semibold">
+                      {o.titulok}
+                    </h5>
+                  </div>
+                  <p className="text-sm font-medium leading-relaxed text-primary">
+                    {o.kratko}
+                  </p>
+                  <p className="flex gap-2 text-sm leading-relaxed text-muted-foreground">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                    <span>{o.detail}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 rounded-md bg-primary px-4 py-3 text-center text-sm font-medium text-primary-foreground">
+              Reálny potenciál úspor je približne od 3 do 5 tis. € ročne, teda
+              asi 14–22 % z celkových platieb.
+            </div>
+          </div>
+
+
 
           <div className="rounded-lg border-l-4 border-primary/40 bg-muted/20 p-4">
             <p className="text-sm italic leading-relaxed text-muted-foreground">
