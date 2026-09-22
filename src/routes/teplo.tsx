@@ -6,6 +6,7 @@ import {
   Bar,
   CartesianGrid,
   ComposedChart,
+  LabelList,
   Legend,
   Line,
   ResponsiveContainer,
@@ -526,7 +527,11 @@ function TeploPage() {
 }
 
 function UkBreakdownSection() {
-  const data = TEPLO_UK_HISTORIA;
+  const data = TEPLO_UK_HISTORIA.map((r) => ({
+    ...r,
+    variabilnyPodiel: r.spoluEur > 0 ? (r.variabilneEur / r.spoluEur) * 100 : 0,
+    fixnyPodiel: r.spoluEur > 0 ? (r.fixneEur / r.spoluEur) * 100 : 0,
+  }));
   const last = data[data.length - 1];
   const prev = data[data.length - 2];
   const priemer = {
@@ -700,7 +705,16 @@ function UkBreakdownSection() {
                   name="Variabilná (€)"
                   stackId="uk"
                   fill="var(--color-chart-1)"
-                />
+                >
+                  <LabelList
+                    dataKey="variabilnyPodiel"
+                    position="center"
+                    formatter={(value: number) => `${value.toFixed(1)}%`}
+                    fill="var(--color-primary-foreground)"
+                    fontSize={10}
+                    fontWeight={600}
+                  />
+                </Bar>
                 <Bar
                   yAxisId="left"
                   dataKey="fixneEur"
@@ -708,7 +722,16 @@ function UkBreakdownSection() {
                   stackId="uk"
                   fill="var(--color-chart-4)"
                   radius={[6, 6, 0, 0]}
-                />
+                >
+                  <LabelList
+                    dataKey="fixnyPodiel"
+                    position="center"
+                    formatter={(value: number) => `${value.toFixed(1)}%`}
+                    fill="var(--color-foreground)"
+                    fontSize={10}
+                    fontWeight={600}
+                  />
+                </Bar>
                 <Line
                   yAxisId="right"
                   type="monotone"
