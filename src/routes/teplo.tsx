@@ -59,14 +59,14 @@ const ANALYZY: Analyza[] = [
     titulok: "Maximálna cena ÚRSO",
     stav: "v norme",
     text:
-      "K prekročeniu maximálnej ceny ÚRSO nedošlo. Fixná zložka 367,06 €/kW je cena s DPH (Techem) — bez DPH je to 298,42 €/kW, čo je pod platným stropom (304,84 €/kW do 7. 3. 2025, potom 309,53 €/kW).",
+      "K prekročeniu maximálnej ceny ÚRSO nedošlo. Fixná zložka 367,06 €/kW je cena s DPH. Cena 298,42 €/kW bez DPH je teda pod platným stropom (304,84 €/kW do 7. 3. 2025, potom 309,53 €/kW).",
   },
   {
     id: "efektivna-cena",
     titulok: "Efektívna cena tepla",
     stav: "v norme",
     text:
-      "Efektívna cena 134,04 €/MWh s DPH — hlboko pod stropom 199 €/MWh, ktorý na rok 2025 platil podľa nariadenia vlády 382/2024 (plošné zastropovanie). Preto bola variabilná zložka umelo nízka a fixná sedela blízko maxima",
+      "Efektívna cena 134,04 €/MWh s DPH je pod stropom 199 €/MWh, ktorý na rok 2025 platil podľa nariadenia vlády 382/2024 (plošné zastropovanie).",
   },
   {
     id: "regulacny-prikon",
@@ -80,7 +80,7 @@ const ANALYZY: Analyza[] = [
 const VYPOCTY: string[] = [
   "367,056760 ÷ 1,23 = 298,42 €/kW bez DPH, pod maximom ÚRSO (304,8364 / 309,5332).",
   "Celý dom: 198 245,59 kWh, 26 571,83 € → 134,04 €/kWh s DPH.",
-  "Fixná zložka je 58,7 % účtu, čo nie je bežný stav.",
+  "Fixná zložka je 58,7 % účtu, čo nie je bežný stav. Všeobecne objekt vykazuje zvýšené Fixné náklady.",
 ];
 
 const OPATRENIA = [
@@ -537,9 +537,9 @@ function TeploPage() {
       <UkBreakdownSection />
 
       <p className="text-xs text-muted-foreground">
-        Zdroje: ročné rozpočítania nákladov na teplo a TÚV — Techem, s.r.o.; ročné vyúčtovania
-        správcu NOVBYT, s.r.o. (položky „Ústredné kúrenie" a „Ohrev teplej vody"); súhrn nákladov
-        na teplo od dodávateľa (2025_Jiskrova_naklady_teplo_Zhrnutie.pdf).
+        Zdroje: ročné rozpočítania nákladov na teplo a TÚV — Techem, s.r.o.; ročné
+        vyúčtovania správcu NOVBYT, s.r.o. (položky „Ústredné kúrenie" a „Ohrev teplej
+        vody").
       </p>
       <p className="text-xs text-muted-foreground">
         OST-888: Od júla 2019 prevádzkuje tepelné hospodárstvo prostredníctvom spoločnosti
@@ -688,7 +688,7 @@ function UkBreakdownSection() {
             Vývoj nákladov na ÚK 2012–{last.rok}
           </CardTitle>
           <p className="text-xs text-muted-foreground">
-            Stĺpce stackované: variabilná + fixná zložka · čiara = spotreba (kWh)
+            Stĺpce: variabilná + fixná zložka · čiara = spotreba (kWh)
           </p>
         </CardHeader>
         <CardContent>
@@ -905,16 +905,17 @@ function UkBreakdownSection() {
 
 
           <div className="rounded-lg border-l-4 border-primary/40 bg-muted/20 p-4">
-            <p className="text-sm italic leading-relaxed text-muted-foreground">
-              "Nový dodávateľ tepla sa zaviazal, že jeho investície do rozvodov a
+            <p className="text-sm italic leading-relaxed text-muted-foreground whitespace-pre-line">
+              TERMMING, skupina Engie:
+              {"\n"}"Nový dodávateľ tepla sa zaviazal, že jeho investície do rozvodov a
               kotolní presiahnu 4,5 milióna eur a musí ich zrealizovať
               najbližších päť rokov. Zaviazal sa tiež, že oproti súčasnosti
               zníži takzvanú fixnú zložku ceny tepla a zvýši výšku nájmu
               v prospech mestskej časti. Oproti súčasnému
               dodávateľovi by v rámci roka mala podľa Kusého cena za
               fixnú zložku poklesnúť zhruba o päť až šesť eur
-              za priemerný byt, ktorý má 65 štvorcových metrov. (Jún
-              2019, Bratislava Dnes24)
+              za priemerný byt, ktorý má 65 štvorcových metrov."{"\u00A0\n"}
+              (Jún 2019, Bratislava Dnes24)
             </p>
           </div>
         </CardContent>
