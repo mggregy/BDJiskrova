@@ -3,7 +3,7 @@
 // Roky 2019–2024 sú z reálnych PDF dokumentov; staršie roky možno doplniť.
 
 export const DOM_INFO = {
-  nazov: "Bytový dom Jiskrova 6,8",
+  nazov: "Jiskrova 6,8",
   mesto: "831 04 Bratislava",
   spravca: "NOVBYT, s.r.o.",
   cisloDomu: "0007",
