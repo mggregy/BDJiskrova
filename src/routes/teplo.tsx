@@ -80,7 +80,6 @@ const ANALYZY: Analyza[] = [
 const VYPOCTY: string[] = [
   "367,056760 ÷ 1,23 = 298,42 €/kW bez DPH, pod maximom ÚRSO (304,8364 / 309,5332).",
   "Celý dom: 198 245,59 kWh, 26 571,83 € → 134,04 €/kWh s DPH.",
-  "",
   "Fixná zložka je 58,7 % účtu, čo nie je bežný stav.",
 ];
 
