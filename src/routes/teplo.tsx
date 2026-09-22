@@ -83,6 +83,31 @@ const VYPOCTY: string[] = [
   "Fixná zložka je 58,7 % účtu, čo nie je bežný stav.",
 ];
 
+const OPATRENIA = [
+  {
+    titulok: "Krátkodobo",
+    kratko:
+      "Overiť vykurovaciu krivku, kontrola rozvodov, TÚV, zavzdušnenia radiátorov a čerpadiel.",
+    detail:
+      "Prevádzkové opatrenia: doladiť ekvitermiku / vykurovaciu krivku, vyregulovať rozvody, skontrolovať čerpadlá, prietok a cirkuláciu TÚV.",
+  },
+  {
+    titulok: "Administratívne",
+    kratko: "Preveriť kapacitu (kW), vysoké fixné náklady.",
+    detail:
+      "Administratívne opatrenia: preveriť zmluvnú kapacitu (kW) oproti reálnej potrebe, lebo zbytočná rezerva znamená čistý fixný náklad.",
+  },
+  {
+    titulok: "Investične",
+    kratko:
+      "Termostatické hlavice, zaizolovaná povala, strop pivníc a obnažené rozvody.",
+    detail:
+      "Investičné opatrenia: TRV a ich vyregulovanie, zateplenie povaly a stropu pivníc, prípadne väčšia investícia do obnovy domu.",
+  },
+];
+
+
+
 export const Route = createFileRoute("/teplo")({
   head: () => ({
     meta: [
