@@ -529,7 +529,45 @@ function TeploPage() {
                   </TableCell>
                 </TableRow>
               ))}
+              {dataS.length > 0 &&
+                (() => {
+                  const n = dataS.length;
+                  const avg = (f: (r: (typeof dataS)[number]) => number) =>
+                    dataS.reduce((s, r) => s + f(r), 0) / n;
+                  const tuvRows = dataS.filter((r) => r.tuvKwh > 0);
+                  return (
+                    <TableRow className="border-t-2 bg-muted/50 font-semibold">
+                      <TableCell className="font-medium">Priemer</TableCell>
+                      <TableCell className="text-right font-mono tabular-nums">
+                        {eur(avg((r) => r.uk))}
+                      </TableCell>
+                      <TableCell className="text-right font-mono tabular-nums">
+                        {eur(avg((r) => r.tuv))}
+                      </TableCell>
+                      <TableCell className="text-right font-mono tabular-nums">
+                        {eur(avg((r) => r.spolu))}
+                      </TableCell>
+                      <TableCell className="text-right font-mono tabular-nums">
+                        {Math.round(avg((r) => r.spotrebaKwh)).toLocaleString("sk-SK")}
+                      </TableCell>
+                      <TableCell className="text-right font-mono tabular-nums">
+                        {tuvRows.length
+                          ? Math.round(
+                              tuvRows.reduce((s, r) => s + r.tuvKwh, 0) / tuvRows.length,
+                            ).toLocaleString("sk-SK")
+                          : "—"}
+                      </TableCell>
+                      <TableCell className="text-right font-mono tabular-nums">
+                        {avg((r) => r.kwhNaM2).toFixed(1)}
+                      </TableCell>
+                      <TableCell className="text-right font-mono tabular-nums">
+                        {avg((r) => r.cenaZaKwh).toFixed(4)}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })()}
             </TableBody>
+
           </Table>
         </CardContent>
       </Card>
