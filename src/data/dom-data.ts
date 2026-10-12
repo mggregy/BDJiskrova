@@ -362,15 +362,15 @@ export const ROKY: RocnyZaznam[] = [
   {
     rok: 2026,
     partialny: true,
-    ytdDoDna: "2026-09-30",
-    zostatokUctu: 104346.16, // odhad (98 292,92 + 8 730,00 − 2 676,76)
+    ytdDoDna: "2026-08-20",
+    zostatokUctu: 100466.16, // potvrdené: 98 292,92 + 4 850,00 (FO jan–máj) − 2 676,76 (FO + faktúry do 20. 8.)
     spoluPredpis: 0,
     spoluVyuctovanie: 0,
     fondStavZaciatok: 98292.92,
-    fondTvorba: 8730.0, // 9 mesiacov × 970,00 €
+    fondTvorba: 4850.0, // potvrdený predpis FPÚaO jan–máj 2026 (výpis fondu)
     fondCerpanie: 2676.76,
-    fondZostatok: 104346.16,
-    vyhotovil: "prebieha (YTD k 30. 9. 2026)",
+    fondZostatok: 100466.16,
+    vyhotovil: "prebieha (YTD k 20. 8. 2026)",
     polozky: [],
     cerpaniaFondu: [
       { popis: "Vyčistenie a dezinfekcia výťahovej šachty, J.8", suma: 1475.0 },
@@ -463,8 +463,8 @@ export const REVIZIE: Revizia[] = [
     id: "hydranty",
     nazov: "Kontrola požiarnych hydrantov",
     kategoria: "Požiarna ochrana",
-    poslednaRevizia: "2025-07-15",
-    platnaDo: "2026-07-15",
+    poslednaRevizia: "2026-07-17",
+    platnaDo: "2027-07-17",
     frekvencia: "každoročne",
     zakon: "Vyhláška MV SR č. 169/2006 Z. z., STN 92 0202-1",
     vykonavatel: "Špecialista požiarnej ochrany / odborná firma",
@@ -472,7 +472,10 @@ export const REVIZIE: Revizia[] = [
       "Vizuálna kontrola hadicových zariadení, kontrola tlaku, prietoku vody, kompletnosti vybavenia a štítkov.",
     popis:
       "Pravidelná ročná kontrola funkčnosti nástenných požiarnych hydrantov rozmiestnených v spoločných priestoroch domu.",
-    poznamka: "Ročná kontrola — povinná každý kalendárny rok.",
+    poznamka: "Ročná kontrola — povinná každý kalendárny rok. V 2026 vykonaná spolu s preventívnou protipožiarnou prehliadkou (KM protect s.r.o.).",
+    historia: [
+      { datum: "2026-07-17", popis: "Kontrola hydrantov v rámci prehliadky KM protect s.r.o. (spolu 80,80 €) — uhradené z fondu opráv" },
+    ],
   },
   {
     id: "vytahy-6r",
@@ -546,7 +549,7 @@ export const REVIZIE: Revizia[] = [
     popis:
       "Ročná preventívna prehliadka bytového domu z hľadiska požiarnej bezpečnosti. Výstupom je zápisnica s prípadnými zistenými nedostatkami.",
     historia: [
-      { datum: "2026-07-17", popis: "Preventívna protipožiarna prehliadka — KM protect s.r.o. (80,80 €), uhradené z fondu opráv 22. 7. 2026" },
+      { datum: "2026-07-17", popis: "Preventívna protipožiarna prehliadka vrátane kontroly hydrantov — KM protect s.r.o. (80,80 €), uhradené z fondu opráv 22. 7. 2026" },
       { datum: "2025-07-16", popis: "Preventívna protipožiarna prehliadka (75,80 €) — uhradené z fondu opráv" },
       { datum: "2024", popis: "Preventívna protipožiarna prehliadka (75,80 €)" },
       { datum: "2023", popis: "Preventívna protipožiarna prehliadka (75,80 €)" },
