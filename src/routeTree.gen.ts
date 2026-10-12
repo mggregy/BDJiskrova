@@ -9,25 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as FinancieRouteImport } from './routes/financie'
-import { Route as KontrolyRouteImport } from './routes/kontroly'
-import { Route as TeploRouteImport } from './routes/teplo'
 import { Route as VydavkyRouteImport } from './routes/vydavky'
+import { Route as TeploRouteImport } from './routes/teplo'
+import { Route as KontrolyRouteImport } from './routes/kontroly'
+import { Route as FinancieRouteImport } from './routes/financie'
+import { Route as IndexRouteImport } from './routes/index'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FinancieRoute = FinancieRouteImport.update({
-  id: '/financie',
-  path: '/financie',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KontrolyRoute = KontrolyRouteImport.update({
-  id: '/kontroly',
-  path: '/kontroly',
+const VydavkyRoute = VydavkyRouteImport.update({
+  id: '/vydavky',
+  path: '/vydavky',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TeploRoute = TeploRouteImport.update({
@@ -35,9 +25,19 @@ const TeploRoute = TeploRouteImport.update({
   path: '/teplo',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VydavkyRoute = VydavkyRouteImport.update({
-  id: '/vydavky',
-  path: '/vydavky',
+const KontrolyRoute = KontrolyRouteImport.update({
+  id: '/kontroly',
+  path: '/kontroly',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinancieRoute = FinancieRouteImport.update({
+  id: '/financie',
+  path: '/financie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -81,25 +81,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/financie': {
-      id: '/financie'
-      path: '/financie'
-      fullPath: '/financie'
-      preLoaderRoute: typeof FinancieRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/kontroly': {
-      id: '/kontroly'
-      path: '/kontroly'
-      fullPath: '/kontroly'
-      preLoaderRoute: typeof KontrolyRouteImport
+    '/vydavky': {
+      id: '/vydavky'
+      path: '/vydavky'
+      fullPath: '/vydavky'
+      preLoaderRoute: typeof VydavkyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/teplo': {
@@ -109,11 +95,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeploRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/vydavky': {
-      id: '/vydavky'
-      path: '/vydavky'
-      fullPath: '/vydavky'
-      preLoaderRoute: typeof VydavkyRouteImport
+    '/kontroly': {
+      id: '/kontroly'
+      path: '/kontroly'
+      fullPath: '/kontroly'
+      preLoaderRoute: typeof KontrolyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financie': {
+      id: '/financie'
+      path: '/financie'
+      fullPath: '/financie'
+      preLoaderRoute: typeof FinancieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
