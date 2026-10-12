@@ -37,9 +37,9 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2023": 0,
       "2024": -295.0,
       "2025": -799.6,
-      "2026": -90.0
+      "2026": -688.2
     },
-    "spolu": -1214.6
+    "spolu": -1812.8
   },
   {
     "kategoria": "Bankové poplatky",
@@ -145,9 +145,9 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2023": -75.8,
       "2024": -75.8,
       "2025": -75.8,
-      "2026": 0
+      "2026": -80.8
     },
-    "spolu": -288.2
+    "spolu": -369.0
   },
   {
     "kategoria": "Teplo / ÚK / TÚV",
@@ -1885,12 +1885,34 @@ export const FOND_BY_YEAR: Record<string, FondKategoriaRok[]> = {
       {
           "kategoria": "Vchod / DDZ / kľúče",
           "typ": "jednorazove",
-          "suma": -90.0,
+          "suma": -688.2,
           "polozky": [
               {
                   "popis": "oprava vchodových brán, J.6-8",
                   "suma": -90.0,
                   "datum": "4/1/2026"
+              },
+              {
+                  "popis": "dodanie a naprogramovanie 4ks DESFire kľúčov (Vacula Pavol)",
+                  "suma": -49.2,
+                  "datum": "7/13/2026"
+              },
+              {
+                  "popis": "dodanie a montáž dverí (Ferdinand Horňáček – ZLATÝ)",
+                  "suma": -549.0,
+                  "datum": "8/20/2026"
+              }
+          ]
+      },
+      {
+          "kategoria": "Požiarna ochrana",
+          "typ": "pravidelne",
+          "suma": -80.8,
+          "polozky": [
+              {
+                  "popis": "Preventívna protipožiarna prehliadka (KM protect s.r.o.)",
+                  "suma": -80.8,
+                  "datum": "7/22/2026"
               }
           ]
       },
