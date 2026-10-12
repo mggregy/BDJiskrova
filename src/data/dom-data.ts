@@ -362,21 +362,24 @@ export const ROKY: RocnyZaznam[] = [
   {
     rok: 2026,
     partialny: true,
-    ytdDoDna: "2026-06-30",
-    zostatokUctu: 102115.16, // odhad na základe FO YTD (98 292,92 + 5 820,00 − 1 997,76)
+    ytdDoDna: "2026-09-30",
+    zostatokUctu: 104346.16, // odhad (98 292,92 + 8 730,00 − 2 676,76)
     spoluPredpis: 0,
     spoluVyuctovanie: 0,
     fondStavZaciatok: 98292.92,
-    fondTvorba: 5820.0, // 6 mesiacov × 970,00 €
-    fondCerpanie: 1997.76,
-    fondZostatok: 102115.16,
-    vyhotovil: "prebieha (YTD k 30. 6. 2026)",
+    fondTvorba: 8730.0, // 9 mesiacov × 970,00 €
+    fondCerpanie: 2676.76,
+    fondZostatok: 104346.16,
+    vyhotovil: "prebieha (YTD k 30. 9. 2026)",
     polozky: [],
     cerpaniaFondu: [
       { popis: "Vyčistenie a dezinfekcia výťahovej šachty, J.8", suma: 1475.0 },
       { popis: "OP a OS elektroinštalácie", suma: 300.0 },
       { popis: "Bankové poplatky (Jan–Jún)", suma: 109.4 },
+      { popis: "Dodanie a montáž dverí", suma: 549.0 },
       { popis: "Oprava vchodových brán, J.6-8", suma: 90.0 },
+      { popis: "Preventívna protipožiarna prehliadka (KM protect)", suma: 80.8 },
+      { popis: "DESFire kľúče — 4 ks", suma: 49.2 },
       { popis: "Inkasné poplatky (Jan–Jún)", suma: 18.36 },
       { popis: "Vystavenie faktúry (administratíva)", suma: 5.0 },
     ],
@@ -512,8 +515,8 @@ export const REVIZIE: Revizia[] = [
     id: "deratizacia",
     nazov: "Deratizácia spoločných priestorov",
     kategoria: "Hygiena",
-    poslednaRevizia: "2025-10-01",
-    platnaDo: "2026-10-01",
+    poslednaRevizia: "2026-06-15",
+    platnaDo: "2026-12-15",
     frekvencia: "2× ročne (jar / jeseň)",
     zakon: "Zákon č. 355/2007 Z. z. o ochrane verejného zdravia, VZN hl. m. Bratislavy",
     vykonavatel: "Odborná firma s oprávnením na DDD činnosť",
@@ -523,6 +526,7 @@ export const REVIZIE: Revizia[] = [
       "Pravidelná deratizácia spoločných priestorov bytového domu — povinnosť správcu, hradená z prevádzkových nákladov.",
     poznamka: "Vykonávaná každoročne, hradená z prevádzkových nákladov (nie z fondu opráv).",
     historia: [
+      { datum: "2026-06-15", popis: "Deratizácia — CHEMIX-D s.r.o. (81,18 €), uhradené 17. 6. 2026" },
       { datum: "2025", popis: "Vyúčtované 162,36 € v ročnom vyúčtovaní" },
       { datum: "2024", popis: "Vyúčtované 158,40 € v ročnom vyúčtovaní" },
       { datum: "2023", popis: "Vyúčtované 158,40 €" },
@@ -532,8 +536,8 @@ export const REVIZIE: Revizia[] = [
     id: "pp-prehliadka",
     nazov: "Preventívna protipožiarna prehliadka",
     kategoria: "Požiarna ochrana",
-    poslednaRevizia: "2025-07-16",
-    platnaDo: "2026-07-16",
+    poslednaRevizia: "2026-07-17",
+    platnaDo: "2027-07-17",
     frekvencia: "každoročne",
     zakon: "Zákon č. 314/2001 Z. z. o ochrane pred požiarmi, vyhl. č. 121/2002 Z. z.",
     vykonavatel: "Technik požiarnej ochrany",
@@ -542,6 +546,7 @@ export const REVIZIE: Revizia[] = [
     popis:
       "Ročná preventívna prehliadka bytového domu z hľadiska požiarnej bezpečnosti. Výstupom je zápisnica s prípadnými zistenými nedostatkami.",
     historia: [
+      { datum: "2026-07-17", popis: "Preventívna protipožiarna prehliadka — KM protect s.r.o. (80,80 €), uhradené z fondu opráv 22. 7. 2026" },
       { datum: "2025-07-16", popis: "Preventívna protipožiarna prehliadka (75,80 €) — uhradené z fondu opráv" },
       { datum: "2024", popis: "Preventívna protipožiarna prehliadka (75,80 €)" },
       { datum: "2023", popis: "Preventívna protipožiarna prehliadka (75,80 €)" },
