@@ -9,6 +9,10 @@ export const Route = createFileRoute("/financie")({
     meta: [
       { title: "Financie & Spotreby — Bytový dom Jiskrova 6,8" },
       { name: "description", content: "Ročné vyúčtovania, predpisy a spotreby tepla bytového domu Jiskrova 6,8." },
+      { property: "og:title", content: "Financie — Jiskrova 6,8" },
+      { property: "og:description", content: "Ročné predpisy a vyúčtovania bytového domu Jiskrova 6,8." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: FinanciePage,

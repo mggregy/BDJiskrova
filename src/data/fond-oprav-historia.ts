@@ -1,3 +1,4 @@
+import { FOND_2026_KATEGORIE } from "./fond-2026";
 // Auto-generated from Fond opráv CSV (2022–2025)
 export type FondTyp = "pravidelne" | "jednorazove";
 export interface FondKategoriaSummary { kategoria: string; typ: FondTyp; roky: Record<string, number>; spolu: number; }
@@ -49,9 +50,9 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2023": -191.7,
       "2024": -208.37,
       "2025": -213.8,
-      "2026": -109.4
+      "2026": -162.35
     },
-    "spolu": -909.59
+    "spolu": -962.54
   },
   {
     "kategoria": "Elektro / osvetlenie",
@@ -193,9 +194,9 @@ export const FOND_SUMMARY: FondKategoriaSummary[] = [
       "2023": -27.64,
       "2024": -28.44,
       "2025": -28.05,
-      "2026": -18.36
+      "2026": -22.22
     },
-    "spolu": -129.93
+    "spolu": -133.79
   },
   {
     "kategoria": "Madlá / zábradlia",
@@ -1820,157 +1821,7 @@ export const FOND_BY_YEAR: Record<string, FondKategoriaRok[]> = {
     }
   ]
   ,
-  "2026": [
-      {
-          "kategoria": "Výťahy — opravy",
-          "typ": "jednorazove",
-          "suma": -1475.0,
-          "polozky": [
-              {
-                  "popis": "vyčistenie a dezinfekcia výťahovej šachty, J.8",
-                  "suma": -1475.0,
-                  "datum": "6/11/2026"
-              }
-          ]
-      },
-      {
-          "kategoria": "Elektro / osvetlenie",
-          "typ": "jednorazove",
-          "suma": -300.0,
-          "polozky": [
-              {
-                  "popis": "OP a OS elektroinštalácie",
-                  "suma": -300.0,
-                  "datum": "6/19/2026"
-              }
-          ]
-      },
-      {
-          "kategoria": "Bankové poplatky",
-          "typ": "pravidelne",
-          "suma": -109.4,
-          "polozky": [
-              {
-                  "popis": "Servisné poplatky /bankové poplatky/",
-                  "suma": -17.9,
-                  "datum": "1/30/2026"
-              },
-              {
-                  "popis": "Servisné poplatky /bankové poplatky/",
-                  "suma": -17.65,
-                  "datum": "2/27/2026"
-              },
-              {
-                  "popis": "Servisné poplatky /bankové poplatky/",
-                  "suma": -16.9,
-                  "datum": "3/31/2026"
-              },
-              {
-                  "popis": "Servisné poplatky /bankové poplatky/",
-                  "suma": -17.65,
-                  "datum": "4/30/2026"
-              },
-              {
-                  "popis": "Servisné poplatky /bankové poplatky/",
-                  "suma": -17.15,
-                  "datum": "5/29/2026"
-              },
-              {
-                  "popis": "Servisné poplatky /bankové poplatky/",
-                  "suma": -22.15,
-                  "datum": "6/30/2026"
-              }
-          ]
-      },
-      {
-          "kategoria": "Vchod / DDZ / kľúče",
-          "typ": "jednorazove",
-          "suma": -688.2,
-          "polozky": [
-              {
-                  "popis": "oprava vchodových brán, J.6-8",
-                  "suma": -90.0,
-                  "datum": "4/1/2026"
-              },
-              {
-                  "popis": "dodanie a naprogramovanie 4ks DESFire kľúčov (Vacula Pavol)",
-                  "suma": -49.2,
-                  "datum": "7/13/2026"
-              },
-              {
-                  "popis": "dodanie a montáž dverí (Ferdinand Horňáček – ZLATÝ)",
-                  "suma": -549.0,
-                  "datum": "8/20/2026"
-              }
-          ]
-      },
-      {
-          "kategoria": "Požiarna ochrana",
-          "typ": "pravidelne",
-          "suma": -80.8,
-          "polozky": [
-              {
-                  "popis": "Preventívna protipožiarna prehliadka (KM protect s.r.o.)",
-                  "suma": -80.8,
-                  "datum": "7/22/2026"
-              }
-          ]
-      },
-      {
-          "kategoria": "Inkasné poplatky",
-          "typ": "pravidelne",
-          "suma": -18.36,
-          "polozky": [
-              {
-                  "popis": "Inkasné poplatky",
-                  "suma": -1.56,
-                  "datum": "1/15/2026"
-              },
-              {
-                  "popis": "Inkasné poplatky",
-                  "suma": -1.56,
-                  "datum": "2/16/2026"
-              },
-              {
-                  "popis": "Inkasné poplatky",
-                  "suma": -1.56,
-                  "datum": "3/16/2026"
-              },
-              {
-                  "popis": "Inkasné poplatky",
-                  "suma": -1.56,
-                  "datum": "4/15/2026"
-              },
-              {
-                  "popis": "Inkasné poplatky",
-                  "suma": -1.56,
-                  "datum": "5/15/2026"
-              },
-              {
-                  "popis": "Inkasné poplatky",
-                  "suma": -1.56,
-                  "datum": "6/15/2026"
-              },
-              {
-                  "popis": "Inkasné poplatky",
-                  "suma": -9.0,
-                  "datum": "6/19/2026"
-              }
-          ]
-      },
-      {
-          "kategoria": "Administratíva/mzdy",
-          "typ": "pravidelne",
-          "suma": -5.0,
-          "polozky": [
-              {
-                  "popis": "vystavenie faktúry",
-                  "suma": -5.0,
-                  "datum": "3/31/2026"
-              }
-          ]
-      }
-  ]
+  "2026": FOND_2026_KATEGORIE
 };
 
 export const FOND_ROKY = Object.keys(FOND_BY_YEAR).sort();

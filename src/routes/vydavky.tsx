@@ -12,6 +12,10 @@ export const Route = createFileRoute("/vydavky")({
     meta: [
       { title: "Výdavky z fondu opráv — Bytový dom Jiskrova 6,8" },
       { name: "description", content: "Ročné čerpanie fondu opráv — opravy, údržba a mimoriadne výdavky." },
+      { property: "og:title", content: "Výdavky z fondu opráv — Jiskrova 6,8" },
+      { property: "og:description", content: "Ročné čerpanie fondu opráv, opravy a údržba domu Jiskrova 6,8." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: VydavkyPage,
@@ -167,7 +171,7 @@ function FondPolozkoveVydavky() {
       <div>
         <h2 className="text-xl font-semibold">Položkové čerpanie fondu ({FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]})</h2>
         <p className="text-sm text-muted-foreground mt-1">
-          Zdroj: účtovné výpisy z fondu opráv (Fond opráv domu {FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]}). Rok 2026 je neukončený (YTD) — výpis fondu k 30. 6., faktúry do 20. 8. 2026.
+          Zdroj: účtovné výpisy z fondu opráv (Fond opráv domu {FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]}). Rok 2026 je neukončený (YTD) — výpis fondu k 30. 9., doplnený o faktúru za kľúče 49,20 € mimo výpisu. Tvorba 7 761,55 € zahŕňa predpis 7 747,60 € a SIPO 13,95 €. Júnový predpis vo výpise chýba a nie je odhadovaný. Zostatok je vypočítané saldo potvrdených pohybov, nie potvrdený bankový zostatok. Dátumy položiek z výpisu sú dátumy zaúčtovania, nie vykonania kontroly.
           Kategórie sú rozdelené podľa toho, či ide o pravidelne sa opakujúce výdavky alebo o jednorazové opravy a investície.
         </p>
       </div>

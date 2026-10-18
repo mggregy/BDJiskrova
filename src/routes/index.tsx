@@ -34,6 +34,8 @@ export const Route = createFileRoute("/")({
           "Prehľadná informačná stránka pre vlastníkov bytov na Jiskrovej 6,8 — financie, spotreby tepla a vody, revízie a čerpanie fondu opráv.",
       },
       { property: "og:title", content: "Bytový dom Jiskrova 6,8" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       {
         property: "og:description",
         content: "Hospodárenie domu, spotreby a revízie — všetko na jednom mieste.",

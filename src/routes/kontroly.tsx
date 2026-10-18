@@ -53,6 +53,10 @@ export const Route = createFileRoute("/kontroly")({
   head: () => ({
     meta: [
       { title: "Zákonné kontroly — Bytový dom Jiskrova 6,8" },
+      { property: "og:title", content: "Zákonné kontroly — Jiskrova 6,8" },
+      { property: "og:description", content: "Termíny a platnosť povinných revízií domu Jiskrova 6,8." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       {
         name: "description",
         content:
