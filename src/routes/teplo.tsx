@@ -112,6 +112,10 @@ export const Route = createFileRoute("/teplo")({
   head: () => ({
     meta: [
       { title: "Teplo (ÚK + TÚV) — Bytový dom Jiskrova" },
+      { property: "og:title", content: "Teplo ÚK a TÚV — Jiskrova 6,8" },
+      { property: "og:description", content: "Náklady a spotreba ústredného kúrenia a ohrevu vody v dome Jiskrova 6,8." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       {
         name: "description",
         content:

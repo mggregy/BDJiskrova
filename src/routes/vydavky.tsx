@@ -12,6 +12,10 @@ export const Route = createFileRoute("/vydavky")({
     meta: [
       { title: "Výdavky z fondu opráv — Bytový dom Jiskrova 6,8" },
       { name: "description", content: "Ročné čerpanie fondu opráv — opravy, údržba a mimoriadne výdavky." },
+      { property: "og:title", content: "Výdavky z fondu opráv — Jiskrova 6,8" },
+      { property: "og:description", content: "Ročné čerpanie fondu opráv, opravy a údržba domu Jiskrova 6,8." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: VydavkyPage,

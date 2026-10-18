@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep confirmed current-year repair-fund movements in one shared data module, reused by annual and itemized views, to prevent inconsistent totals and duplicate invoices.
+- Distinguish ledger posting dates from inspection dates; a payment posting must not replace a separately confirmed inspection date.
