@@ -167,7 +167,7 @@ function FondPolozkoveVydavky() {
       <div>
         <h2 className="text-xl font-semibold">Položkové čerpanie fondu ({FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]})</h2>
         <p className="text-sm text-muted-foreground mt-1">
-          Zdroj: účtovné výpisy z fondu opráv (Fond opráv domu {FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]}). Rok 2026 je neukončený (YTD) — výpis fondu k 30. 6., faktúry do 20. 8. 2026.
+          Zdroj: účtovné výpisy z fondu opráv (Fond opráv domu {FOND_ROKY[0]}–{FOND_ROKY[FOND_ROKY.length - 1]}). Rok 2026 je neukončený (YTD) — výpis fondu k 30. 9., doplnený o faktúru za kľúče 49,20 € mimo výpisu. Tvorba 7 761,55 € zahŕňa predpis 7 747,60 € a SIPO 13,95 €. Júnový predpis vo výpise chýba a nie je odhadovaný. Zostatok je vypočítané saldo potvrdených pohybov, nie potvrdený bankový zostatok. Dátumy položiek z výpisu sú dátumy zaúčtovania, nie vykonania kontroly.
           Kategórie sú rozdelené podľa toho, či ide o pravidelne sa opakujúce výdavky alebo o jednorazové opravy a investície.
         </p>
       </div>

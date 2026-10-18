@@ -1,3 +1,4 @@
+import { FOND_2026_DATUM, FOND_2026_TVORBA, FOND_2026_CERPANIE, FOND_2026_ZOSTATOK } from "./fond-2026";
 // Údaje pre Bytový dom Jiskrova 6,8 — Bratislava
 // Zdroj: ročné správy správcu NOVBYT, s.r.o. + ročné rozpočítania Techem
 // Roky 2019–2024 sú z reálnych PDF dokumentov; staršie roky možno doplniť.
@@ -362,25 +363,25 @@ export const ROKY: RocnyZaznam[] = [
   {
     rok: 2026,
     partialny: true,
-    ytdDoDna: "2026-08-20",
-    zostatokUctu: 100466.16, // potvrdené: 98 292,92 + 4 850,00 (FO jan–máj) − 2 676,76 (FO + faktúry do 20. 8.)
+    ytdDoDna: FOND_2026_DATUM,
+    zostatokUctu: FOND_2026_ZOSTATOK, // vypočítané saldo potvrdených pohybov fondu
     spoluPredpis: 0,
     spoluVyuctovanie: 0,
     fondStavZaciatok: 98292.92,
-    fondTvorba: 4850.0, // potvrdený predpis FPÚaO jan–máj 2026 (výpis fondu)
-    fondCerpanie: 2676.76,
-    fondZostatok: 100466.16,
-    vyhotovil: "prebieha (YTD k 20. 8. 2026)",
+    fondTvorba: FOND_2026_TVORBA, // doložený predpis 7 747,60 € + SIPO 13,95 €; jún chýba
+    fondCerpanie: FOND_2026_CERPANIE,
+    fondZostatok: FOND_2026_ZOSTATOK,
+    vyhotovil: "prebieha (YTD k 30. 9. 2026)",
     polozky: [],
     cerpaniaFondu: [
       { popis: "Vyčistenie a dezinfekcia výťahovej šachty, J.8", suma: 1475.0 },
       { popis: "OP a OS elektroinštalácie", suma: 300.0 },
-      { popis: "Bankové poplatky (Jan–Jún)", suma: 109.4 },
+      { popis: "Bankové poplatky (Jan–Sep)", suma: 162.35 },
       { popis: "Dodanie a montáž dverí", suma: 549.0 },
       { popis: "Oprava vchodových brán, J.6-8", suma: 90.0 },
-      { popis: "Preventívna protipožiarna prehliadka (KM protect)", suma: 80.8 },
-      { popis: "DESFire kľúče — 4 ks", suma: 49.2 },
-      { popis: "Inkasné poplatky (Jan–Jún)", suma: 18.36 },
+      { popis: "Preventívna protipožiarna prehliadka vrátane hydrantov (KM protect)", suma: 80.8 },
+      { popis: "DESFire kľúče — 4 ks (faktúra mimo výpisu fondu)", suma: 49.2 },
+      { popis: "Inkasné poplatky (Jan–Aug)", suma: 22.22 },
       { popis: "Vystavenie faktúry (administratíva)", suma: 5.0 },
     ],
   },
