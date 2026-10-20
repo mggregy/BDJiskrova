@@ -9,7 +9,12 @@ import {
   fmtDate,
   statusRevizie,
   poslednyRok,
+  poslednyRokSTeplo,
+  predoslyRokSTeplo,
+  spotrebaTeplaKwh,
+  teploSezona,
 } from "@/data/dom-data";
+
 import { ArrowUpRight, Banknote, Flame, PiggyBank, ShieldCheck, TrendingDown, TrendingUp } from "lucide-react";
 import {
   Area,
@@ -73,9 +78,9 @@ function Dashboard() {
     .slice(0, 4);
 
   const fondDelta = poslednyRok.fondZostatok - poslednyRok.fondStavZaciatok;
-  const teploDelta = poslednyRok.teploCelkomKwh && ROKY[ROKY.length - 2].teploCelkomKwh
-    ? poslednyRok.teploCelkomKwh - (ROKY[ROKY.length - 2].teploCelkomKwh ?? 0)
-    : 0;
+  const teploKwh = spotrebaTeplaKwh(poslednyRokSTeplo);
+  const teploDelta = predoslyRokSTeplo ? teploKwh - spotrebaTeplaKwh(predoslyRokSTeplo) : 0;
+
 
   return (
     <AppShell>
@@ -125,22 +130,30 @@ function Dashboard() {
           to="/teplo"
           icon={Flame}
           label="Spotreba tepla (dom)"
-          value={`${fmtNum(poslednyRok.teploCelkomKwh ?? 0)} kWh`}
+          value={`${fmtNum(teploKwh)} kWh`}
           hint={
-            teploDelta !== 0 ? (
-              <span className="inline-flex items-center gap-1">
-                {teploDelta < 0 ? (
-                  <TrendingDown className="size-3.5 text-success" />
-                ) : (
-                  <TrendingUp className="size-3.5 text-warning" />
-                )}
-                {teploDelta > 0 ? "+" : ""}
-                {fmtNum(teploDelta)} kWh medziročne
-              </span>
-            ) : null
+            <div className="space-y-1">
+              {teploDelta !== 0 && (
+                <span className="inline-flex items-center gap-1">
+                  {teploDelta < 0 ? (
+                    <TrendingDown className="size-3.5 text-success" />
+                  ) : (
+                    <TrendingUp className="size-3.5 text-warning" />
+                  )}
+                  {teploDelta > 0 ? "+" : ""}
+                  {fmtNum(teploDelta)} kWh oproti {predoslyRokSTeplo?.rok}
+                </span>
+              )}
+              {poslednyRokSTeplo.rok !== poslednyRok.rok && (
+                <div className="text-muted-foreground/80">
+                  sezóna {teploSezona(poslednyRokSTeplo.rok)} · vyúčtovanie {poslednyRok.rok} zatiaľ nie je
+                </div>
+              )}
+            </div>
           }
           tone="warning"
         />
+
         <StatCard
           to="/kontroly"
           icon={ShieldCheck}

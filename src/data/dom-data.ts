@@ -610,6 +610,23 @@ export const statusRevizie = (platnaDo: string, today = new Date()): { status: R
 
 export const poslednyRok = ROKY[ROKY.length - 1];
 
+// --- Spotreba tepla: aktuálny rok má údaje až po ročnom vyúčtovaní ---
+/** Posledný rok s potvrdenou spotrebou tepla (aktuálny rok môže byť zatiaľ nulový). */
+export const poslednyRokSTeplo =
+  [...ROKY].reverse().find((r) => (r.teploCelkomKwh ?? 0) > 0) ?? poslednyRok;
+
+const idxRokSTeplo = ROKY.indexOf(poslednyRokSTeplo);
+/** Predchádzajúci rok s potvrdenou spotrebou tepla, pre medziročné porovnanie. */
+export const predoslyRokSTeplo = idxRokSTeplo > 0 ? ROKY[idxRokSTeplo - 1] : undefined;
+
+/** Spotreba tepla za rok v kWh vrátane ohrevu TÚV — sedí s krivkou „Spotreba ÚK + TÚV". */
+export const spotrebaTeplaKwh = (r: { teploCelkomKwh?: number; teploTuvKwh?: number }) =>
+  (r.teploCelkomKwh ?? 0) + (r.teploTuvKwh ?? 0);
+
+/** Popisek vykurovacej sezóny, napr. 2025 → „2025/2026". */
+export const teploSezona = (rok: number) => `${rok}/${rok + 1}`;
+
+
 // === HISTÓRIA NÁKLADOV NA ÚK (Ústredné kúrenie) ===
 // Zdroj: 2025_Jiskrova_naklady_teplo_Zhrnutie.pdf (sumár od dodávateľa tepla)
 // Rozpad len pre ÚK objektu (bez ohrevu TÚV). Hodnoty v EUR a kWh.
