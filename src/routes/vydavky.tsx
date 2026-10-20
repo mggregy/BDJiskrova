@@ -236,17 +236,19 @@ function FondPolozkoveVydavky() {
                   onClick={() => setOtvorene((s) => ({ ...s, [key]: !s[key] }))}
                   className="w-full flex items-center justify-between gap-3 text-left hover:bg-accent/40 rounded px-2 py-1.5 transition"
                 >
-                  <div className="flex items-center gap-2 min-w-0">
+                  <div className="flex items-center gap-3 min-w-0">
                     <ChevronDown
                       className={`size-4 text-muted-foreground shrink-0 transition-transform ${open ? "" : "-rotate-90"}`}
                     />
-                    <span className="text-sm font-medium truncate">{k.kategoria}</span>
-                    <span
-                      className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded shrink-0 ${
-                        k.typ === "pravidelne" ? "bg-teal/10 text-teal" : "bg-primary/10 text-primary"
-                      }`}
-                    >
-                      {k.typ === "pravidelne" ? "pravidelné" : "jednorazové"}
+                    <span className="text-sm font-medium truncate sm:w-56">{k.kategoria}</span>
+                    <span className="shrink-0 sm:w-28">
+                      <span
+                        className={`inline-flex text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded ${
+                          k.typ === "pravidelne" ? "bg-teal/10 text-teal" : "bg-primary/10 text-primary"
+                        }`}
+                      >
+                        {k.typ === "pravidelne" ? "pravidelné" : "jednorazové"}
+                      </span>
                     </span>
                     <span className="text-xs text-muted-foreground shrink-0">· {k.polozky.length}×</span>
                   </div>
