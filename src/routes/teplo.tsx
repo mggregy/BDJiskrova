@@ -106,6 +106,19 @@ const OPATRENIA = [
   },
 ];
 
+const AUDIT_OPATRENIA = [
+  {
+    nazov: "Zateplenie stropu nad nevykurovaným priestorom (povala, 892 m²)",
+    usporaCista: "17,92 MWh/rok",
+    usporaCelkova: "≈ 20,4 MWh/rok vrátane strát",
+  },
+  {
+    nazov: "Výmena okien vo vchodoch a zadných dverí domu",
+    usporaCista: "1,3 MWh/rok",
+    usporaCelkova: "≈ 1,3 MWh/rok vrátane strát",
+  },
+];
+
 
 
 export const Route = createFileRoute("/teplo")({
