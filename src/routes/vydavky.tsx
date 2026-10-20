@@ -165,6 +165,8 @@ function FondPolozkoveVydavky() {
 
   const rokData = FOND_BY_YEAR[rok] ?? [];
   const rokTotal = rokData.reduce((a, k) => a + k.suma, 0);
+  const rokPravidelne = rokData.filter((k) => k.typ === "pravidelne").reduce((a, k) => a + k.suma, 0);
+  const rokJednorazove = rokData.filter((k) => k.typ === "jednorazove").reduce((a, k) => a + k.suma, 0);
 
   return (
     <section className="mb-10 space-y-6">
@@ -216,8 +218,12 @@ function FondPolozkoveVydavky() {
           </div>
         </div>
 
-        <div className="text-xs text-muted-foreground mb-3">
-          Spolu čerpané v roku {rok}: <strong className="text-foreground">{fmtEurFull(Math.abs(rokTotal))}</strong>
+        <div className="text-xs text-muted-foreground mb-3 space-y-1">
+          <p>Spolu čerpané v roku {rok}: <strong className="text-foreground">{fmtEurFull(Math.abs(rokTotal))}</strong></p>
+          <div className="flex flex-wrap gap-x-6 gap-y-1">
+            <p>Pravidelné výdavky: <strong className="text-teal">{fmtEurFull(Math.abs(rokPravidelne))}</strong></p>
+            <p>Jednorazové výdavky: <strong className="text-primary">{fmtEurFull(Math.abs(rokJednorazove))}</strong></p>
+          </div>
         </div>
 
         <ul className="divide-y divide-border/60">
