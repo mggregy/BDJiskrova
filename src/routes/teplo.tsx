@@ -106,6 +106,19 @@ const OPATRENIA = [
   },
 ];
 
+const AUDIT_OPATRENIA = [
+  {
+    nazov: "Zateplenie stropu nad nevykurovaným priestorom (povala, 892 m²)",
+    usporaCista: "17,92 MWh/rok",
+    usporaCelkova: "≈ 20,4 MWh/rok vrátane strát",
+  },
+  {
+    nazov: "Výmena okien vo vchodoch a zadných dverí domu",
+    usporaCista: "1,3 MWh/rok",
+    usporaCelkova: "≈ 1,3 MWh/rok vrátane strát",
+  },
+];
+
 
 
 export const Route = createFileRoute("/teplo")({
@@ -941,6 +954,40 @@ function UkBreakdownSection() {
             <div className="mt-5 rounded-md bg-primary px-4 py-3 text-center text-sm font-medium text-primary-foreground">
               Reálny potenciál úspor je približne od 3 do 5 tis. € ročne, teda
               asi 14–22 % z celkových platieb.
+            </div>
+
+            <div className="mt-5">
+              <h5 className="mb-3 font-display text-sm font-semibold text-primary">
+                Odporúčané opatrenia z energetického auditu
+              </h5>
+              <div className="grid gap-4 md:grid-cols-2">
+                {AUDIT_OPATRENIA.map((a) => (
+                  <div
+                    key={a.nazov}
+                    className="rounded-md border bg-muted/30 p-4"
+                  >
+                    <p className="text-sm font-medium leading-relaxed">
+                      {a.nazov}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold text-primary">
+                      Úspora tepla: {a.usporaCista}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Celková úspora ÚK + TÚV: {a.usporaCelkova}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Spolu pri realizácii oboch opatrení: čistá úspora ≈ 19,2
+                MWh/rok, celková ≈ 21,7 MWh/rok — približne 10–11 % dnešnej
+                ročnej spotreby domu (~198 MWh). Podľa auditu sa úspory energie
+                pri stavebných opatreniach môžu sčítať, úspory nákladov však
+                nie (krížové vplyvy fixných a variabilných nákladov); pri
+                centrálnom zásobovaní teplom sa úspora nákladov prejaví až po
+                troch rokoch v dôsledku výpočtu regulačného príkonu. Zdroj:
+                energetický audit ENERGY SYSTEMS GROUP (EA Jiskrova 6,8 BA).
+              </p>
             </div>
           </div>
 
