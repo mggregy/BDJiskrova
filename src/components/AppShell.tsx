@@ -6,9 +6,9 @@ import { DOM_INFO } from "@/data/dom-data";
 const navItems = [
   { to: "/", label: "Prehľad", icon: LayoutDashboard },
   { to: "/financie", label: "Financie & Spotreby", icon: Receipt },
+  { to: "/vydavky", label: "Výdavky z fondu", icon: Wrench },
   { to: "/teplo", label: "Teplo (ÚK + TÚV)", icon: Flame },
   { to: "/kontroly", label: "Zákonné kontroly", icon: ShieldCheck },
-  { to: "/vydavky", label: "Výdavky z fondu", icon: Wrench },
 ] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
